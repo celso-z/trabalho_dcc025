@@ -10,9 +10,9 @@ package com.mycompany.logsystem;
  */
 public abstract class Usuario {
 
-    String nome;
-    Integer matricula;
-    static Integer numUsuarios;
+    private String nome;
+    private Integer matricula;
+    private static Integer numUsuarios;
     
     public Usuario(String nome) {
         this.nome = nome;
