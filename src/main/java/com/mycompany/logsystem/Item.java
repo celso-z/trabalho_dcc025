@@ -4,13 +4,7 @@
  */
 package com.mycompany.logsystem;
 
-<<<<<<< HEAD
-/**
- *
- * @author celso-z
- */
-=======
->>>>>>> 50405eadd5da14aea0712342c45fc9467d5253d6
+
 public class Item {
     private Integer numItens;
     private Integer idItem; 
