@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Unidade {
     private static Integer numUnidades = 0;
-    final private Integer idUnidade;
+    private Integer idUnidade;
     private Integer capacidadeArmazenamento;
     private Integer capacidadeAtual;
     private ArrayList<Carga> cargas;
