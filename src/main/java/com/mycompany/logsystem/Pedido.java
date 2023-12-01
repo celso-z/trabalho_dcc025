@@ -5,10 +5,6 @@
 package com.mycompany.logsystem;
 import java.util.ArrayList;
 
-/**
- *
- * @author celso-z
- */
 public class Pedido {
     private static Integer numPedidos;
     private Integer idPedido;
