@@ -35,7 +35,7 @@ public class DataManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepathRegistro, false))) {
             writer.write(json);
         } catch (IOException e) {
-            throw new DataException("Erro ao escrever Json em arquivo", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
+            throw new DataException("Erro ao escrever Json em arquivo", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber(), e);
         }
     }
     public List<Registro> leRegistros(String filepathRegistro) throws DataException{
@@ -54,7 +54,7 @@ public class DataManager {
                 content.append(line).append("\n");
             }
         } catch (IOException e) {
-            throw new DataException("Erro ao ler arquivo Json", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
+            throw new DataException("Erro ao ler arquivo Json", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber(), e);
         }
         return content.toString();
     }

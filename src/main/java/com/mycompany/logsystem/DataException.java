@@ -18,6 +18,12 @@ public class DataException extends IOException{
         this.classeErro = classeErro;
         this.lineNumber = lineNumber;
     }
+    
+    public DataException(String message, String classeErro, int lineNumber, Throwable cause){
+        super(message, cause);
+        this.classeErro = classeErro;
+        this.lineNumber = lineNumber;
+    }
 
     public String getClasseErro() {
         return classeErro;
