@@ -17,6 +17,6 @@ public abstract class Registro {
     public String getDataPath() {
         return dataPath;
     }
-            
+    
     
 }
