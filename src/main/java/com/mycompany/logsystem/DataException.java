@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.logsystem;
+import java.io.*;
 
 /**
  *
  * @author celso-z
  */
-public class DataException extends Exception{
+public class DataException extends IOException{
     private final String classeErro;
     private final int lineNumber;
     
