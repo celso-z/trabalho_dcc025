@@ -9,8 +9,6 @@ package com.mycompany.logsystem;
 public abstract class Registro {
     final String DATA_DIR = "data";
     private final String dataPath;
-    //public abstract void EscreveRegistro();
-    //public abstract Registro LeRegistro();
 
     public Registro(String nomeArquivoSalvamento) {
         dataPath = DATA_DIR + nomeArquivoSalvamento;
