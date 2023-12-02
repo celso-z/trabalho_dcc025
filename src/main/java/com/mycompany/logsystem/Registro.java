@@ -13,8 +13,8 @@ public abstract class Registro {
     public abstract void EscreveRegistro(List<Registro> itens);
     public abstract Registro LeRegistro();
 
-    public Registro(String diretorioSalvamento) {
-        this.DATA_DIR = "data" + diretorioSalvamento;
+    public Registro(String nomeArquivoSalvamento) {
+        this.DATA_DIR = "data" + nomeArquivoSalvamento;
     }
             
     
