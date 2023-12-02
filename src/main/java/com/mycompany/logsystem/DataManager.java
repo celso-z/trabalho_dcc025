@@ -6,7 +6,6 @@ package com.mycompany.logsystem;
 
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,12 @@ public class DataManager {
     
     public void escreveRegistros(List<Registro> objectsToWrite) throws DataException{
         String filepathRegistro = objectsToWrite.get(0).getDataPath();
+        String filepathRegistroDir = objectsToWrite.get(0).DATA_DIR;
         //Gson gson = new Gson();
         gson = new Gson();
         //String json = gson.toJson(objectsToWrite);
         json = gson.toJson(objectsToWrite);
-        File diretorio = new File(filepathRegistro);
+        File diretorio = new File(filepathRegistroDir);
         if(!diretorio.exists()){
             diretorio.mkdirs();
         }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.logsystem;
+import java.io.File;
 
 
 
@@ -11,7 +12,7 @@ public abstract class Registro {
     private final String dataPath;
 
     public Registro(String nomeArquivoSalvamento) {
-        dataPath = DATA_DIR + nomeArquivoSalvamento;
+        dataPath = DATA_DIR +  File.separator + nomeArquivoSalvamento;
     }
 
     public String getDataPath() {

@@ -11,8 +11,9 @@ package com.mycompany.logsystem;
 public class ClientePersist extends Registro {
     private final Cliente ref;
 
-    public ClientePersist(String nomeArquivoSalvamento, Cliente ref) {
-        super(nomeArquivoSalvamento);
+
+    public ClientePersist(Cliente ref) {
+        super("ClientePersist.json");
         this.ref = ref;
     }
     

@@ -1,3 +1,13 @@
-com\mycompany\logsystem\LogSystem.class
+com\mycompany\logsystem\DataManager$1.class
+com\mycompany\logsystem\DataManager.class
+com\mycompany\logsystem\Item.class
+com\mycompany\logsystem\Pedido.class
 com\mycompany\logsystem\Cliente.class
+com\mycompany\logsystem\Veiculo.class
+com\mycompany\logsystem\DataException.class
+com\mycompany\logsystem\Carga.class
+com\mycompany\logsystem\LogSystem.class
 com\mycompany\logsystem\Usuario.class
+com\mycompany\logsystem\Registro.class
+com\mycompany\logsystem\ClientePersist.class
+com\mycompany\logsystem\Unidade.class
