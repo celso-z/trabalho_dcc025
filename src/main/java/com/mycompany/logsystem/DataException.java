@@ -9,13 +9,23 @@ package com.mycompany.logsystem;
  * @author celso-z
  */
 public class DataException extends Exception{
-    String classeErro;
-    public int lineNumber;
+    private final String classeErro;
+    private final int lineNumber;
     
     public DataException(String message, String classeErro, int lineNumber){
         super(message);
         this.classeErro = classeErro;
         this.lineNumber = lineNumber;
     }
+
+    public String getClasseErro() {
+        return classeErro;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+    
+    
     
 }
