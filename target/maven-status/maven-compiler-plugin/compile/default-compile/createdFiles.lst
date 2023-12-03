@@ -9,5 +9,5 @@ com\mycompany\logsystem\Carga.class
 com\mycompany\logsystem\LogSystem.class
 com\mycompany\logsystem\Usuario.class
 com\mycompany\logsystem\Registro.class
-com\mycompany\logsystem\ClientePersist.class
 com\mycompany\logsystem\Unidade.class
+com\mycompany\logsystem\DataManager$2.class
