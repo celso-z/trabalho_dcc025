@@ -12,7 +12,7 @@ public abstract class Usuario {
 
     private String nome;
     private Integer matricula;
-    private static Integer numUsuarios;
+    private static Integer numUsuarios = 0;
     
     public Usuario(String nome) {
         this.nome = nome;
