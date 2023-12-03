@@ -63,13 +63,13 @@ public class Pedido {
         this.nomeDestinatario = nomeDestinatario;
     }
 
-    public Item getItensPedido() {
-        return itensPedido;
-    }
+    //public Item getItensPedido() {
+        //return itensPedido;
+    //}
 
-    public void setItensPedido(Item itensPedido) {
+    /*public void setItensPedido(Item itensPedido) {
         this.itensPedido = itensPedido;
-    }
+    }*/
 
     public Float getFrete() {
         return frete;

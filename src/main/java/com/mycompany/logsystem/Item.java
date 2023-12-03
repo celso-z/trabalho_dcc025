@@ -19,12 +19,12 @@ public class Item {
         this.nome = nome;
         this.valor = valor;
         this.peso = peso;
-        this.frete = calculaFrete();
+        //this.frete = calculaFrete();
     }
     
-    private int calculaFrete(){
+    /*private int calculaFrete(){
         
-    }
+    }*/
     
 
     public String getNome() {

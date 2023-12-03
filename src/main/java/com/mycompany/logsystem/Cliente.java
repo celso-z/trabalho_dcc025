@@ -9,14 +9,26 @@ package com.mycompany.logsystem;
  * @author celso-z
  */
 public class Cliente extends Usuario {
-    //Cargas x;
+    private final String username;
+    private final String senha;
     
     
-    public Cliente(String nome) {
+    public Cliente(String nome, String username, String senha) {
         super(nome);
+        this.username = username;
+        this.senha = senha;
     }
+    
     
     /*public solicitarFrete(Integer Valor, Unidade orig, Unidade dest){
     
     */
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
 }
