@@ -34,6 +34,8 @@ public class Credito extends Janela {
     JButton botao_finalizar;
 
     public Credito() {
+        super("Credito");
+        
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 

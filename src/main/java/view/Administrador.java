@@ -32,6 +32,8 @@ public class Administrador extends Janela {
     JButton botao_cadastrar_funcionario;
 
     public Administrador() {
+        super("Administrador");
+
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
@@ -80,7 +82,7 @@ public class Administrador extends Janela {
         painel.add(text_senha_funcionario, gbc);
 
         botao_cadastrar_funcionario = new JButton("Cadastrar funcionário");
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;

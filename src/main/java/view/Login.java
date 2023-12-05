@@ -5,7 +5,9 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class Login extends Janela {
+
     JLabel label_usuario;
     JTextField text_usuario;
 
@@ -26,9 +29,11 @@ public class Login extends Janela {
     JButton botao_entrar;
 
     public Login() {
+        super("Login");
+        
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
-        
+       
         label_usuario = new JLabel("Usuário");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -57,8 +62,8 @@ public class Login extends Janela {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_entrar, gbc);
-        
+
         add(painel);
     }
-    
+
 }

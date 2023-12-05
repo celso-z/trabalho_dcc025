@@ -32,6 +32,8 @@ public class Cadastro extends Janela {
     JButton botao_cadastrar;
 
     public Cadastro() {
+        super("Cadastro");
+        
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
         

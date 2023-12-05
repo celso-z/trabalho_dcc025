@@ -21,6 +21,8 @@ public class Funcionario extends Janela {
     JButton botao_4;
 
     public Funcionario() {
+        super("Funcionario");
+        
         JTabbedPane painel = new JTabbedPane();
 
         JPanel painel1 = gridBagLayoutConfig();

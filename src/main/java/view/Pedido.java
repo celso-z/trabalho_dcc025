@@ -6,13 +6,13 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -36,65 +36,76 @@ public class Pedido extends Janela {
     JButton botao_adicionar_item;
     JButton botao_finalizar;
 
-    public Pedido() {
-        JPanel painel = gridBagLayoutConfig();
+    public Pedido() {  
+        super("Pedido");
+        
+        JPanel painel1 = gridBagLayoutConfig();
+        JPanel painel2 = gridBagLayoutConfig();
+
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
         label_nome_item = new JLabel("Nome do item");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel.add(label_nome_item, gbc);
+        painel2.add(label_nome_item, gbc);
 
         text_nome_item = new JTextField();
-        text_nome_item.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        text_nome_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel.add(text_nome_item, gbc);
+        painel2.add(text_nome_item, gbc);
 
         label_valor_item = new JLabel("Valor do item");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel.add(label_valor_item, gbc);
+        painel2.add(label_valor_item, gbc);
 
         text_valor_item = new JTextField();
-        text_valor_item.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        text_valor_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        painel.add(text_valor_item, gbc);
+        painel2.add(text_valor_item, gbc);
 
         label_peso_item = new JLabel("Peso do item");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel.add(label_peso_item, gbc);
+        painel2.add(label_peso_item, gbc);
 
         text_peso_item = new JTextField();
-        text_peso_item.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        text_peso_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel.add(text_peso_item, gbc);
+        painel2.add(text_peso_item, gbc);
 
         botao_adicionar_item = new JButton("Adicionar item");
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 3;
-        painel.add(botao_adicionar_item, gbc);
-
-        label_meus_itens = new JLabel("Meus itens");
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        painel.add(label_meus_itens, gbc);
-
-        text_meus_itens = new JList(itens);
-        text_meus_itens.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
-        gbc.gridx = 1;
-        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel.add(text_meus_itens, gbc);
+        painel2.add(botao_adicionar_item, gbc);
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
 
+        label_meus_itens = new JLabel("Meus itens");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        painel1.add(label_meus_itens, gbc);
+
+        text_meus_itens = new JList(itens);
+        text_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        painel1.add(text_meus_itens, gbc);
+        
         botao_finalizar = new JButton("Finalizar");
-        gbc.gridx = 1;
-        gbc.gridy = 6;
-        painel.add(botao_finalizar, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        painel1.add(botao_finalizar, gbc);
+
+        JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
+        painel.setEnabled( false ); //remove a opção de "resize" do painel
+        painel.setVisible(true);
 
         add(painel);
     }
