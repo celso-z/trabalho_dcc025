@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -34,6 +34,8 @@ public class Credito extends Janela {
     JButton botao_finalizar;
 
     public Credito() {
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
 
         label_nome_cartao = new JLabel("Nome do cartão");
         gbc.gridx = 0;
@@ -98,9 +100,5 @@ public class Credito extends Janela {
         painel.add(botao_finalizar, gbc);
 
         add(painel);
-    }
-    
-    private void finalizar() {
-        JOptionPane.showMessageDialog(null,"Recarga de xxx realizada!");
     }
 }

@@ -7,6 +7,7 @@ package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -30,9 +31,6 @@ public class Janela extends JFrame {
 
     final int PADDING = 10;
 
-    JPanel painel;
-    GridBagConstraints gbc;
-
     public Janela() {
         setTitle("LogSystem");
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -40,16 +38,23 @@ public class Janela extends JFrame {
         setLocationRelativeTo(null); //abre a janela centralizado na tela
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //encerra a aplicação ao fechar (botão "x")
         setVisible(true);
+    }
 
-        painel = new JPanel();
-        painel.setLayout(new GridBagLayout()); //utiliza o layout Grid Bag
+    public JPanel gridBagLayoutConfig() {
+        JPanel painel = new JPanel();
         painel.setVisible(true);
+        painel.setLayout(new GridBagLayout()); //utiliza o layout Grid Bag
 
-        gbc = new GridBagConstraints();
+        return painel;
+    }
+
+    public GridBagConstraints gridBagConstraintsConfig() {
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.EAST; //alinha texto a direita
         gbc.insets = new Insets(INSET_TOP, INSET_LEFT, INSET_BOTTOM, INSET_RIGHT); //define espaçamento externo        
         gbc.ipadx = PADDING; //define espaçamento interno na horizontal
         gbc.ipady = PADDING; //define espaçamento interno na vertical
 
+        return gbc;
     }
 }

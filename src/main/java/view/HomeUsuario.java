@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -17,7 +18,6 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class HomeUsuario extends Janela {
-
     String[] opt = {"opt1", "opt2", "opt3", "opt4", "opt5"};
 
     JLabel label_meus_pedidos;
@@ -39,7 +39,9 @@ public class HomeUsuario extends Janela {
     JButton botao_adicionar_credito;
 
     public HomeUsuario() {
-
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
+        
         botao_adicionar_credito = new JButton("Realizar recarga");
         gbc.gridx = 1;
         gbc.gridy = 0;

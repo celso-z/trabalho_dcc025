@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -16,7 +17,6 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class Login extends Janela {
-
     JLabel label_usuario;
     JTextField text_usuario;
 
@@ -26,7 +26,9 @@ public class Login extends Janela {
     JButton botao_entrar;
 
     public Login() {
-
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
+        
         label_usuario = new JLabel("Usuário");
         gbc.gridx = 0;
         gbc.gridy = 0;

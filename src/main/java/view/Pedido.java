@@ -6,9 +6,12 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -16,7 +19,6 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class Pedido extends Janela {
-
     String[] itens = {"item1", "item2", "item3", "item4", "item5"};
 
     JLabel label_meus_itens;
@@ -35,6 +37,9 @@ public class Pedido extends Janela {
     JButton botao_finalizar;
 
     public Pedido() {
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
+
         label_nome_item = new JLabel("Nome do item");
         gbc.gridx = 0;
         gbc.gridy = 0;
