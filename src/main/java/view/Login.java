@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package views;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -55,7 +55,8 @@ public class Login extends Janela {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_entrar, gbc);
-
+        
         add(painel);
     }
+    
 }
