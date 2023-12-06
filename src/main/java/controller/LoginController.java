@@ -4,9 +4,9 @@
  */
 package controller;
 
-import com.mycompany.logsystem.Cliente;
-import com.mycompany.logsystem.DataException;
-import com.mycompany.logsystem.DataManager;
+import model.Cliente;
+import exceptions.DataException;
+import storage.DataManager;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;

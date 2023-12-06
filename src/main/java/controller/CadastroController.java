@@ -4,9 +4,9 @@
  */
 package controller;
 
-import com.mycompany.logsystem.Cliente;
-import com.mycompany.logsystem.DataException;
-import com.mycompany.logsystem.DataManager;
+import model.Cliente;
+import exceptions.DataException;
+import storage.DataManager;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +41,8 @@ public class CadastroController {
                 DataManager.escreveRegistros(clientes);
                 JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Iremos te direcionar para a tela inicial.");
 
-//                frame.dispose();
-//                new HomeUsuario();
+                frame.dispose();
+                new HomeUsuario();
             } catch (DataException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel realizar cadastro! Verifique informações ou em caso de persistencia entre em contato com a empresa pelo email logsystem@oo.ufjf.br.");
             }
