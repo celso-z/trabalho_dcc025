@@ -4,10 +4,10 @@
  */
 package view;
 
+import controller.LoginController;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,10 +30,10 @@ public class Login extends Janela {
 
     public Login() {
         super("Login");
-        
+
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
-       
+
         label_usuario = new JLabel("Usuário");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -63,7 +63,21 @@ public class Login extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_entrar, gbc);
 
+        botao_entrar.addActionListener((ActionEvent event) -> {
+
+            LoginController.entrar(this, event, getTextUsuario(), getTextSenha());
+
+        });
+        
         add(painel);
+    }
+
+    public String getTextUsuario() {
+        return text_usuario.getText();
+    }
+
+    public String getTextSenha() {
+        return new String(text_senha.getPassword());
     }
 
 }

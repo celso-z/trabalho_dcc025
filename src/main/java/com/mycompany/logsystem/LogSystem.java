@@ -1,12 +1,10 @@
 /*
  * Um Sistema de gestão logística
  */
-
 package com.mycompany.logsystem;
 
-import exceptions.DataException;
-import java.util.*;
-
+import view.Administrador;
+import view.Login;
 
 /**
  *
@@ -14,6 +12,7 @@ import java.util.*;
  */
 public class LogSystem {
 
-    public static void main(String[] args) throws DataException{
+    public static void main(String[] args) {
+        new Administrador();
     }
 }
