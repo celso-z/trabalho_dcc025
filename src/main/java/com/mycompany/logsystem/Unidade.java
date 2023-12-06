@@ -11,31 +11,60 @@ import java.util.ArrayList;
  */
 public class Unidade {
     private static Integer numUnidades = 0;
-    private Integer idUnidade;
-    private Integer capacidadeArmazenamento;
-    private Integer capacidadeAtual;
+    private final Integer idUnidade;
+    private Float capacidadeArmazenamento = 0F;
+    private Float capacidadeAtual = 0F;
     private ArrayList<Carga> cargas;
 
-    public Unidade(Integer capacidadeArmazenamento) {
+    public Unidade(Float capacidadeArmazenamento) {
+        idUnidade = numUnidades;
+        numUnidades++;
         this.capacidadeArmazenamento = capacidadeArmazenamento;
+        this.capacidadeAtual = capacidadeArmazenamento;
     }
 
-    public Integer getArmazenamentoAtual() {
+    public Float getArmazenamentoAtual() {
         return capacidadeAtual;
     }
 
-    public void setArmazenamentoAtual(Integer armazenamentoAtual) {
-        this.capacidadeAtual = armazenamentoAtual;
+    public static Integer getNumUnidades() {
+        return numUnidades;
+    }
+
+    public Integer getIdUnidade() {
+        return idUnidade;
+    }
+
+    public Float getCapacidadeArmazenamento() {
+        return capacidadeArmazenamento;
+    }
+
+    public Float getCapacidadeAtual() {
+        return capacidadeAtual;
+    }
+
+    public ArrayList<Carga> getCargas() {
+        return cargas;
     }
     
-    public void adicionarCarga(Carga x){
+    public boolean adicionarCarga(Carga x){
         if(x.getPeso() < this.capacidadeAtual){
             cargas.add(x);
+            capacidadeAtual -= x.getPeso();
+            return true;
         }
-        return;
+        return false;
     }
     
-    public void retirarCarga(Integer idCarga){
-        
+    public Carga retirarCarga(int idCarga){
+        Carga cargaRemovida;
+        try{
+            cargaRemovida = cargas.get(idCarga);
+        }catch(IndexOutOfBoundsException e){
+            return null;
+        }
+        cargas.remove(idCarga);
+        capacidadeAtual += cargaRemovida.getPeso();
+        return cargaRemovida;
     }
 }
