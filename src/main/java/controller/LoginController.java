@@ -27,7 +27,7 @@ public class LoginController {
         try {
             clientes = DataManager.getFromDisk("Cliente");
         } catch (DataException e) {
-            cadastrar(frame);
+            telaCadastro(frame);
             return;
         }
 
@@ -39,13 +39,11 @@ public class LoginController {
             }
         }
 
-        
-            cadastrar(frame);
-        
+        telaCadastro(frame);
 
     }
 
-    public static void cadastrar(JFrame frame) {
+    public static void telaCadastro(JFrame frame) {
         JOptionPane.showMessageDialog(null, "Usuário não encontrado, você será direcionado para a tela de cadastro!");
         frame.dispose(); //fecha a tela atual
         new Cadastro();

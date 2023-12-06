@@ -1,7 +1,9 @@
 package view;
 
+import controller.CadastroController;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class Cadastro extends Janela {
+
     JLabel label_nome;
     JTextField text_nome;
 
@@ -33,10 +36,10 @@ public class Cadastro extends Janela {
 
     public Cadastro() {
         super("Cadastro");
-        
+
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
-        
+
         label_nome = new JLabel("Nome");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -88,6 +91,29 @@ public class Cadastro extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_cadastrar, gbc);
 
+        botao_cadastrar.addActionListener((ActionEvent event) -> {
+
+            CadastroController.cadastrar(this, event, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
+
+        });
+
         add(painel);
     }
+
+    public String getTextNome() {
+        return text_nome.getText();
+    }
+
+    public String getTextUsuario() {
+        return text_usuario.getText();
+    }
+
+    public String getTextTelefone() {
+        return text_telefone.getText();
+    }
+
+    public String getTextSenha() {
+        return new String(text_senha.getPassword());
+    }
+
 }

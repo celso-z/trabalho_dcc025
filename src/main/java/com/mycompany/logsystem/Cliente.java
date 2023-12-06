@@ -11,12 +11,20 @@ package com.mycompany.logsystem;
 public class Cliente extends Usuario {
     private final String username;
     private final String senha;
+    private String telefone;
     
     
     public Cliente(String nome, String username, String senha) {
         super(nome);
         this.username = username;
         this.senha = senha;
+    }
+    
+    public Cliente(String nome, String username, String senha, String telefone) {
+        super(nome);
+        this.username = username;
+        this.senha = senha;
+        this.telefone = telefone;
     }
     
     
