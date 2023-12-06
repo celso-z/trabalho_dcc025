@@ -27,8 +27,8 @@ public class Item {
     }
     
     private Float calculaFrete(){
-        Float multiplicadorValorAlto = 1 + (this.valor / 100);
-        Float custoTransporte = (this.peso * 1.2F) * this.quantidade;
+        Float multiplicadorValorAlto = 1 + (valor / 100);
+        Float custoTransporte = (this.peso * 1.2F) * quantidade;
         return (custoTransporte * multiplicadorValorAlto);
     }
     
@@ -70,6 +70,10 @@ public class Item {
     
     public void setQuantidade(Integer quantidade){
         this.quantidade = quantidade;
+    }
+    
+    public Float getFrete(){
+        return frete;
     }
 
 }
