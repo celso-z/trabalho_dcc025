@@ -4,7 +4,7 @@
  */
 package view;
 
-import Controller.LoginController;
+import controller.LoginController;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
