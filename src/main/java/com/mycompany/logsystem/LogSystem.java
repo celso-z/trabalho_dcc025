@@ -4,6 +4,7 @@
 
 package com.mycompany.logsystem;
 
+import exceptions.DataException;
 import java.util.*;
 
 

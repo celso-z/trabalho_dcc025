@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.logsystem;
+package storage;
 
+import exceptions.DataException;
+import model.Carga;
+import model.Cliente;
+import model.Unidade;
+import model.Veiculo;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
