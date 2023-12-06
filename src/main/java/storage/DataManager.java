@@ -2,8 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.logsystem;
+package storage;
 
+import exceptions.DataException;
+import model.Carga;
+import model.Cliente;
+import model.Unidade;
+import model.Veiculo;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -23,7 +28,6 @@ public class DataManager {
     public static String DATA_DIR = "data";
     
     public static <T> void escreveRegistros(List<T> objectsToWrite) throws DataException{
-        //Registro registersToWrite = objectToRegistro(objectsToWrite);
         Gson gson = new Gson();
         String json = gson.toJson(objectsToWrite);
         File diretorio = new File(DATA_DIR);
@@ -59,10 +63,7 @@ public class DataManager {
     private static <T> List<T> stringToRegistro(String str, Gson gson, Type token) throws DataException{
         List<T> objetos = new ArrayList<>();
         if(!str.trim().equals("")) {
-
-            Type tipoLista = new TypeToken<List<Cliente>>() {
-            }.getType();
-        objetos = gson.fromJson(str, token);
+            objetos = gson.fromJson(str, token);
 
             if (objetos == null)
                 objetos = new ArrayList<>();
@@ -74,7 +75,7 @@ public class DataManager {
         return classFilename;
     }
     //@objectName é o nome da classe a ser retornada
-    public static List<Cliente> getFromDisk(String objectName) throws DataException{
+    public static <T> List<T> getFromDisk(String objectName) throws DataException{
         Type tipoLista;
         
         switch(objectName){
@@ -86,14 +87,14 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Carga>>() {
                 }.getType();
             }
-            case "Item" -> {
-                tipoLista = new TypeToken<List<Item>>() {
-                }.getType();
-            }
-            case "Pedido" -> {
-                tipoLista = new TypeToken<List<Pedido>>() {
-                }.getType();
-            }
+            //case "Item" -> {
+                //tipoLista = new TypeToken<List<Item>>() {
+                //}.getType();
+            //}
+            //case "Pedido" -> {
+                //tipoLista = new TypeToken<List<Pedido>>() {
+                //}.getType();
+            //}
             case "Unidade" -> {
                 tipoLista = new TypeToken<List<Unidade>>() {
                 }.getType();
