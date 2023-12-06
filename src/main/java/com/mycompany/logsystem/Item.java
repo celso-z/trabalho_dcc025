@@ -6,27 +6,22 @@ package com.mycompany.logsystem;
 
 
 public class Item {
-    private Integer numItens;
-    private Integer idItem; 
+    static private Integer numItens = 0;
+    private final Integer idItem; 
     private String nome;
     private Float valor;
     private Float peso;
-    private Float frete;
     
     
 
     public Item(String nome, Float valor, Float peso) {
+        idItem = numItens;
+        numItens++;
         this.nome = nome;
         this.valor = valor;
         this.peso = peso;
-        //this.frete = calculaFrete();
     }
     
-    /*private int calculaFrete(){
-        
-    }*/
-    
-
     public String getNome() {
         return nome;
     }
@@ -51,8 +46,12 @@ public class Item {
         this.peso = peso;
     }
 
-    public void setFrete(Float frete) {
-        this.frete = frete;
+    public static Integer getNumItens() {
+        return numItens;
     }
-    
+
+    public Integer getIdItem() {
+        return idItem;
+    }
+
 }
