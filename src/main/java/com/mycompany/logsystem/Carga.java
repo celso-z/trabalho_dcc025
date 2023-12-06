@@ -4,62 +4,60 @@
  */
 package com.mycompany.logsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author celso-z
  */
 public class Carga {
-    private Float valorMercadoria;
+    private Float valorMercadoria = 0F;
     private Float peso;
     final private Integer idCarga;
-    private Float valorFrete; 
+    private Float valorFrete = 0F; 
     private static Integer num_Cargas = 0;
+    private ArrayList<Pedido> pedidosInclusos;
 
     public Carga() {
         idCarga = num_Cargas;
         num_Cargas++;
     }
-
-    public Integer getIdCarga() {
-        return idCarga;
-    }
     
-    public Carga(Float valorMercadoria, Float peso){
-        idCarga = num_Cargas;
-        num_Cargas++;
-        this.valorMercadoria = valorMercadoria;
-        this.peso = peso;
-        valorFrete = valorMercadoria / 50;
-    }
-    
-    public void transferenciaCarga(Carga x, Carga y){
-        valorMercadoria = x.valorMercadoria + y.valorMercadoria;
-        peso = x.peso + y.peso;
-        valorFrete = x.valorFrete + y.valorFrete;
-    };
-
-    public Float getValorMercadoria() {
-        return valorMercadoria;
-    }
-
-    public void setValorMercadoria(Float valorMercadoria) {
-        this.valorMercadoria = valorMercadoria;
+    public void addPedido(Pedido p){
+        if(!pedidosInclusos.add(p)) return;
+        peso += p.getPesoTotal();
+        valorMercadoria += p.getPrecoTotal();
+        valorFrete += p.getFrete();
     }
 
     public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(Float peso) {
-        this.peso = peso;
+    public Float getValorMercadoria() {
+        return valorMercadoria;
     }
+
+    public Integer getIdCarga() {
+        return idCarga;
+    }
+
+    public static Integer getNum_Cargas() {
+        return num_Cargas;
+    }
+
+    
 
     public Float getValorFrete() {
         return valorFrete;
     }
 
-    public void setValorFrete(Float valorFrete) {
-        this.valorFrete = valorFrete;
+    public ArrayList<Pedido> getPedidosInclusos() {
+        return pedidosInclusos;
+    }
+
+    public void setPedidosInclusos(ArrayList<Pedido> pedidosInclusos) {
+        this.pedidosInclusos = pedidosInclusos;
     }
     
     
