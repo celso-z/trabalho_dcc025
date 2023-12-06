@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package views;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -34,6 +34,10 @@ public class Credito extends Janela {
     JButton botao_finalizar;
 
     public Credito() {
+        super("Credito");
+        
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
 
         label_nome_cartao = new JLabel("Nome do cartão");
         gbc.gridx = 0;
@@ -98,9 +102,5 @@ public class Credito extends Janela {
         painel.add(botao_finalizar, gbc);
 
         add(painel);
-    }
-    
-    private void finalizar() {
-        JOptionPane.showMessageDialog(null,"Recarga de xxx realizada!");
     }
 }

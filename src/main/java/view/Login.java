@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package views;
+package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -26,7 +29,11 @@ public class Login extends Janela {
     JButton botao_entrar;
 
     public Login() {
-
+        super("Login");
+        
+        JPanel painel = gridBagLayoutConfig();
+        GridBagConstraints gbc = gridBagConstraintsConfig();
+       
         label_usuario = new JLabel("Usuário");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -58,4 +65,5 @@ public class Login extends Janela {
 
         add(painel);
     }
+
 }
