@@ -34,6 +34,7 @@ public class DataManager {
         if(!diretorio.exists()){
             diretorio.mkdirs();
         }
+        if(objectsToWrite.isEmpty()) return;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(classFilename(objectsToWrite.get(0).getClass().getSimpleName()), false))) {
             writer.write(json);
         } catch (IOException e) {
@@ -70,7 +71,7 @@ public class DataManager {
         }
         return objetos;
     }
-    public static <T> String classFilename(String nomeClasse){
+    private static <T> String classFilename(String nomeClasse){
         String classFilename = "data" +  File.separator + nomeClasse + ".json";
         return classFilename;
     }
@@ -110,4 +111,25 @@ public class DataManager {
         return leRegistros(tipoLista);
     }
     
+    public static void getAllObjects(List cliente, List funcionario, List adm, List unidade, List carga, List pedido, List item, List veiculo) throws DataException{
+        cliente = getFromDisk("Cliente");
+        //funcionario = getFromDisk("Funcionario");
+        //adm = getFromDisk("Administrador");
+        //unidade = getFromDisk("Unidade");
+        //carga = getFromDisk("Carga");
+        //pedido = getFromDisk("Pedido");
+        //item = getFromDisk("Item");
+        //veiculo = getFromDisk("Veiculo");
+    }
+    
+    public static void saveAllObjects(List cliente, List funcionario, List adm, List unidade, List carga, List pedido, List item, List veiculo) throws DataException{
+        escreveRegistros(cliente);
+        //escreveRegistros(funcionario);
+        //escreveRegistros(adm);
+        //escreveRegistros(unidade);
+        //escreveRegistros(carga);
+        //escreveRegistros(pedido);
+        //escreveRegistros(item);
+        //escreveRegistros(veiculo);
+    }    
 }
