@@ -44,8 +44,8 @@ public class DataManager {
         }
     }
     
-    private static <T> List<T> leRegistros(Type token) throws DataException{
-        String filepathRegistro = classFilename(Cliente.class.getSimpleName());
+    private static <T> List<T> leRegistros(Type token,String fileName ) throws DataException{
+        String filepathRegistro = classFilename(fileName);
         Gson gson = new Gson();
         String json = jsonFileToString(filepathRegistro);
         return stringToRegistro(json, gson, token);
@@ -122,7 +122,7 @@ public class DataManager {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
             }
         }
-        return leRegistros(tipoLista);
+        return leRegistros(tipoLista,objectName);
     }
     
 }
