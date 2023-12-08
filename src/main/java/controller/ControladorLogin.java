@@ -12,18 +12,18 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Administrador;
-import view.Adm;
+import view.TelaAdministrador;
 
 import model.Funcionario;
-import view.Cadastro;
-import view.Func;
-import view.HomeUsuario;
+import view.TelaCadastro;
+import view.TelaFuncionario;
+import view.TelaUsuario;
 
 /**
  *
  * @author dhayana
  */
-public class LoginController {
+public class ControladorLogin {
 
     public static void entrar(JFrame frame, String usuario, String senha) throws DataException {
         List<Cliente> clientes = new ArrayList<>();
@@ -36,7 +36,7 @@ public class LoginController {
         for (Administrador administrador : administradores) {
             if (administrador != null && administrador.getUsername().equals(usuario) && administrador.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                new Adm();
+                new TelaAdministrador();
                 return;
             } else if (administrador != null && administrador.getUsername().equals(usuario)) {
                 senhaIncorreta();
@@ -50,7 +50,7 @@ public class LoginController {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null && funcionario.getUsername().equals(usuario) && funcionario.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                new Func();
+                new TelaFuncionario();
                 return;
             } else if (funcionario != null && funcionario.getUsername().equals(usuario)) {
                 senhaIncorreta();
@@ -69,7 +69,7 @@ public class LoginController {
         for (Cliente cliente : clientes) {
             if (cliente != null && cliente.getUsername().equals(usuario) && cliente.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                new HomeUsuario();
+                new TelaUsuario();
                 return;
             }
         }
@@ -81,7 +81,7 @@ public class LoginController {
     private static void telaCadastro(JFrame frame) {
         JOptionPane.showMessageDialog(null, "Usuário não encontrado, você será direcionado para a tela de cadastro!");
         frame.dispose(); //fecha a tela atual
-        new Cadastro();
+        new TelaCadastro();
     }
 
     private static void senhaIncorreta() {

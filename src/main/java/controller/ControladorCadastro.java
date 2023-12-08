@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import view.HomeUsuario;
+import view.TelaUsuario;
 
 /**
  *
  * @author dhayana
  */
-public class CadastroController {
+public class ControladorCadastro {
 
     public static void cadastrar(JFrame frame, ActionEvent event, String nome, String usuario, String senha, String telefone) {
         List<Cliente> clientes = new ArrayList<>();
@@ -42,7 +42,7 @@ public class CadastroController {
                 JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Iremos te direcionar para a tela inicial.");
 
                 frame.dispose();
-                new HomeUsuario();
+                new TelaUsuario();
             } catch (DataException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel realizar cadastro! Verifique informações ou em caso de persistencia entre em contato com a empresa pelo email logsystem@oo.ufjf.br.");
             }

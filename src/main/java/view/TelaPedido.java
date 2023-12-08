@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
  *
  * @author dhayana
  */
-public class Pedido extends Janela {
+public class TelaPedido extends Janela {
     String[] itens = {"item1", "item2", "item3", "item4", "item5"};
 
     JLabel labelMeusItens;
@@ -36,7 +36,7 @@ public class Pedido extends Janela {
     JButton botaoAdicionarItem;
     JButton botaoFinalizar;
 
-    public Pedido() {  
+    public TelaPedido() {  
         super("Pedido");
         
         JPanel painel1 = gridBagLayoutConfig();

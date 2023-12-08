@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.LoginController;
+import controller.ControladorLogin;
 import exceptions.DataException;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author dhayana
  */
-public class Login extends Janela {
+public class TelaLogin extends Janela {
 
     JLabel labelUsuario;
     JTextField textUsuario;
@@ -32,7 +32,7 @@ public class Login extends Janela {
 
     JButton botaoEntrar;
 
-    public Login() {
+    public TelaLogin() {
         super("Login");
 
         JPanel painel = gridBagLayoutConfig();
@@ -71,9 +71,9 @@ public class Login extends Janela {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    LoginController.entrar(Login.this, getTextUsuario(), getTextSenha());
+                    ControladorLogin.entrar(TelaLogin.this, getTextUsuario(), getTextSenha());
                 } catch (DataException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

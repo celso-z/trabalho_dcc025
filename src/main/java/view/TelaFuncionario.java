@@ -13,14 +13,14 @@ import javax.swing.JTabbedPane;
  *
  * @author dhayana
  */
-public class Func extends Janela {
+public class TelaFuncionario extends Janela {
 
     JButton botao_1;
     JButton botao_2;
     JButton botao_3;
     JButton botao_4;
 
-    public Func() {
+    public TelaFuncionario() {
         super("Funcionario");
         
         JTabbedPane painel = new JTabbedPane();

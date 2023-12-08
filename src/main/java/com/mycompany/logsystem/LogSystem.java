@@ -2,7 +2,7 @@
  * Sistema de gestão logística
  */
 package com.mycompany.logsystem;
-import view.Login;
+import view.TelaLogin;
 
 
 /**
@@ -12,6 +12,6 @@ import view.Login;
 public class LogSystem {
 
     public static void main(String[] args) {
-        new Login();
+        new TelaLogin();
     }
 }

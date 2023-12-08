@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author dhayana
  */
-public class Credito extends Janela {
+public class TelaCredito extends Janela {
     JLabel labelNomeCartao;
     JTextField textNomeCartao;
 
@@ -33,7 +33,7 @@ public class Credito extends Janela {
 
     JButton botaoFinalizar;
 
-    public Credito() {
+    public TelaCredito() {
         super("Credito");
         
         JPanel painel = gridBagLayoutConfig();

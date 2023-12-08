@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author dhayana
  */
-public class Adm extends Janela {
+public class TelaAdministrador extends Janela {
     JLabel labelNomeFuncionario;
     JTextField textNomeFuncionario;
 
@@ -31,7 +31,7 @@ public class Adm extends Janela {
 
     JButton botaoCadastrarFuncionario;
 
-    public Adm() {
+    public TelaAdministrador() {
         super("Administrador");
 
         JPanel painel = gridBagLayoutConfig();

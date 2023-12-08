@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
  *
  * @author dhayana
  */
-public class HomeUsuario extends Janela {
+public class TelaUsuario extends Janela {
 
     String[] opt = {"opt1", "opt2", "opt3", "opt4", "opt5"};
 
@@ -40,7 +40,7 @@ public class HomeUsuario extends Janela {
     JButton botaoRealizarPedido;
     JButton botaoAdicionarCredito;
 
-    public HomeUsuario() {
+    public TelaUsuario() {
         super("Home");
         
         JPanel painel1 = gridBagLayoutConfig();
