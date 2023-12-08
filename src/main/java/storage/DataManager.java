@@ -46,7 +46,7 @@ public class DataManager {
     }
     
     private static <T> List<T> leRegistros(Type token,String objectName ) throws DataException{
-        String filepathRegistro = objectName;
+        String filepathRegistro = classFilename(objectName);
         Gson gson = new Gson();
         String json = jsonFileToString(filepathRegistro);
         return stringToRegistro(json, gson, token);
