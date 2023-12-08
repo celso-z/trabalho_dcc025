@@ -5,9 +5,13 @@
 package view;
 
 import controller.LoginController;
+import exceptions.DataException;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,10 +67,15 @@ public class Login extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_entrar, gbc);
 
-        botao_entrar.addActionListener((ActionEvent event) -> {
-
-            LoginController.entrar(this, event, getTextUsuario(), getTextSenha());
-
+        botao_entrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    LoginController.entrar(Login.this, getTextUsuario(), getTextSenha());
+                } catch (DataException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         });
         
         add(painel);
