@@ -12,6 +12,7 @@ import model.Veiculo;
 import model.Administrador;
 import model.Funcionario;
 
+
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -44,8 +45,8 @@ public class DataManager {
         }
     }
     
-    private static <T> List<T> leRegistros(Type token,String fileName ) throws DataException{
-        String filepathRegistro = classFilename(fileName);
+    private static <T> List<T> leRegistros(Type token,String objectName ) throws DataException{
+        String filepathRegistro = objectName;
         Gson gson = new Gson();
         String json = jsonFileToString(filepathRegistro);
         return stringToRegistro(json, gson, token);
@@ -118,6 +119,11 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Veiculo>>() {
                 }.getType();
             }
+            case "ArmazenamentoTemporario" -> {
+                tipoLista = new TypeToken<List<ArmazenamentoTemporario>>() {
+                }.getType();
+            }
+            
             default -> {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
             }
