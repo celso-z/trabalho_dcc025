@@ -17,19 +17,19 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class Adm extends Janela {
-    JLabel label_nome_funcionario;
-    JTextField text_nome_funcionario;
+    JLabel labelNomeFuncionario;
+    JTextField textNomeFuncionario;
 
-    JLabel label_usuario_funcionario;
-    JTextField text_usuario_funcionario;
+    JLabel labelUsuarioFuncionario;
+    JTextField textUsuarioFuncionario;
 
-    JLabel label_telefone_funcionario;
-    JTextField text_telefone_funcionario;
+    JLabel labelTelefoneFuncionario;
+    JTextField textTelefoneFuncionario;
 
-    JLabel label_senha_funcionario;
-    JPasswordField text_senha_funcionario;
+    JLabel labelSenhaFuncionario;
+    JPasswordField textSenhaFuncionario;
 
-    JButton botao_cadastrar_funcionario;
+    JButton botaoCadastrarFuncionario;
 
     public Adm() {
         super("Administrador");
@@ -37,56 +37,56 @@ public class Adm extends Janela {
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
-        label_nome_funcionario = new JLabel("Nome do funcionário");
+        labelNomeFuncionario = new JLabel("Nome do funcionário");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel.add(label_nome_funcionario, gbc);
+        painel.add(labelNomeFuncionario, gbc);
 
-        text_nome_funcionario = new JTextField();
-        text_nome_funcionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textNomeFuncionario = new JTextField();
+        textNomeFuncionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel.add(text_nome_funcionario, gbc);
+        painel.add(textNomeFuncionario, gbc);
 
-        label_usuario_funcionario = new JLabel("Usuário do funcionário");
+        labelUsuarioFuncionario = new JLabel("Usuário do funcionário");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel.add(label_usuario_funcionario, gbc);
+        painel.add(labelUsuarioFuncionario, gbc);
 
-        text_usuario_funcionario = new JTextField();
-        text_usuario_funcionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textUsuarioFuncionario = new JTextField();
+        textUsuarioFuncionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        painel.add(text_usuario_funcionario, gbc);
+        painel.add(textUsuarioFuncionario, gbc);
 
-        label_telefone_funcionario = new JLabel("Telefone do funcionário");
+        labelTelefoneFuncionario = new JLabel("Telefone do funcionário");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel.add(label_telefone_funcionario, gbc);
+        painel.add(labelTelefoneFuncionario, gbc);
 
-        text_telefone_funcionario = new JTextField();
-        text_telefone_funcionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textTelefoneFuncionario = new JTextField();
+        textTelefoneFuncionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel.add(text_telefone_funcionario, gbc);
+        painel.add(textTelefoneFuncionario, gbc);
 
-        label_senha_funcionario = new JLabel("Senha do funcionário");
+        labelSenhaFuncionario = new JLabel("Senha do funcionário");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        painel.add(label_senha_funcionario, gbc);
+        painel.add(labelSenhaFuncionario, gbc);
 
-        text_senha_funcionario = new JPasswordField();
-        text_senha_funcionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textSenhaFuncionario = new JPasswordField();
+        textSenhaFuncionario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 3;
-        painel.add(text_senha_funcionario, gbc);
+        painel.add(textSenhaFuncionario, gbc);
 
-        botao_cadastrar_funcionario = new JButton("Cadastrar funcionário");
+        botaoCadastrarFuncionario = new JButton("Cadastrar funcionário");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel.add(botao_cadastrar_funcionario, gbc);
+        painel.add(botaoCadastrarFuncionario, gbc);
 
         add(painel);
     }

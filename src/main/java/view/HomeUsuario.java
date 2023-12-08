@@ -22,23 +22,23 @@ public class HomeUsuario extends Janela {
 
     String[] opt = {"opt1", "opt2", "opt3", "opt4", "opt5"};
 
-    JLabel label_meus_pedidos;
-    JList text_meus_pedidos;
+    JLabel labelMeusPedidos;
+    JList textMeusPedidos;
 
-    JLabel label_unidade_origem;
-    JTextField text_unidade_origem;
+    JLabel labelUnidadeOrigem;
+    JTextField textUnidadeOrigem;
 
-    JLabel label_unidade_destino;
-    JTextField text_unidade_destino;
+    JLabel labelUnidadeDestino;
+    JTextField textUnidadeDestino;
 
-    JLabel label_nome_destinatario;
-    JTextField text_nome_destinatario;
+    JLabel labelNomeDestinatario;
+    JTextField textNomeDestinatario;
 
-    JLabel label_cpf_destinatario;
-    JTextField text_cpf_destinatario;
+    JLabel labelCpfDestinatario;
+    JTextField textCpfDestinatario;
 
-    JButton botao_realizar_pedido;
-    JButton botao_adicionar_credito;
+    JButton botaoRealizarPedido;
+    JButton botaoAdicionarCredito;
 
     public HomeUsuario() {
         super("Home");
@@ -48,77 +48,77 @@ public class HomeUsuario extends Janela {
 
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
-        label_unidade_origem = new JLabel("Unidade de origem");
+        labelUnidadeOrigem = new JLabel("Unidade de origem");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel2.add(label_unidade_origem, gbc);
+        painel2.add(labelUnidadeOrigem, gbc);
 
-        text_unidade_origem = new JTextField();
-        text_unidade_origem.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textUnidadeOrigem = new JTextField();
+        textUnidadeOrigem.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel2.add(text_unidade_origem, gbc);
+        painel2.add(textUnidadeOrigem, gbc);
 
-        label_unidade_destino = new JLabel("Unidade de destino");
+        labelUnidadeDestino = new JLabel("Unidade de destino");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel2.add(label_unidade_destino, gbc);
+        painel2.add(labelUnidadeDestino, gbc);
 
-        text_unidade_destino = new JTextField();
-        text_unidade_destino.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textUnidadeDestino = new JTextField();
+        textUnidadeDestino.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        text_unidade_destino.setBounds(0, 1, 100, 100);
-        painel2.add(text_unidade_destino, gbc);
+//        textUnidadeDestino.setBounds(0, 1, 100, 100);
+        painel2.add(textUnidadeDestino, gbc);
 
-        label_nome_destinatario = new JLabel("Nome do destinatário");
+        labelNomeDestinatario = new JLabel("Nome do destinatário");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel2.add(label_nome_destinatario, gbc);
+        painel2.add(labelNomeDestinatario, gbc);
 
-        text_nome_destinatario = new JTextField();
-        text_nome_destinatario.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textNomeDestinatario = new JTextField();
+        textNomeDestinatario.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel2.add(text_nome_destinatario, gbc);
+        painel2.add(textNomeDestinatario, gbc);
 
-        label_cpf_destinatario = new JLabel("CPF do destinatário");
+        labelCpfDestinatario = new JLabel("CPF do destinatário");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        painel2.add(label_cpf_destinatario, gbc);
+        painel2.add(labelCpfDestinatario, gbc);
 
-        text_cpf_destinatario = new JTextField();
-        text_cpf_destinatario.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textCpfDestinatario = new JTextField();
+        textCpfDestinatario.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 3;
-        painel2.add(text_cpf_destinatario, gbc);
+        painel2.add(textCpfDestinatario, gbc);
 
-        botao_realizar_pedido = new JButton("Realizar pedido");
+        botaoRealizarPedido = new JButton("Realizar pedido");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel2.add(botao_realizar_pedido, gbc);
+        painel2.add(botaoRealizarPedido, gbc);
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
 
-        botao_adicionar_credito = new JButton("Realizar recarga");
+        botaoAdicionarCredito = new JButton("Realizar recarga");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel1.add(botao_adicionar_credito, gbc);
+        painel1.add(botaoAdicionarCredito, gbc);
 
-        label_meus_pedidos = new JLabel("Meus pedidos");
+        labelMeusPedidos = new JLabel("Meus pedidos");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel1.add(label_meus_pedidos, gbc);
+        painel1.add(labelMeusPedidos, gbc);
 
-        text_meus_pedidos = new JList(opt);
-        text_meus_pedidos.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        textMeusPedidos = new JList(opt);
+        textMeusPedidos.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel1.add(text_meus_pedidos, gbc);
+        painel1.add(textMeusPedidos, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
         painel.setEnabled(false); //remove a opção de "resize" do painel

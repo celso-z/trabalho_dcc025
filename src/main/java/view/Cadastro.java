@@ -20,19 +20,19 @@ import javax.swing.JTextField;
  */
 public class Cadastro extends Janela {
 
-    JLabel label_nome;
-    JTextField text_nome;
+    JLabel labelNome;
+    JTextField textNome;
 
-    JLabel label_usuario;
-    JTextField text_usuario;
+    JLabel labelUsuario;
+    JTextField textUsuario;
 
-    JLabel label_telefone;
-    JTextField text_telefone;
+    JLabel labelTelefone;
+    JTextField textTelefone;
 
-    JLabel label_senha;
-    JPasswordField text_senha;
+    JLabel labelSenha;
+    JPasswordField textSenha;
 
-    JButton botao_cadastrar;
+    JButton botaoCadastrar;
 
     public Cadastro() {
         super("Cadastro");
@@ -40,58 +40,58 @@ public class Cadastro extends Janela {
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
-        label_nome = new JLabel("Nome");
+        labelNome = new JLabel("Nome");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel.add(label_nome, gbc);
+        painel.add(labelNome, gbc);
 
-        text_nome = new JTextField();
-        text_nome.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textNome = new JTextField();
+        textNome.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel.add(text_nome, gbc);
+        painel.add(textNome, gbc);
 
-        label_usuario = new JLabel("Usuário");
+        labelUsuario = new JLabel("Usuário");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel.add(label_usuario, gbc);
+        painel.add(labelUsuario, gbc);
 
-        text_usuario = new JTextField();
-        text_usuario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textUsuario = new JTextField();
+        textUsuario.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        painel.add(text_usuario, gbc);
+        painel.add(textUsuario, gbc);
 
-        label_telefone = new JLabel("Telefone");
+        labelTelefone = new JLabel("Telefone");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel.add(label_telefone, gbc);
+        painel.add(labelTelefone, gbc);
 
-        text_telefone = new JTextField();
-        text_telefone.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textTelefone = new JTextField();
+        textTelefone.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel.add(text_telefone, gbc);
+        painel.add(textTelefone, gbc);
 
-        label_senha = new JLabel("Senha");
+        labelSenha = new JLabel("Senha");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        painel.add(label_senha, gbc);
+        painel.add(labelSenha, gbc);
 
-        text_senha = new JPasswordField();
-        text_senha.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textSenha = new JPasswordField();
+        textSenha.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 3;
-        painel.add(text_senha, gbc);
+        painel.add(textSenha, gbc);
 
-        botao_cadastrar = new JButton("Cadastrar");
+        botaoCadastrar = new JButton("Cadastrar");
         gbc.gridx = 1;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel.add(botao_cadastrar, gbc);
+        painel.add(botaoCadastrar, gbc);
 
-        botao_cadastrar.addActionListener((ActionEvent event) -> {
+        botaoCadastrar.addActionListener((ActionEvent event) -> {
 
             CadastroController.cadastrar(this, event, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
 
@@ -101,19 +101,19 @@ public class Cadastro extends Janela {
     }
 
     public String getTextNome() {
-        return text_nome.getText();
+        return textNome.getText();
     }
 
     public String getTextUsuario() {
-        return text_usuario.getText();
+        return textUsuario.getText();
     }
 
     public String getTextTelefone() {
-        return text_telefone.getText();
+        return textTelefone.getText();
     }
 
     public String getTextSenha() {
-        return new String(text_senha.getPassword());
+        return new String(textSenha.getPassword());
     }
 
 }
