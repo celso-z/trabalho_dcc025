@@ -6,6 +6,7 @@
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/controller/CadastroController.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Unidade.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/exceptions/DataException.java
+/home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Funcionario.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Usuario.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/view/Credito.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Veiculo.java
@@ -16,5 +17,6 @@
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/controller/LoginController.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/view/Funcionario.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/view/Login.java
+/home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Administrador.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/storage/DataManager.java
 /home/dhayana/Documentos/PESSOAL/trabalho_dcc025/src/main/java/model/Pedido.java

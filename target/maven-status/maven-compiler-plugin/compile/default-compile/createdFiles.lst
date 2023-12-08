@@ -1,3 +1,4 @@
+storage/DataManager$5.class
 model/Usuario.class
 exceptions/DataException.class
 controller/LoginController.class
@@ -12,4 +13,5 @@ storage/DataManager$2.class
 storage/DataManager$4.class
 storage/DataManager$3.class
 storage/DataManager$1.class
+storage/DataManager$6.class
 model/Carga.class
