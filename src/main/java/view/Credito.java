@@ -4,8 +4,10 @@
  */
 package view;
 
+import controller.CreditoController;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -102,5 +104,29 @@ public class Credito extends Janela {
         painel.add(botao_finalizar, gbc);
 
         add(painel);
+        setVisible(true);
+        
+        botao_finalizar.addActionListener((ActionEvent event) -> {
+            CreditoController.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());
+        });
+    }
+    public Float getValorRecarga() {
+        return Float.valueOf(text_valor.getText());
+    }
+    public boolean isPreenchidoNumeroCartao() {
+        boolean ret = (!text_numero_cartao.getText().equals(""));
+        return ret;
+    }
+    public boolean isPreenchidoNomeCartao() {
+        boolean ret = (!text_nome_cartao.getText().equals(""));
+        return ret;
+    }
+    public boolean isPreenchidoData() {
+        boolean ret = (!text_data.getText().equals(""));
+        return ret;
+    }
+    public boolean isPreenchidoCVV() {
+        boolean ret = (!text_cvv.getText().equals(""));
+        return ret;
     }
 }
