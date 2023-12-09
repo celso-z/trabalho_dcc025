@@ -9,9 +9,14 @@ package model;
  * @author dhayana
  */
 public class Funcionario extends Usuario {
+    private final Integer unidade;
 
-    public Funcionario(String nome, String username, String senha) {
+    public Funcionario(String nome, String username, String senha, Integer unidade) {
         super(nome, username, senha);
+        this.unidade = unidade;
     }
 
+    public Integer getUnidade() {
+        return unidade;
+    }
 }
