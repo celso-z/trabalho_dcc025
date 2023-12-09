@@ -4,25 +4,36 @@
  */
 package view;
 
+import com.mycompany.logsystem.LogSystem;
+import controller.PedidoController;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import model.Item;
+import model.Pedido;
 
 /**
  *
  * @author dhayana
  */
 public class TelaPedido extends Janela {
-    String[] itens = {"item1", "item2", "item3", "item4", "item5"};
+    private final String[] colunas = {"ID", "NOME", "PESO", "VALOR", "FRETE"};
+    private Object data[][] = new Object[100][5];
+    private final int numCols = 0;
+    private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
     JLabel labelMeusItens;
-    JList textMeusItens;
+    JTable textMeusItens;
 
     JLabel labelNomeItem;
     JTextField textNomeItem;
@@ -36,8 +47,9 @@ public class TelaPedido extends Janela {
     JButton botaoAdicionarItem;
     JButton botaoFinalizar;
 
-    public TelaPedido() {  
+    public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
+        Pedido possivelPedido = new Pedido((LogSystem.getClienteAtual()).getMatricula() ,unidadeOrigem, unidadeDestino, cpfDestinatario, nomeDestinatario);
         
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
@@ -91,11 +103,13 @@ public class TelaPedido extends Janela {
         gbc.gridy = 0;
         painel1.add(labelMeusItens, gbc);
 
-        textMeusItens = new JList(itens);
+        textMeusItens = new JTable(modeloTabela);
         textMeusItens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel1.add(textMeusItens, gbc);
+        JScrollPane container_meus_itens = new JScrollPane(textMeusItens);
+        container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        painel1.add(container_meus_itens, gbc);
         
         botaoFinalizar = new JButton("Finalizar");
         gbc.gridx = 0;
@@ -107,6 +121,49 @@ public class TelaPedido extends Janela {
         painel.setEnabled( false ); //remove a opção de "resize" do painel
         painel.setVisible(true);
 
-        add(painel);
+        this.add(painel);
+        this.setVisible(true);
+        
+        botaoAdicionarItem.addActionListener((ActionEvent event) -> {
+            PedidoController.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
+            atualizaTabela(possivelPedido.getItensPedido());
+
+        });
+              
+        botaoFinalizar.addActionListener((ActionEvent event) -> {
+            if(possivelPedido.getItensPedido().size() > 0){
+                PedidoController.registraPedido(this, possivelPedido);
+            }
+
+        });
+        
     }
+     public String getNomeItem() {
+        return textNomeItem.getText();
+    }
+     
+    public Float getValorItem() {
+        return Float.valueOf(textValorItem.getText());
+    }
+    
+    public Float getPesoItem() {
+        return Float.valueOf(textPesoItem.getText());
+    }
+    
+    public void atualizaTabela(ArrayList<Item> itens){
+
+        for(int i = 0; i < itens.size(); i++){
+            Item item = itens.get(i);
+            data[i][0] = item.getIdItem();
+            data[i][1] = item.getNome();
+            data[i][2] = item.getPeso();
+            data[i][3] = item.getValor();
+            data[i][4] = item.getFrete();
+        }
+        modeloTabela.setDataVector(data, colunas);
+        modeloTabela.setNumRows(itens.size());
+        modeloTabela.fireTableDataChanged();
+    }
+    
+    
 }

@@ -9,12 +9,11 @@ import model.Carga;
 import model.Cliente;
 import model.Unidade;
 import model.Veiculo;
+import model.Pedido;
+import model.Item;
 import model.Administrador;
 import model.Funcionario;
-
-
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,7 @@ public class DataManager {
         if(!diretorio.exists()){
             diretorio.mkdirs();
         }
+        if(objectsToWrite.isEmpty() || objectsToWrite == null) return;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(classFilename(objectsToWrite.get(0).getClass().getSimpleName()), false))) {
             writer.write(json);
         } catch (IOException e) {
@@ -76,8 +76,8 @@ public class DataManager {
         }
         return objetos;
     }
-    
-    public static <T> String classFilename(String nomeClasse){
+
+    private static <T> String classFilename(String nomeClasse){
         String classFilename = "data" +  File.separator + nomeClasse + ".json";
         return classFilename;
     }
@@ -103,14 +103,14 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Carga>>() {
                 }.getType();
             }
-            //case "Item" -> {
-                //tipoLista = new TypeToken<List<Item>>() {
-                //}.getType();
-            //}
-            //case "Pedido" -> {
-                //tipoLista = new TypeToken<List<Pedido>>() {
-                //}.getType();
-            //}
+            case "Item" -> {
+                tipoLista = new TypeToken<List<Item>>() {
+                }.getType();
+            }
+            case "Pedido" -> {
+                tipoLista = new TypeToken<List<Pedido>>() {
+                }.getType();
+            }
             case "Unidade" -> {
                 tipoLista = new TypeToken<List<Unidade>>() {
                 }.getType();
@@ -131,4 +131,14 @@ public class DataManager {
         return leRegistros(tipoLista,objectName);
     }
     
+    public static void saveAllObjects(List cliente, List funcionario, List adm, List unidade, List carga, List pedido, List item, List veiculo) throws DataException{
+        escreveRegistros(cliente);
+        escreveRegistros(funcionario);
+        escreveRegistros(adm);
+        escreveRegistros(unidade);
+        escreveRegistros(carga);
+        escreveRegistros(pedido);
+        //escreveRegistros(item);
+        //escreveRegistros(veiculo);
+    }    
 }

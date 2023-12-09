@@ -11,6 +11,7 @@ package model;
 public class Cliente extends Usuario {
 
     private String telefone;
+    private Float creditos = 100.0F;
 
     public Cliente(String nome, String username, String senha) {
         super(nome, username, senha);
@@ -20,10 +21,17 @@ public class Cliente extends Usuario {
         super(nome, username, senha);
         this.telefone = telefone;
     }
-
-    /*public solicitarFrete(Integer Valor, Unidade orig, Unidade dest){
     
-     */
+    public void adicionaCreditos(Float creditos){
+        if(creditos > 0.0F) this.creditos += creditos;
+    }
+
+    public Float getCreditos() {
+        return creditos;
+    }
+    
+    
+
     public String getTelefone() {
         return telefone;
     }

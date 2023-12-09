@@ -14,7 +14,7 @@ public class Unidade {
     private final Integer idUnidade;
     private Float capacidadeArmazenamento = 0F;
     private Float capacidadeAtual = 0F;
-    private ArrayList<Carga> cargas;
+    private ArrayList<Carga> cargas = new ArrayList();
 
     public Unidade(Float capacidadeArmazenamento) {
         idUnidade = numUnidades;

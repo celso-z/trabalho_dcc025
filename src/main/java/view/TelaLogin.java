@@ -72,6 +72,7 @@ public class TelaLogin extends Janela {
         });
         
         add(painel);
+        setVisible(true);
     }
 
     public String getTextUsuario() {

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import com.mycompany.logsystem.LogSystem;
 import model.Cliente;
 import exceptions.DataException;
 import storage.DataManager;
@@ -27,21 +28,15 @@ import view.TelaUsuario;
 public class ControladorLogin {
 
     public static void entrar(JFrame frame, String usuario, String senha) {
-        List<Cliente> clientes = new ArrayList<>();
-        List<Administrador> administradores = new ArrayList<>();
-        List<Funcionario> funcionarios = new ArrayList<>();
-
-        //Verificação de administrador
-        try {
-            administradores = DataManager.getFromDisk("Administrador");
-        } catch (DataException e) {
-            System.out.println(e.getClasseErro());
-        }
+        List<Cliente> clientes = LogSystem.getClientes();
+        List<Administrador> administradores = LogSystem.getAdministradores();
+        List<Funcionario> funcionarios = LogSystem.getFuncionarios();
 
         for (Administrador administrador : administradores) {
             if (administrador != null && administrador.getUsername().equals(usuario) && administrador.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                salvaDadosTemporarios(administrador.getNome(), administrador.getMatricula());
+                //salvaDadosTemporarios(administrador.getNome(), administrador.getMatricula());
+                LogSystem.setAdministradorAtual(administrador);
                 new TelaAdministrador();
                 return; 
             } else if (administrador != null && administrador.getUsername().equals(usuario)) {
@@ -50,17 +45,12 @@ public class ControladorLogin {
             }
         }
 
-        //Verificação de funcionario
-        try {
-            funcionarios = DataManager.getFromDisk("Funcionario");
-        } catch (DataException e) {
-            System.out.println(e.getClasseErro());
-        }
-
+      
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null && funcionario.getUsername().equals(usuario) && funcionario.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                salvaDadosTemporarios(funcionario.getNome(), funcionario.getMatricula());
+                //salvaDadosTemporarios(funcionario.getNome(), funcionario.getMatricula());
+                LogSystem.setFuncionarioAtual(funcionario);
                 new TelaFuncionario();
                 return;
             } else if (funcionario != null && funcionario.getUsername().equals(usuario)) {
@@ -69,18 +59,11 @@ public class ControladorLogin {
             }
         }
 
-        //Verificação de cliente
-        try {
-            clientes = DataManager.getFromDisk("Cliente");
-        } catch (DataException e) {
-            cadastro(frame);
-            return;
-        }
-
         for (Cliente cliente : clientes) {
             if (cliente != null && cliente.getUsername().equals(usuario) && cliente.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
+                //salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
+                LogSystem.setClienteAtual(cliente);
                 new TelaUsuario();
                 return;
             } else if(cliente != null && cliente.getUsername().equals(usuario)) {
@@ -101,17 +84,5 @@ public class ControladorLogin {
 
     private static void senhaIncorreta() {
         JOptionPane.showMessageDialog(null, "Senha incorreta! Verifique e tente novamente.");
-    }
-    
-    private static void salvaDadosTemporarios(String nome, int matricula) {
-        List<ArmazenamentoTemporario> armazenamentos = new ArrayList<>();
-        ArmazenamentoTemporario armazenamento = new ArmazenamentoTemporario(nome, matricula);
-        armazenamentos.add(armazenamento);
-        
-        try {
-            DataManager.escreveRegistros(armazenamentos);
-        } catch (DataException ex) {
-            System.out.println("Falha ao salvar dados do usuario");
-        }
     }
 }
