@@ -1,10 +1,10 @@
 /*
- * Um Sistema de gestão logística
+ * Sistema de gestão logística
  */
 package com.mycompany.logsystem;
+import view.TelaAdministrador;
+import view.TelaLogin;
 
-import view.Administrador;
-import view.Login;
 
 /**
  *
@@ -13,6 +13,6 @@ import view.Login;
 public class LogSystem {
 
     public static void main(String[] args) {
-        new Administrador();
+        new TelaAdministrador();
     }
 }

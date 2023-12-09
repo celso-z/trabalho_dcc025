@@ -10,8 +10,19 @@ package model;
  */
 public class Funcionario extends Usuario {
 
+    private String telefone;
+    
     public Funcionario(String nome, String username, String senha) {
         super(nome, username, senha);
+    }
+    
+    public Funcionario(String nome, String username, String senha, String telefone) {
+        super(nome, username, senha);
+        this.telefone = telefone;
+    }
+    
+    public String getTelefone() {
+        return telefone;
     }
 
 }

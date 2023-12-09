@@ -4,45 +4,44 @@
  */
 package controller;
 
-import model.Cliente;
 import exceptions.DataException;
-import storage.DataManager;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import view.HomeUsuario;
+import model.Cliente;
+import model.Funcionario;
+import storage.DataManager;
+import view.TelaUsuario;
 
 /**
  *
  * @author dhayana
  */
-public class CadastroController {
+public class ControladorAdministrador {
 
-    public static void cadastrar(JFrame frame, ActionEvent event, String nome, String usuario, String senha, String telefone) {
-        List<Cliente> clientes = new ArrayList<>();
-        Cliente cliente;
+    public static void cadastrar(String nome, String usuario, String senha, String telefone) {
+        List<Funcionario> funcionarios = new ArrayList<>();
+        Funcionario funcionario;
 
         try {
-            clientes = DataManager.getFromDisk("Cliente");
+            funcionarios = DataManager.getFromDisk("Funcionario");
         } catch (DataException e) {
             System.out.println(e.getClasseErro());
         } finally {
             if (telefone.trim().isEmpty()) {
-                cliente = new Cliente(nome, usuario, senha);
+                funcionario = new Funcionario(nome, usuario, senha);
             } else {
-                cliente = new Cliente(nome, usuario, senha, telefone);
+                funcionario = new Funcionario(nome, usuario, senha, telefone);
             }
 
-            clientes.add(cliente);
+            funcionarios.add(funcionario);
 
             try {
-                DataManager.escreveRegistros(clientes);
-                JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Iremos te direcionar para a tela inicial.");
+                DataManager.escreveRegistros(funcionarios);
+                JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 
-                frame.dispose();
-                new HomeUsuario();
             } catch (DataException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel realizar cadastro! Verifique informações ou em caso de persistencia entre em contato com a empresa pelo email logsystem@oo.ufjf.br.");
             }

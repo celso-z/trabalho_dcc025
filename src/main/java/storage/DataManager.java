@@ -9,6 +9,10 @@ import model.Carga;
 import model.Cliente;
 import model.Unidade;
 import model.Veiculo;
+import model.Administrador;
+import model.Funcionario;
+
+
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -41,12 +45,13 @@ public class DataManager {
         }
     }
     
-    private static <T> List<T> leRegistros(Type token) throws DataException{
-        String filepathRegistro = classFilename(Cliente.class.getSimpleName());
+    private static <T> List<T> leRegistros(Type token,String objectName ) throws DataException{
+        String filepathRegistro = classFilename(objectName);
         Gson gson = new Gson();
         String json = jsonFileToString(filepathRegistro);
         return stringToRegistro(json, gson, token);
     }
+    
     private static String jsonFileToString(String filepath) throws DataException{
         StringBuilder content = new StringBuilder();
 
@@ -60,6 +65,7 @@ public class DataManager {
         }
         return content.toString();
     }
+    
     private static <T> List<T> stringToRegistro(String str, Gson gson, Type token) throws DataException{
         List<T> objetos = new ArrayList<>();
         if(!str.trim().equals("")) {
@@ -70,15 +76,25 @@ public class DataManager {
         }
         return objetos;
     }
+    
     public static <T> String classFilename(String nomeClasse){
         String classFilename = "data" +  File.separator + nomeClasse + ".json";
         return classFilename;
     }
+    
     //@objectName é o nome da classe a ser retornada
     public static <T> List<T> getFromDisk(String objectName) throws DataException{
         Type tipoLista;
         
         switch(objectName){
+            case "Administrador" -> {
+                tipoLista = new TypeToken<List<Administrador>>() {
+                }.getType();
+            }
+            case "Funcionario" -> {
+                tipoLista = new TypeToken<List<Funcionario>>() {
+                }.getType();
+            }
             case "Cliente" -> {
                 tipoLista = new TypeToken<List<Cliente>>() {
                 }.getType();
@@ -103,11 +119,16 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Veiculo>>() {
                 }.getType();
             }
+            case "ArmazenamentoTemporario" -> {
+                tipoLista = new TypeToken<List<ArmazenamentoTemporario>>() {
+                }.getType();
+            }
+            
             default -> {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
             }
         }
-        return leRegistros(tipoLista);
+        return leRegistros(tipoLista,objectName);
     }
     
 }
