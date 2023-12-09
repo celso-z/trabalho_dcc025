@@ -8,18 +8,22 @@ import java.util.ArrayList;
 public class Pedido {
     private static Integer numPedidos = 0;
     private final Integer idPedido;
-    private Integer idSoliciante;
+    private final Integer idSoliciante;
     private Integer unidadeOrig;
     private Integer UnidadeDest;
+    private Integer UnidadeAtual;
     private String cpfDestinatario;
     private String nomeDestinatario;
-    private ArrayList<Item> itensPedido;
+    private ArrayList<Item> itensPedido = new ArrayList<>();
     private Float frete;
     private Float pesoTotal;
     private Float precoTotal;
+    private boolean disponivel = true;
+    private boolean entregue = false;
     
     public Pedido(Integer idSolicitante, Integer unidadeOrig, Integer UnidadeDest, String cpfDestinatario, String nomeDestinatario) {
         this.unidadeOrig = unidadeOrig;
+        this.UnidadeAtual = unidadeOrig;
         this.UnidadeDest = UnidadeDest;
         this.cpfDestinatario = cpfDestinatario;
         this.nomeDestinatario = nomeDestinatario;
@@ -119,6 +123,29 @@ public class Pedido {
     public Integer getIdSoliciante() {
         return idSoliciante;
     }
-    
+
+    public Integer getUnidadeAtual() {
+        return UnidadeAtual;
+    }
+
+    public void setUnidadeAtual(Integer UnidadeAtual) {
+        this.UnidadeAtual = UnidadeAtual;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public boolean isEntregue() {
+        return entregue;
+    }
+
+    public void setEntregue(boolean entregue) {
+        this.entregue = entregue;
+    }
     
 }
