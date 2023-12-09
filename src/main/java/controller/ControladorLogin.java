@@ -15,6 +15,7 @@ import model.Administrador;
 import view.TelaAdministrador;
 
 import model.Funcionario;
+import storage.ArmazenamentoTemporario;
 import view.TelaCadastro;
 import view.TelaFuncionario;
 import view.TelaUsuario;
@@ -25,19 +26,24 @@ import view.TelaUsuario;
  */
 public class ControladorLogin {
 
-    public static void entrar(JFrame frame, String usuario, String senha) throws DataException {
+    public static void entrar(JFrame frame, String usuario, String senha) {
         List<Cliente> clientes = new ArrayList<>();
         List<Administrador> administradores = new ArrayList<>();
         List<Funcionario> funcionarios = new ArrayList<>();
 
         //Verificação de administrador
-        administradores = DataManager.getFromDisk("Administrador");
+        try {
+            administradores = DataManager.getFromDisk("Administrador");
+        } catch (DataException e) {
+            System.out.println(e.getClasseErro());
+        }
 
         for (Administrador administrador : administradores) {
             if (administrador != null && administrador.getUsername().equals(usuario) && administrador.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
+                salvaDadosTemporarios(administrador.getNome(), administrador.getMatricula());
                 new TelaAdministrador();
-                return;
+                return; 
             } else if (administrador != null && administrador.getUsername().equals(usuario)) {
                 senhaIncorreta();
                 return;
@@ -45,11 +51,16 @@ public class ControladorLogin {
         }
 
         //Verificação de funcionario
-        funcionarios = DataManager.getFromDisk("Funcionario");
+        try {
+            funcionarios = DataManager.getFromDisk("Funcionario");
+        } catch (DataException e) {
+            System.out.println(e.getClasseErro());
+        }
 
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null && funcionario.getUsername().equals(usuario) && funcionario.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
+                salvaDadosTemporarios(funcionario.getNome(), funcionario.getMatricula());
                 new TelaFuncionario();
                 return;
             } else if (funcionario != null && funcionario.getUsername().equals(usuario)) {
@@ -62,23 +73,27 @@ public class ControladorLogin {
         try {
             clientes = DataManager.getFromDisk("Cliente");
         } catch (DataException e) {
-            telaCadastro(frame);
+            cadastro(frame);
             return;
         }
 
         for (Cliente cliente : clientes) {
             if (cliente != null && cliente.getUsername().equals(usuario) && cliente.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
+                salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
                 new TelaUsuario();
+                return;
+            } else if(cliente != null && cliente.getUsername().equals(usuario)) {
+                senhaIncorreta();
                 return;
             }
         }
 
-        telaCadastro(frame);
+        cadastro(frame);
 
     }
 
-    private static void telaCadastro(JFrame frame) {
+    private static void cadastro(JFrame frame) {
         JOptionPane.showMessageDialog(null, "Usuário não encontrado, você será direcionado para a tela de cadastro!");
         frame.dispose(); //fecha a tela atual
         new TelaCadastro();
@@ -86,5 +101,17 @@ public class ControladorLogin {
 
     private static void senhaIncorreta() {
         JOptionPane.showMessageDialog(null, "Senha incorreta! Verifique e tente novamente.");
+    }
+    
+    private static void salvaDadosTemporarios(String nome, int matricula) {
+        List<ArmazenamentoTemporario> armazenamentos = new ArrayList<>();
+        ArmazenamentoTemporario armazenamento = new ArmazenamentoTemporario(nome, matricula);
+        armazenamentos.add(armazenamento);
+        
+        try {
+            DataManager.escreveRegistros(armazenamentos);
+        } catch (DataException ex) {
+            System.out.println("Falha ao salvar dados do usuario");
+        }
     }
 }

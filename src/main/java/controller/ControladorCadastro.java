@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import storage.ArmazenamentoTemporario;
 import view.TelaUsuario;
 
 /**
@@ -39,6 +40,7 @@ public class ControladorCadastro {
 
             try {
                 DataManager.escreveRegistros(clientes);
+                salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
                 JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso! Iremos te direcionar para a tela inicial.");
 
                 frame.dispose();
@@ -48,5 +50,17 @@ public class ControladorCadastro {
             }
         }
 
+    }
+    
+        private static void salvaDadosTemporarios(String nome, int matricula) {
+        List<ArmazenamentoTemporario> armazenamentos = new ArrayList<>();
+        ArmazenamentoTemporario armazenamento = new ArmazenamentoTemporario(nome, matricula);
+        armazenamentos.add(armazenamento);
+        
+        try {
+            DataManager.escreveRegistros(armazenamentos);
+        } catch (DataException ex) {
+            System.out.println("Falha ao salvar dados do usuario");
+        }
     }
 }
