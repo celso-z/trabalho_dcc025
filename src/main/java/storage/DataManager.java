@@ -9,6 +9,8 @@ import model.Carga;
 import model.Cliente;
 import model.Unidade;
 import model.Veiculo;
+import model.Pedido;
+import model.Item;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -17,6 +19,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import java.io.*;
 import java.io.File;
+import model.Funcionario;
 
 
 
@@ -34,7 +37,7 @@ public class DataManager {
         if(!diretorio.exists()){
             diretorio.mkdirs();
         }
-        if(objectsToWrite.isEmpty()) return;
+        if(objectsToWrite.isEmpty() || objectsToWrite == null) return;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(classFilename(objectsToWrite.get(0).getClass().getSimpleName()), false))) {
             writer.write(json);
         } catch (IOException e) {
@@ -42,8 +45,8 @@ public class DataManager {
         }
     }
     
-    private static <T> List<T> leRegistros(Type token) throws DataException{
-        String filepathRegistro = classFilename(Cliente.class.getSimpleName());
+    private static <T> List<T> leRegistros(String className, Type token) throws DataException{
+        String filepathRegistro = classFilename(className);
         Gson gson = new Gson();
         String json = jsonFileToString(filepathRegistro);
         return stringToRegistro(json, gson, token);
@@ -80,6 +83,10 @@ public class DataManager {
         Type tipoLista;
         
         switch(objectName){
+            case "Funcionario" -> {
+                tipoLista = new TypeToken<List<Funcionario>>() {
+                }.getType();
+            }
             case "Cliente" -> {
                 tipoLista = new TypeToken<List<Cliente>>() {
                 }.getType();
@@ -88,14 +95,14 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Carga>>() {
                 }.getType();
             }
-            //case "Item" -> {
-                //tipoLista = new TypeToken<List<Item>>() {
-                //}.getType();
-            //}
-            //case "Pedido" -> {
-                //tipoLista = new TypeToken<List<Pedido>>() {
-                //}.getType();
-            //}
+            case "Item" -> {
+                tipoLista = new TypeToken<List<Item>>() {
+                }.getType();
+            }
+            case "Pedido" -> {
+                tipoLista = new TypeToken<List<Pedido>>() {
+                }.getType();
+            }
             case "Unidade" -> {
                 tipoLista = new TypeToken<List<Unidade>>() {
                 }.getType();
@@ -108,27 +115,16 @@ public class DataManager {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
             }
         }
-        return leRegistros(tipoLista);
-    }
-    
-    public static void getAllObjects(List cliente, List funcionario, List adm, List unidade, List carga, List pedido, List item, List veiculo) throws DataException{
-        cliente = getFromDisk("Cliente");
-        //funcionario = getFromDisk("Funcionario");
-        //adm = getFromDisk("Administrador");
-        //unidade = getFromDisk("Unidade");
-        //carga = getFromDisk("Carga");
-        //pedido = getFromDisk("Pedido");
-        //item = getFromDisk("Item");
-        //veiculo = getFromDisk("Veiculo");
+        return leRegistros(objectName, tipoLista);
     }
     
     public static void saveAllObjects(List cliente, List funcionario, List adm, List unidade, List carga, List pedido, List item, List veiculo) throws DataException{
         escreveRegistros(cliente);
-        //escreveRegistros(funcionario);
+        escreveRegistros(funcionario);
         //escreveRegistros(adm);
-        //escreveRegistros(unidade);
-        //escreveRegistros(carga);
-        //escreveRegistros(pedido);
+        escreveRegistros(unidade);
+        escreveRegistros(carga);
+        escreveRegistros(pedido);
         //escreveRegistros(item);
         //escreveRegistros(veiculo);
     }    
