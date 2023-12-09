@@ -4,8 +4,11 @@
  */
 package view;
 
+import controller.ControladorLogin;
+import controller.ControladorUsuario;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -42,7 +45,7 @@ public class TelaUsuario extends Janela {
 
     public TelaUsuario() {
         super("Home");
-        
+
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
 
@@ -68,7 +71,7 @@ public class TelaUsuario extends Janela {
         textUnidadeDestino.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-//        textUnidadeDestino.setBounds(0, 1, 100, 100);
+        textUnidadeDestino.setBounds(0, 1, 100, 100);
         painel2.add(textUnidadeDestino, gbc);
 
         labelNomeDestinatario = new JLabel("Nome do destinatário");
@@ -124,6 +127,35 @@ public class TelaUsuario extends Janela {
         painel.setEnabled(false); //remove a opção de "resize" do painel
         painel.setVisible(true);
 
+        botaoAdicionarCredito.addActionListener((ActionEvent e) -> {
+            ControladorUsuario.adicionarCredito(TelaUsuario.this);
+        });
+
+        botaoRealizarPedido.addActionListener((ActionEvent e) -> {
+            ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(),getTextUnidadeDestino(),getTextNomeDestinatario(), getTextCpfDestinatario());
+        });
         add(painel);
     }
+
+//    public String getTextMeusPedidos() {
+//        return textMeusPedidos.getText();
+//    }
+
+    public String getTextUnidadeOrigem() {
+        return textUnidadeOrigem.getText();
+    }
+
+    public String getTextUnidadeDestino() {
+        return textUnidadeDestino.getText();
+    }
+
+    public String getTextNomeDestinatario() {
+        return textNomeDestinatario.getText();
+    }
+
+    public String getTextCpfDestinatario() {
+        return textCpfDestinatario.getText();
+    }
+    
+    
 }

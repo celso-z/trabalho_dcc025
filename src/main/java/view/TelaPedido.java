@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
  * @author dhayana
  */
 public class TelaPedido extends Janela {
+
     String[] itens = {"item1", "item2", "item3", "item4", "item5"};
 
     JLabel labelMeusItens;
@@ -36,9 +37,9 @@ public class TelaPedido extends Janela {
     JButton botaoAdicionarItem;
     JButton botaoFinalizar;
 
-    public TelaPedido() {  
+    public TelaPedido(String textUnidadeOrigem, String textUnidadeDestino, String textNomeDestinatario, String textCpfDestinatario) {
         super("Pedido");
-        
+
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
 
@@ -96,7 +97,7 @@ public class TelaPedido extends Janela {
         gbc.gridx = 0;
         gbc.gridy = 1;
         painel1.add(textMeusItens, gbc);
-        
+
         botaoFinalizar = new JButton("Finalizar");
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -104,7 +105,7 @@ public class TelaPedido extends Janela {
         painel1.add(botaoFinalizar, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
-        painel.setEnabled( false ); //remove a opção de "resize" do painel
+        painel.setEnabled(false); //remove a opção de "resize" do painel
         painel.setVisible(true);
 
         add(painel);
