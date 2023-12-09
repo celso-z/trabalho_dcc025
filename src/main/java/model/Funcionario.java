@@ -11,11 +11,11 @@ package model;
 public class Funcionario extends Usuario {
     private final Integer unidade;
 
-    public Funcionario(String nome, String username, String senha, Integer unidade) {
+    public Funcionario(Integer unidade, String nome, String username, String senha) {
         super(nome, username, senha);
         this.unidade = unidade;
     }
-
+    
     public Integer getUnidade() {
         return unidade;
     }

@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Item;
 import model.Pedido;
-import view.HomeUsuario;
+import view.TelaUsuario;
 
 /**
  *
@@ -33,7 +33,7 @@ public class PedidoController {
             JOptionPane.showMessageDialog(null, "ERRO! PEDIDO NÃO CONCLUIDO, você será direcionado para a tela de inicial!");
         }else pedidos.add(pedido);
         frame.dispose();
-        new HomeUsuario();
+        new TelaUsuario();
     }
     
 }

@@ -8,7 +8,7 @@ import com.mycompany.logsystem.LogSystem;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import view.HomeUsuario;
+import view.TelaUsuario;
 
 /**
  *
@@ -20,7 +20,7 @@ public class CreditoController {
         if(numeroPreenchido && nomePreenchido && cvvPreenchido && dataPreenchida) clienteAtual.adicionaCreditos(valorCredito);
         else JOptionPane.showMessageDialog(null, "ERRO! CRÉDITO NÃO ADICIONADO, VERIFIQUE SE TODOS OS DADOS FORAM PREENCHIDOS CORRETAMENTE, você será direcionado para a tela de inicial!");
         frame.dispose();
-        new HomeUsuario();
+        new TelaUsuario();
     }
     
 }

@@ -5,7 +5,6 @@
 package view;
 
 import com.mycompany.logsystem.LogSystem;
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;

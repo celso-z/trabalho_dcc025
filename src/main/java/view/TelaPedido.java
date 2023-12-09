@@ -31,23 +31,21 @@ public class TelaPedido extends Janela {
     private Object data[][] = new Object[100][5];
     private final int numCols = 0;
     private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
-    //modeloTabela.setColumnIdentifiers(colunas);
-    //modeloTabela.setColumnIdentifiers(colunas);
 
-    JLabel label_meus_itens;
-    JTable text_meus_itens;
+    JLabel labelMeusItens;
+    JTable textMeusItens;
 
-    JLabel label_nome_item;
-    JTextField text_nome_item;
+    JLabel labelNomeItem;
+    JTextField textNomeItem;
 
-    JLabel label_valor_item;
-    JTextField text_valor_item;
+    JLabel labelValorItem;
+    JTextField textValorItem;
 
-    JLabel label_peso_item;
-    JTextField text_peso_item;
+    JLabel labelPesoItem;
+    JTextField textPesoItem;
 
-    JButton botao_adicionar_item;
-    JButton botao_finalizar;
+    JButton botaoAdicionarItem;
+    JButton botaoFinalizar;
 
     public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
@@ -58,66 +56,66 @@ public class TelaPedido extends Janela {
 
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
-        label_nome_item = new JLabel("Nome do item");
+        labelNomeItem = new JLabel("Nome do item");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel2.add(label_nome_item, gbc);
+        painel2.add(labelNomeItem, gbc);
 
-        text_nome_item = new JTextField();
-        text_nome_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textNomeItem = new JTextField();
+        textNomeItem.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel2.add(text_nome_item, gbc);
+        painel2.add(textNomeItem, gbc);
 
-        label_valor_item = new JLabel("Valor do item");
+        labelValorItem = new JLabel("Valor do item");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel2.add(label_valor_item, gbc);
+        painel2.add(labelValorItem, gbc);
 
-        text_valor_item = new JTextField();
-        text_valor_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textValorItem = new JTextField();
+        textValorItem.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        painel2.add(text_valor_item, gbc);
+        painel2.add(textValorItem, gbc);
 
-        label_peso_item = new JLabel("Peso do item");
+        labelPesoItem = new JLabel("Peso do item");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel2.add(label_peso_item, gbc);
+        painel2.add(labelPesoItem, gbc);
 
-        text_peso_item = new JTextField();
-        text_peso_item.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textPesoItem = new JTextField();
+        textPesoItem.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel2.add(text_peso_item, gbc);
+        painel2.add(textPesoItem, gbc);
 
-        botao_adicionar_item = new JButton("Adicionar item");
+        botaoAdicionarItem = new JButton("Adicionar item");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel2.add(botao_adicionar_item, gbc);
+        painel2.add(botaoAdicionarItem, gbc);
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
 
-        label_meus_itens = new JLabel("Meus itens");
+        labelMeusItens = new JLabel("Meus itens");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel1.add(label_meus_itens, gbc);
+        painel1.add(labelMeusItens, gbc);
 
-        text_meus_itens = new JTable(modeloTabela);
-        text_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        textMeusItens = new JTable(modeloTabela);
+        textMeusItens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JScrollPane container_meus_itens = new JScrollPane(text_meus_itens);
+        JScrollPane container_meus_itens = new JScrollPane(textMeusItens);
         container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         painel1.add(container_meus_itens, gbc);
         
-        botao_finalizar = new JButton("Finalizar");
+        botaoFinalizar = new JButton("Finalizar");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel1.add(botao_finalizar, gbc);
+        painel1.add(botaoFinalizar, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
         painel.setEnabled( false ); //remove a opção de "resize" do painel
@@ -126,13 +124,13 @@ public class TelaPedido extends Janela {
         this.add(painel);
         this.setVisible(true);
         
-        botao_adicionar_item.addActionListener((ActionEvent event) -> {
+        botaoAdicionarItem.addActionListener((ActionEvent event) -> {
             PedidoController.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
             atualizaTabela(possivelPedido.getItensPedido());
 
         });
               
-        botao_finalizar.addActionListener((ActionEvent event) -> {
+        botaoFinalizar.addActionListener((ActionEvent event) -> {
             if(possivelPedido.getItensPedido().size() > 0){
                 PedidoController.registraPedido(this, possivelPedido);
             }
@@ -141,15 +139,15 @@ public class TelaPedido extends Janela {
         
     }
      public String getNomeItem() {
-        return text_nome_item.getText();
+        return textNomeItem.getText();
     }
      
     public Float getValorItem() {
-        return Float.valueOf(text_valor_item.getText());
+        return Float.valueOf(textValorItem.getText());
     }
     
     public Float getPesoItem() {
-        return Float.valueOf(text_peso_item.getText());
+        return Float.valueOf(textPesoItem.getText());
     }
     
     public void atualizaTabela(ArrayList<Item> itens){

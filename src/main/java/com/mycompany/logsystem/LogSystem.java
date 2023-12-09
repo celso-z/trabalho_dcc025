@@ -1,12 +1,11 @@
 /*
- * Um Sistema de gestão logística
+ * Sistema de gestão logística
  */
 package com.mycompany.logsystem;
 
 import exceptions.DataException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import model.Cliente;
 import model.Administrador;
 import model.Pedido;
@@ -15,19 +14,20 @@ import model.Carga;
 import model.Unidade;
 import model.Veiculo;
 import model.Item;
+import model.Usuario;
 import storage.DataManager;
-import view.Credito;
-//import view.Administrador;
-import view.Login;
 import view.TelaFuncionario;
 import view.TelaPedido;
+import view.TelaAdministrador;
+import view.TelaLogin;
+
 
 /**
  *
  * @author Celso Zacarias da Silva Junior 202076003
  */
 public class LogSystem {
-    private static model.Cliente clienteAtual = null; 
+    private static Cliente clienteAtual = null; 
     private static Funcionario funcionarioAtual = null; 
     private static Administrador administradorAtual = null; 
     private static List<Cliente> clientes = new ArrayList<>();
@@ -41,40 +41,26 @@ public class LogSystem {
 
     public static void main(String[] args) throws DataException {
         startSession();
-        //Pedido p = new Pedido(555,2,0,"777", "Jose");
-        //pedidos.add(p);
-        //pedidos.add(p);
-        //Unidade u = new Unidade(15000F);
-        //unidades.add(u);
-        //Carga c = new Carga(0);
-        //Carga c1 = new Carga(0);
-        //Carga c2 = new Carga(0);
-        //Carga c3 = new Carga(0);
-        //cargas.add(c3);
-        //c3.addPedido(p);
-        //u.adicionarCarga(c3);
-        //Unidade u = unidades.get(0);
-        //u.adicionarCarga(cargas.get(0));
-        funcionarioAtual = funcionarios.get(0);
-        //funcionarios.add(funcionarioAtual);
-        new TelaFuncionario();
+        new TelaLogin();
+        
     }
     
     public static void startSession() throws DataException{
-        //clientes = DataManager.getFromDisk("Cliente");
+        clientes = DataManager.getFromDisk("Cliente");
         funcionarios = DataManager.getFromDisk("Funcionario");
-        //administradores = DataManager.getFromDisk(administradores.getClass().getSimpleName());
+        administradores = DataManager.getFromDisk("Administrador");
         unidades = DataManager.getFromDisk("Unidade");
         cargas = DataManager.getFromDisk("Carga");
         pedidos = DataManager.getFromDisk("Pedido");
-        //itens = DataManager.getFromDisk(itens.getClass().getSimpleName());
-        //veiculos = DataManager.getFromDisk(veiculos.getClass().getSimpleName());
+        //itens = DataManager.getFromDisk("Itens");
+        //veiculos = DataManager.getFromDisk("Veiculos");
+        Usuario.setNumUsuarios(clientes.size() + funcionarios.size() + administradores.size());
         
     }
     
     public static void endSession(){
         try {
-            DataManager.saveAllObjects(clientes, funcionarios, cargas, unidades, cargas, pedidos, itens, veiculos);
+            DataManager.saveAllObjects(clientes, funcionarios, administradores, unidades, cargas, pedidos, itens, veiculos);
         } catch (DataException ex) {
             System.exit(1);
         }
