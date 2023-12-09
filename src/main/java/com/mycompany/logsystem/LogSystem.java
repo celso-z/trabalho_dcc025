@@ -2,6 +2,7 @@
  * Sistema de gestão logística
  */
 package com.mycompany.logsystem;
+import view.TelaAdministrador;
 import view.TelaLogin;
 
 
@@ -12,6 +13,6 @@ import view.TelaLogin;
 public class LogSystem {
 
     public static void main(String[] args) {
-        new TelaLogin();
+        new TelaAdministrador();
     }
 }

@@ -51,12 +51,12 @@ public class ControladorCadastro {
         }
 
     }
-    
-        private static void salvaDadosTemporarios(String nome, int matricula) {
+
+    private static void salvaDadosTemporarios(String nome, int matricula) {
         List<ArmazenamentoTemporario> armazenamentos = new ArrayList<>();
         ArmazenamentoTemporario armazenamento = new ArmazenamentoTemporario(nome, matricula);
         armazenamentos.add(armazenamento);
-        
+
         try {
             DataManager.escreveRegistros(armazenamentos);
         } catch (DataException ex) {

@@ -4,8 +4,11 @@
  */
 package view;
 
+import controller.ControladorAdministrador;
+import controller.ControladorCadastro;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +20,7 @@ import javax.swing.JTextField;
  * @author dhayana
  */
 public class TelaAdministrador extends Janela {
+
     JLabel labelNomeFuncionario;
     JTextField textNomeFuncionario;
 
@@ -88,6 +92,27 @@ public class TelaAdministrador extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botaoCadastrarFuncionario, gbc);
 
+        botaoCadastrarFuncionario.addActionListener((ActionEvent event) -> {
+
+            ControladorAdministrador.cadastrar(getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
+
+        });
         add(painel);
+    }
+
+    public String getTextNome() {
+        return textNomeFuncionario.getText();
+    }
+
+    public String getTextUsuario() {
+        return textUsuarioFuncionario.getText();
+    }
+
+    public String getTextTelefone() {
+        return textTelefoneFuncionario.getText();
+    }
+
+    public String getTextSenha() {
+        return new String(textSenhaFuncionario.getPassword());
     }
 }
