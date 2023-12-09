@@ -4,7 +4,6 @@
  */
 package view;
 
-import controller.ControladorLogin;
 import controller.ControladorUsuario;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -141,12 +140,12 @@ public class TelaUsuario extends Janela {
 //        return textMeusPedidos.getText();
 //    }
 
-    public String getTextUnidadeOrigem() {
-        return textUnidadeOrigem.getText();
+    public Integer getTextUnidadeOrigem() {
+        return Integer.valueOf(textUnidadeOrigem.getText());
     }
 
-    public String getTextUnidadeDestino() {
-        return textUnidadeDestino.getText();
+    public Integer getTextUnidadeDestino() {
+        return Integer.valueOf(textUnidadeDestino.getText());
     }
 
     public String getTextNomeDestinatario() {

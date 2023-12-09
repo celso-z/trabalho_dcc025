@@ -11,24 +11,22 @@ public class Item {
     private String nome;
     private Float valor;
     private Float peso;
-    private Integer quantidade;
     private Float frete;
     
     
 
-    public Item(String nome, Float valor, Float peso, Integer quantidade){ 
+    public Item(String nome, Float valor, Float peso){ 
         idItem = numItens;
         numItens++;
-        this.quantidade = quantidade;
         this.nome = nome;
         this.valor = valor;
         this.peso = peso;
-        calculaFrete();
+        this.frete = calculaFrete();
     }
     
     private Float calculaFrete(){
         Float multiplicadorValorAlto = 1 + (valor / 100);
-        Float custoTransporte = (this.peso * 1.2F) * quantidade;
+        Float custoTransporte = (this.peso * 1.2F);
         return (custoTransporte * multiplicadorValorAlto);
     }
     
@@ -62,14 +60,6 @@ public class Item {
 
     public Integer getIdItem() {
         return idItem;
-    }
-    
-    public Integer getQuantidade(){
-        return quantidade;
-    }
-    
-    public void setQuantidade(Integer quantidade){
-        this.quantidade = quantidade;
     }
     
     public Float getFrete(){

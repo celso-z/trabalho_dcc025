@@ -4,9 +4,12 @@
  */
 package view;
 
+import com.mycompany.logsystem.LogSystem;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -38,8 +41,14 @@ public class Janela extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null); //abre a janela centralizado na tela
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //encerra a aplicação ao fechar (botão "x")
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); 
         setVisible(true);
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent event){
+                LogSystem.endSession();
+            }
+        });
     }
 
     public JPanel gridBagLayoutConfig() {

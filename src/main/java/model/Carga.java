@@ -12,19 +12,24 @@ import java.util.ArrayList;
  */
 public class Carga {
     private Float valorMercadoria = 0F;
-    private Float peso;
+    private Float peso = 0F;
     final private Integer idCarga;
     private Float valorFrete = 0F; 
     private static Integer num_Cargas = 0;
-    private ArrayList<Pedido> pedidosInclusos;
+    private ArrayList<Integer> pedidosInclusos = new ArrayList<>();
+    private final Integer unidadeDest;
+    private final Integer unidadeAtual;
+    private boolean disponivel = true;
 
-    public Carga() {
+    public Carga(Integer unidadeAtual, Integer unidadeDest) {
         idCarga = num_Cargas;
         num_Cargas++;
+        this.unidadeDest = unidadeDest;
+        this.unidadeAtual = unidadeAtual;
     }
     
     public void addPedido(Pedido p){
-        if(!pedidosInclusos.add(p)) return;
+        if(!pedidosInclusos.add(p.getIdPedido())) return;
         peso += p.getPesoTotal();
         valorMercadoria += p.getPrecoTotal();
         valorFrete += p.getFrete();
@@ -52,13 +57,23 @@ public class Carga {
         return valorFrete;
     }
 
-    public ArrayList<Pedido> getPedidosInclusos() {
+    public ArrayList<Integer> getPedidosInclusos() {
         return pedidosInclusos;
     }
 
-    public void setPedidosInclusos(ArrayList<Pedido> pedidosInclusos) {
-        this.pedidosInclusos = pedidosInclusos;
+    public Integer getUnidadeDest() {
+        return unidadeDest;
     }
     
-    
+    public boolean isDisponivel(){
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public Integer getUnidadeAtual() {
+        return unidadeAtual;
+    }
 }

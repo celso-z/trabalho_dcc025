@@ -6,19 +6,24 @@ package model;
 import java.util.ArrayList;
 
 public class Pedido {
-    private static Integer numPedidos;
+    private static Integer numPedidos = 0;
     private final Integer idPedido;
-    private Unidade unidadeOrig;
-    private Unidade UnidadeDest;
+    private final Integer idSoliciante;
+    private Integer unidadeOrig;
+    private Integer UnidadeDest;
+    private Integer UnidadeAtual;
     private String cpfDestinatario;
     private String nomeDestinatario;
-    private ArrayList<Item> itensPedido;
+    private ArrayList<Item> itensPedido = new ArrayList<>();
     private Float frete;
     private Float pesoTotal;
     private Float precoTotal;
+    private boolean disponivel = true;
+    private boolean entregue = false;
     
-    public Pedido(Unidade unidadeOrig, Unidade UnidadeDest, String cpfDestinatario, String nomeDestinatario) {
+    public Pedido(Integer idSolicitante, Integer unidadeOrig, Integer UnidadeDest, String cpfDestinatario, String nomeDestinatario) {
         this.unidadeOrig = unidadeOrig;
+        this.UnidadeAtual = unidadeOrig;
         this.UnidadeDest = UnidadeDest;
         this.cpfDestinatario = cpfDestinatario;
         this.nomeDestinatario = nomeDestinatario;
@@ -26,6 +31,7 @@ public class Pedido {
         this.precoTotal = 0F;
         this.frete = 0F;
         this.itensPedido = new ArrayList();
+        this.idSoliciante = idSolicitante;
         
         this.idPedido = numPedidos;
         numPedidos++;
@@ -46,19 +52,19 @@ public class Pedido {
         frete -= itemRemovido.getFrete();
     }
     
-    public Unidade getUnidadeOrig() {
+    public Integer getUnidadeOrig() {
         return unidadeOrig;
     }
 
-    public void setUnidadeOrig(Unidade unidadeOrig) {
+    public void setUnidadeOrig(Integer unidadeOrig) {
         this.unidadeOrig = unidadeOrig;
     }
 
-    public Unidade getUnidadeDest() {
+    public Integer getUnidadeDest() {
         return UnidadeDest;
     }
 
-    public void setUnidadeDest(Unidade UnidadeDest) {
+    public void setUnidadeDest(Integer UnidadeDest) {
         this.UnidadeDest = UnidadeDest;
     }
 
@@ -113,4 +119,33 @@ public class Pedido {
     public void setPrecoTotal(Float precoTotal) {
         this.precoTotal = precoTotal;
     }
+
+    public Integer getIdSoliciante() {
+        return idSoliciante;
+    }
+
+    public Integer getUnidadeAtual() {
+        return UnidadeAtual;
+    }
+
+    public void setUnidadeAtual(Integer UnidadeAtual) {
+        this.UnidadeAtual = UnidadeAtual;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public boolean isEntregue() {
+        return entregue;
+    }
+
+    public void setEntregue(boolean entregue) {
+        this.entregue = entregue;
+    }
+    
 }

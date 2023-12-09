@@ -35,7 +35,7 @@ public abstract class Usuario {
     public static Integer getNumUsuarios() {
         return numUsuarios;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
     }

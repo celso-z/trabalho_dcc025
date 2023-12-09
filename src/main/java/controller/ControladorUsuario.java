@@ -19,8 +19,8 @@ public class ControladorUsuario {
         new TelaCredito();
     }
 
-    public static void realizarPedido(JFrame frame, String textUnidadeOrigem, String textUnidadeDestino, String textNomeDestinatario, String textCpfDestinatario) {
+    public static void realizarPedido(JFrame frame, Integer textUnidadeOrigem, Integer textUnidadeDestino, String textNomeDestinatario, String textCpfDestinatario) {
         frame.dispose();
-        new TelaPedido(textUnidadeOrigem, textUnidadeDestino, textNomeDestinatario, textCpfDestinatario);
+        new TelaPedido(textUnidadeOrigem, textUnidadeDestino, textCpfDestinatario, textNomeDestinatario);
     }
 }
