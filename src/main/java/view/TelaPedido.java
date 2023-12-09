@@ -4,25 +4,38 @@
  */
 package view;
 
+import com.mycompany.logsystem.LogSystem;
+import controller.PedidoController;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import model.Item;
+import model.Pedido;
 
 /**
  *
  * @author dhayana
  */
-public class Pedido extends Janela {
-    String[] itens = {"item1", "item2", "item3", "item4", "item5"};
+public class TelaPedido extends Janela {
+    private final String[] colunas = {"ID", "NOME", "PESO", "VALOR", "FRETE"};
+    private Object data[][] = new Object[100][5];
+    private final int numCols = 0;
+    private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
+    //modeloTabela.setColumnIdentifiers(colunas);
+    //modeloTabela.setColumnIdentifiers(colunas);
 
     JLabel label_meus_itens;
-    JList text_meus_itens;
+    JTable text_meus_itens;
 
     JLabel label_nome_item;
     JTextField text_nome_item;
@@ -36,8 +49,9 @@ public class Pedido extends Janela {
     JButton botao_adicionar_item;
     JButton botao_finalizar;
 
-    public Pedido() {  
+    public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
+        Pedido possivelPedido = new Pedido((LogSystem.getClienteAtual()).getMatricula() ,unidadeOrigem, unidadeDestino, cpfDestinatario, nomeDestinatario);
         
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
@@ -91,11 +105,13 @@ public class Pedido extends Janela {
         gbc.gridy = 0;
         painel1.add(label_meus_itens, gbc);
 
-        text_meus_itens = new JList(itens);
+        text_meus_itens = new JTable(modeloTabela);
         text_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel1.add(text_meus_itens, gbc);
+        JScrollPane container_meus_itens = new JScrollPane(text_meus_itens);
+        container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        painel1.add(container_meus_itens, gbc);
         
         botao_finalizar = new JButton("Finalizar");
         gbc.gridx = 0;
@@ -107,6 +123,49 @@ public class Pedido extends Janela {
         painel.setEnabled( false ); //remove a opção de "resize" do painel
         painel.setVisible(true);
 
-        add(painel);
+        this.add(painel);
+        this.setVisible(true);
+        
+        botao_adicionar_item.addActionListener((ActionEvent event) -> {
+            PedidoController.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
+            atualizaTabela(possivelPedido.getItensPedido());
+
+        });
+              
+        botao_finalizar.addActionListener((ActionEvent event) -> {
+            if(possivelPedido.getItensPedido().size() > 0){
+                PedidoController.registraPedido(this, possivelPedido);
+            }
+
+        });
+        
     }
+     public String getNomeItem() {
+        return text_nome_item.getText();
+    }
+     
+    public Float getValorItem() {
+        return Float.valueOf(text_valor_item.getText());
+    }
+    
+    public Float getPesoItem() {
+        return Float.valueOf(text_peso_item.getText());
+    }
+    
+    public void atualizaTabela(ArrayList<Item> itens){
+
+        for(int i = 0; i < itens.size(); i++){
+            Item item = itens.get(i);
+            data[i][0] = item.getIdItem();
+            data[i][1] = item.getNome();
+            data[i][2] = item.getPeso();
+            data[i][3] = item.getValor();
+            data[i][4] = item.getFrete();
+        }
+        modeloTabela.setDataVector(data, colunas);
+        modeloTabela.setNumRows(itens.size());
+        modeloTabela.fireTableDataChanged();
+    }
+    
+    
 }
