@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Sistema de gestão logística
  */
@@ -16,16 +21,8 @@ import model.Veiculo;
 import model.Item;
 import model.Usuario;
 import storage.DataManager;
-import view.TelaFuncionario;
-import view.TelaPedido;
-import view.TelaAdministrador;
 import view.TelaLogin;
 
-
-/**
- *
- * @author Celso Zacarias da Silva Junior 202076003
- */
 public class LogSystem {
     private static Cliente clienteAtual = null; 
     private static Funcionario funcionarioAtual = null; 
@@ -40,9 +37,8 @@ public class LogSystem {
     private static List<Veiculo> veiculos = new ArrayList<>();
 
     public static void main(String[] args) throws DataException {
-        startSession();
+        startSession();      
         new TelaLogin();
-        
     }
     
     public static void startSession() throws DataException{
@@ -52,9 +48,15 @@ public class LogSystem {
         unidades = DataManager.getFromDisk("Unidade");
         cargas = DataManager.getFromDisk("Carga");
         pedidos = DataManager.getFromDisk("Pedido");
-        //itens = DataManager.getFromDisk("Itens");
-        //veiculos = DataManager.getFromDisk("Veiculos");
-        Usuario.setNumUsuarios(clientes.size() + funcionarios.size() + administradores.size());
+        itens = DataManager.getFromDisk("Item");
+        veiculos = DataManager.getFromDisk("Veiculo");
+        
+        Usuario.setNumUsuarios(clientes.size() + funcionarios.size() + administradores.size());        
+        Unidade.setNumUnidades(unidades.size());
+        Carga.setNumCargas(cargas.size());
+        Pedido.setNumPedidos(pedidos.size());
+        Item.setNumItens(itens.size());
+        Veiculo.setNumVeiculos(veiculos.size());
         
     }
     

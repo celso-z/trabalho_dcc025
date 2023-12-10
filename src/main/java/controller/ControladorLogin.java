@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -6,28 +11,25 @@ package controller;
 
 import com.mycompany.logsystem.LogSystem;
 import model.Cliente;
-import exceptions.DataException;
-import storage.DataManager;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Administrador;
 import view.TelaAdministrador;
-
 import model.Funcionario;
-import storage.ArmazenamentoTemporario;
 import view.TelaCadastro;
 import view.TelaFuncionario;
 import view.TelaUsuario;
 
-/**
- *
- * @author dhayana
- */
 public class ControladorLogin {
 
     public static void entrar(JFrame frame, String usuario, String senha) {
+        
+        if(usuario.trim().equals("") || senha.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Campos obrigatorio(s) não preenchido(s)");
+            return;
+        }
+        
         List<Cliente> clientes = LogSystem.getClientes();
         List<Administrador> administradores = LogSystem.getAdministradores();
         List<Funcionario> funcionarios = LogSystem.getFuncionarios();
@@ -35,7 +37,6 @@ public class ControladorLogin {
         for (Administrador administrador : administradores) {
             if (administrador != null && administrador.getUsername().equals(usuario) && administrador.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(administrador.getNome(), administrador.getMatricula());
                 LogSystem.setAdministradorAtual(administrador);
                 new TelaAdministrador();
                 return; 
@@ -49,7 +50,6 @@ public class ControladorLogin {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null && funcionario.getUsername().equals(usuario) && funcionario.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(funcionario.getNome(), funcionario.getMatricula());
                 LogSystem.setFuncionarioAtual(funcionario);
                 new TelaFuncionario();
                 return;
@@ -62,7 +62,6 @@ public class ControladorLogin {
         for (Cliente cliente : clientes) {
             if (cliente != null && cliente.getUsername().equals(usuario) && cliente.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
                 LogSystem.setClienteAtual(cliente);
                 new TelaUsuario();
                 return;

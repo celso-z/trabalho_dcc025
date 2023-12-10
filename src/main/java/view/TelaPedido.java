@@ -1,8 +1,15 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package view;
+
 
 import com.mycompany.logsystem.LogSystem;
 import controller.PedidoController;
@@ -22,11 +29,8 @@ import javax.swing.table.DefaultTableModel;
 import model.Item;
 import model.Pedido;
 
-/**
- *
- * @author dhayana
- */
 public class TelaPedido extends Janela {
+
     private final String[] colunas = {"ID", "NOME", "PESO", "VALOR", "FRETE"};
     private Object data[][] = new Object[100][5];
     private final int numCols = 0;
@@ -51,6 +55,7 @@ public class TelaPedido extends Janela {
         super("Pedido");
         Pedido possivelPedido = new Pedido((LogSystem.getClienteAtual()).getMatricula() ,unidadeOrigem, unidadeDestino, cpfDestinatario, nomeDestinatario);
         
+
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
 
@@ -107,6 +112,7 @@ public class TelaPedido extends Janela {
         textMeusItens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 1;
+
         JScrollPane container_meus_itens = new JScrollPane(textMeusItens);
         container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         painel1.add(container_meus_itens, gbc);
@@ -118,7 +124,7 @@ public class TelaPedido extends Janela {
         painel1.add(botaoFinalizar, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
-        painel.setEnabled( false ); //remove a opção de "resize" do painel
+        painel.setEnabled(false); //remove a opção de "resize" do painel
         painel.setVisible(true);
 
         this.add(painel);

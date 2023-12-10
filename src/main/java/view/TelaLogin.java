@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -5,23 +10,15 @@
 package view;
 
 import controller.ControladorLogin;
-import exceptions.DataException;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author dhayana
- */
 public class TelaLogin extends Janela {
 
     JLabel labelUsuario;
@@ -67,12 +64,12 @@ public class TelaLogin extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botaoEntrar, gbc);
 
+        this.add(painel);
+        this.setVisible(true);
+
         botaoEntrar.addActionListener((ActionEvent e) -> {
             ControladorLogin.entrar(TelaLogin.this, getTextUsuario(), getTextSenha());
         });
-        
-        add(painel);
-        setVisible(true);
     }
 
     public String getTextUsuario() {
