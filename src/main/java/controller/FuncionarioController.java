@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,10 +17,6 @@ import model.Carga;
 import model.Pedido;
 import model.Unidade;
 
-/**
- *
- * @author celso-z
- */
 public class FuncionarioController {
     public static void retiraPedido(Integer Id){
         if(Id == -1){

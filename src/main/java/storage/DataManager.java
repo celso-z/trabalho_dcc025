@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -119,10 +124,6 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Veiculo>>() {
                 }.getType();
             }
-            case "ArmazenamentoTemporario" -> {
-                tipoLista = new TypeToken<List<ArmazenamentoTemporario>>() {
-                }.getType();
-            }
             
             default -> {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
@@ -138,7 +139,7 @@ public class DataManager {
         escreveRegistros(unidade);
         escreveRegistros(carga);
         escreveRegistros(pedido);
-        //escreveRegistros(item);
-        //escreveRegistros(veiculo);
+        escreveRegistros(item);
+        escreveRegistros(veiculo);
     }    
 }

@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -13,10 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author dhayana
- */
 public class TelaCredito extends Janela {
     JLabel label_nome_cartao;
     JTextField text_nome_cartao;
@@ -103,8 +104,8 @@ public class TelaCredito extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_finalizar, gbc);
 
-        add(painel);
-        setVisible(true);
+        this.add(painel);
+        this.setVisible(true);
         
         botao_finalizar.addActionListener((ActionEvent event) -> {
             CreditoController.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());

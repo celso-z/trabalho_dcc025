@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -6,24 +11,20 @@ package model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author celso-z
- */
 public class Carga {
     private Float valorMercadoria = 0F;
     private Float peso = 0F;
     final private Integer idCarga;
     private Float valorFrete = 0F; 
-    private static Integer num_Cargas = 0;
+    private static Integer numCargas = 0;
     private ArrayList<Integer> pedidosInclusos = new ArrayList<>();
     private final Integer unidadeDest;
     private final Integer unidadeAtual;
     private boolean disponivel = true;
 
     public Carga(Integer unidadeAtual, Integer unidadeDest) {
-        idCarga = num_Cargas;
-        num_Cargas++;
+        idCarga = numCargas;
+        numCargas++;
         this.unidadeDest = unidadeDest;
         this.unidadeAtual = unidadeAtual;
     }
@@ -47,11 +48,13 @@ public class Carga {
         return idCarga;
     }
 
-    public static Integer getNum_Cargas() {
-        return num_Cargas;
+    public static Integer getNumCargas() {
+        return numCargas;
     }
 
-    
+    public static void setNumCargas(Integer numCargas) {
+        Carga.numCargas = numCargas;
+    }   
 
     public Float getValorFrete() {
         return valorFrete;
