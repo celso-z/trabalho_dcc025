@@ -24,6 +24,12 @@ import view.TelaUsuario;
 public class ControladorLogin {
 
     public static void entrar(JFrame frame, String usuario, String senha) {
+        
+        if(usuario.trim().equals("") || senha.trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Campos obrigatorio(s) não preenchido(s)");
+            return;
+        }
+        
         List<Cliente> clientes = LogSystem.getClientes();
         List<Administrador> administradores = LogSystem.getAdministradores();
         List<Funcionario> funcionarios = LogSystem.getFuncionarios();
