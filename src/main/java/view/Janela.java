@@ -42,11 +42,11 @@ public class Janela extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null); //abre a janela centralizado na tela
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); 
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-        addWindowListener(new WindowAdapter(){
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent event){
+            public void windowClosing(WindowEvent event) {
                 LogSystem.endSession();
             }
         });

@@ -21,22 +21,22 @@ import javax.swing.JTextField;
 
 public class TelaAdministrador extends Janela {
 
-    JLabel labelUnidade;
-    JTextField textUnidade;
-    
-    JLabel labelNomeFuncionario;
-    JTextField textNomeFuncionario;
+    private final JLabel labelUnidade;
+    private final JTextField textUnidade;
 
-    JLabel labelUsuarioFuncionario;
-    JTextField textUsuarioFuncionario;
+    private final JLabel labelNomeFuncionario;
+    private final JTextField textNomeFuncionario;
 
-    JLabel labelTelefoneFuncionario;
-    JTextField textTelefoneFuncionario;
+    private final JLabel labelUsuarioFuncionario;
+    private final JTextField textUsuarioFuncionario;
 
-    JLabel labelSenhaFuncionario;
-    JPasswordField textSenhaFuncionario;
+    private final JLabel labelTelefoneFuncionario;
+    private final JTextField textTelefoneFuncionario;
 
-    JButton botaoCadastrarFuncionario;
+    private final JLabel labelSenhaFuncionario;
+    private final JPasswordField textSenhaFuncionario;
+
+    private final JButton botaoCadastrarFuncionario;
 
     public TelaAdministrador() {
         super("Administrador");
@@ -87,12 +87,12 @@ public class TelaAdministrador extends Janela {
         gbc.gridx = 1;
         gbc.gridy = 3;
         painel.add(textSenhaFuncionario, gbc);
-        
+
         labelUnidade = new JLabel("Unidade");
         gbc.gridx = 0;
         gbc.gridy = 4;
         painel.add(labelUnidade, gbc);
-        
+
         textUnidade = new JTextField();
         textUnidade.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
@@ -107,11 +107,9 @@ public class TelaAdministrador extends Janela {
         painel.add(botaoCadastrarFuncionario, gbc);
 
         botaoCadastrarFuncionario.addActionListener((ActionEvent event) -> {
-
             ControladorAdministrador.cadastrar(getTextUnidade(), getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
-
         });
-        
+
         this.add(painel);
         this.setVisible(true);
     }
@@ -119,7 +117,7 @@ public class TelaAdministrador extends Janela {
     public Integer getTextUnidade() {
         return Integer.valueOf(textUnidade.getText());
     }
-    
+
     public String getTextNome() {
         return textNomeFuncionario.getText();
     }

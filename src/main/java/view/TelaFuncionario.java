@@ -21,87 +21,84 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class TelaFuncionario extends Janela {
+
     private final String[] colunasPedidos = {"ID", "NOME RET.", "PESO", "VALOR", "FRETE"};
     private final String[] colunasCargas = {"ID", "PESO", "VALOR MERC.", "FRETE"};
-    private Object[][] dataPedidosEntrada = new Object[100][5];
-    private Object[][] dataCargasEntrada = new Object[100][5];
+    private final Object[][] dataPedidosEntrada = new Object[100][5];
+    private final Object[][] dataCargasEntrada = new Object[100][5];
     private final int numColsPedidos = 5;
     private final int numColsCargas = 4;
-    private DefaultTableModel modeloTabelaPedidosEntrada = new DefaultTableModel(colunasPedidos, numColsPedidos);
-    private DefaultTableModel modeloTabelaCargasEntrada = new DefaultTableModel(colunasCargas, numColsCargas);
+    private final DefaultTableModel modeloTabelaPedidosEntrada = new DefaultTableModel(colunasPedidos, numColsPedidos);
+    private final DefaultTableModel modeloTabelaCargasEntrada = new DefaultTableModel(colunasCargas, numColsCargas);
     private Integer idSelecionado = -1;
 
+    private final JPanel tabVeiculosEntrada = gridBagLayoutConfig();
+    private final JPanel tabCargasEntrada = gridBagLayoutConfig();
+    private final JPanel tabPedidosEntrada = gridBagLayoutConfig();
 
-    JPanel tabVeiculosEntrada = gridBagLayoutConfig();
-    JPanel tabCargasEntrada = gridBagLayoutConfig();
-    JPanel tabPedidosEntrada = gridBagLayoutConfig();
+    private final JPanel tabVeiculosSaida = gridBagLayoutConfig();
+    private final JPanel tabCargasSaida = gridBagLayoutConfig();
 
-    
-    JPanel tabVeiculosSaida = gridBagLayoutConfig();
-    JPanel tabCargasSaida = gridBagLayoutConfig();
-    
-    JButton botaoRetiraPedido;
-    JButton botaoDesassociar;
-    
-    JTable tabelaPedidosEntrada;
-    JTable tabelaCargasEntrada;
+    private final JButton botaoRetiraPedido;
+    private final JButton botaoDesassociar;
+
+    private JTable tabelaPedidosEntrada;
+    private JTable tabelaCargasEntrada;
 
     public TelaFuncionario() {
         super("Funcionario");
-         
-        JTabbedPane painel = new JTabbedPane();
-        
-        GridBagConstraints gbc = gridBagConstraintsConfig();
 
+        JTabbedPane painel = new JTabbedPane();
+
+        GridBagConstraints gbc = gridBagConstraintsConfig();
 
         JTabbedPane tabEntrada = new JTabbedPane();
         JTabbedPane tabSaida = new JTabbedPane();
-        
-        
-        
+
         painel.addTab("Chegada", tabEntrada);
         painel.addTab("Saída", tabSaida);
 
         tabEntrada.addTab("Pedidos", tabPedidosEntrada);
         tabelaPedidosEntrada = new JTable(modeloTabelaPedidosEntrada);
         tabelaPedidosEntrada.setRowSelectionAllowed(true);
+
         atualizaTabelaPedidosEntrada();
+
         JScrollPane containerTabelaItensEntrada = new JScrollPane(tabelaPedidosEntrada, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         containerTabelaItensEntrada.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 0;
         tabPedidosEntrada.add(containerTabelaItensEntrada, gbc);
+
         botaoRetiraPedido = new JButton("Retirar Pedido");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabPedidosEntrada.add(botaoRetiraPedido, gbc);
-        
-        
-        
+
         tabEntrada.addTab("Cargas", tabCargasEntrada);
         tabelaCargasEntrada = new JTable(modeloTabelaCargasEntrada);
         tabelaCargasEntrada.setRowSelectionAllowed(true);
+
         atualizaTabelaCargasEntrada();
+
         JScrollPane containerTabelaCargasEntrada = new JScrollPane(tabelaCargasEntrada, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         containerTabelaCargasEntrada.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 0;
         tabCargasEntrada.add(containerTabelaCargasEntrada, gbc);
+
         botaoDesassociar = new JButton("Desassociar");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabCargasEntrada.add(botaoDesassociar, gbc);
-       
+
         tabEntrada.addTab("Veículos", tabVeiculosEntrada);
 
-        
         tabSaida.addTab("Veículos", tabVeiculosSaida);
         tabSaida.addTab("Cargas", tabCargasSaida);
-        
-        
-       
+
         this.add(painel);
         this.setVisible(true);
 
@@ -131,26 +128,27 @@ public class TelaFuncionario extends Janela {
             FuncionarioController.retiraPedido(idSelecionado);
             atualizaTabelaPedidosEntrada();
         });
-        
+
         botaoDesassociar.addActionListener((ActionEvent event) -> {
             FuncionarioController.desassociarCarga(idSelecionado);
             atualizaTabelaCargasEntrada();
             atualizaTabelaPedidosEntrada();
         });
     }
-    
-    public void selecionaId(Integer id){
+
+    public void selecionaId(Integer id) {
         idSelecionado = id;
         System.out.println(id);
     }
-    public void atualizaTabelaPedidosEntrada(){
+
+    public void atualizaTabelaPedidosEntrada() {
         int numPedidosDisponiveis = FuncionarioController.getPedidosDisponiveisEntrada(dataPedidosEntrada);
-        
         modeloTabelaPedidosEntrada.setDataVector(dataPedidosEntrada, colunasPedidos);
         modeloTabelaPedidosEntrada.setNumRows(numPedidosDisponiveis);
         modeloTabelaPedidosEntrada.fireTableDataChanged();
     }
-    public void atualizaTabelaCargasEntrada(){
+
+    public void atualizaTabelaCargasEntrada() {
         int numCargasDisponiveis = FuncionarioController.getCargasDisponiveisEntrada(dataCargasEntrada);
         modeloTabelaCargasEntrada.setDataVector(dataCargasEntrada, colunasCargas);
         modeloTabelaCargasEntrada.setNumRows(numCargasDisponiveis);

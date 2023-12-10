@@ -19,7 +19,7 @@ import view.TelaLogin;
 
 public class ControladorCadastro {
 
-    public static void cadastrar(JFrame frame, ActionEvent event, String nome, String usuario, String senha, String telefone) {
+    public static void cadastrar(JFrame frame, String nome, String usuario, String senha, String telefone) {
         if (nome.trim().equals("") || usuario.trim().equals("") || senha.trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Campos obrigatorio(s) não preenchido(s)");
             return;
