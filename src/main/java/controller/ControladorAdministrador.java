@@ -14,10 +14,10 @@ import model.Funcionario;
  * @author dhayana
  */
 public class ControladorAdministrador {
-    public static void cadastrar(String nome, String usuario, String senha, String telefone) {
+    public static void cadastrar(Integer unidade, String nome, String usuario, String senha, String telefone) {
         List<Funcionario> funcionarios = LogSystem.getFuncionarios();
         Funcionario funcionario;
-        funcionario = new Funcionario(0, nome, usuario, senha); //TODO: Administrador informa unidade
+        funcionario = new Funcionario(unidade, nome, usuario, senha); //TODO: Administrador informa unidade
         funcionarios.add(funcionario);
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
     }

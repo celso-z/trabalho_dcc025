@@ -16,11 +16,8 @@ import model.Veiculo;
 import model.Item;
 import model.Usuario;
 import storage.DataManager;
-import view.TelaFuncionario;
-import view.TelaPedido;
 import view.TelaAdministrador;
 import view.TelaLogin;
-import view.TelaUsuario;
 
 
 /**
@@ -42,6 +39,14 @@ public class LogSystem {
 
     public static void main(String[] args) throws DataException {
         startSession();
+    
+//           Veiculo a = new Veiculo(1500, 0);            
+//           Veiculo b = new Veiculo(1000, 1);       
+//      
+//           veiculos.add(a);           
+//           veiculos.add(b);
+
+           
         new TelaLogin();
     }
     
@@ -52,9 +57,15 @@ public class LogSystem {
         unidades = DataManager.getFromDisk("Unidade");
         cargas = DataManager.getFromDisk("Carga");
         pedidos = DataManager.getFromDisk("Pedido");
-        //itens = DataManager.getFromDisk("Itens");
-        //veiculos = DataManager.getFromDisk("Veiculos");
-        Usuario.setNumUsuarios(clientes.size() + funcionarios.size() + administradores.size());
+        itens = DataManager.getFromDisk("Item");
+        veiculos = DataManager.getFromDisk("Veiculo");
+        
+        Usuario.setNumUsuarios(clientes.size() + funcionarios.size() + administradores.size());        
+        Unidade.setNumUnidades(unidades.size());
+        Carga.setNumCargas(cargas.size());
+        Pedido.setNumPedidos(pedidos.size());
+        Item.setNumItens(itens.size());
+        Veiculo.setNumVeiculos(veiculos.size());
         
     }
     

@@ -9,14 +9,14 @@ package model;
  * @author celso-z
  */
 public class Veiculo {
-    private static Integer numVeiculos;
+    private static Integer numVeiculos=0;
     final private Integer idVeiculo;
     private Integer capacidadeVeiculo;
     private boolean disponivel;
-    private Unidade unidadeOrig, unidadeDestino;
+    private Integer unidadeOrig, unidadeDestino;
     private Carga cargaAtual;
 
-    public Veiculo(Integer capacidadeVeiculo, Unidade unidadeOrig) {
+    public Veiculo(Integer capacidadeVeiculo, Integer unidadeOrig) {
         idVeiculo = numVeiculos;
         numVeiculos++;
         disponivel = true;    
@@ -52,19 +52,19 @@ public class Veiculo {
         this.disponivel = disponivel;
     }
 
-    public Unidade getUnidadeOrig() {
+    public Integer getUnidadeOrig() {
         return unidadeOrig;
     }
 
-    public void setUnidadeOrig(Unidade unidadeOrig) {
+    public void setUnidadeOrig(Integer unidadeOrig) {
         this.unidadeOrig = unidadeOrig;
     }
 
-    public Unidade getUnidadeDestino() {
+    public Integer getUnidadeDestino() {
         return unidadeDestino;
     }
 
-    public void setUnidadeDestino(Unidade unidadeDestino) {
+    public void setUnidadeDestino(Integer unidadeDestino) {
         this.unidadeDestino = unidadeDestino;
     }
 

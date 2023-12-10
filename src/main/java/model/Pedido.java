@@ -96,6 +96,10 @@ public class Pedido {
         return numPedidos;
     }
 
+    public static void setNumPedidos(Integer numPedidos) {
+        Pedido.numPedidos = numPedidos;
+    }
+    
     public Integer getIdPedido() {
         return idPedido;
     }

@@ -5,7 +5,6 @@
 package view;
 
 import controller.ControladorAdministrador;
-import controller.ControladorCadastro;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -21,6 +20,9 @@ import javax.swing.JTextField;
  */
 public class TelaAdministrador extends Janela {
 
+    JLabel labelUnidade;
+    JTextField textUnidade;
+    
     JLabel labelNomeFuncionario;
     JTextField textNomeFuncionario;
 
@@ -84,22 +86,37 @@ public class TelaAdministrador extends Janela {
         gbc.gridx = 1;
         gbc.gridy = 3;
         painel.add(textSenhaFuncionario, gbc);
+        
+        labelUnidade = new JLabel("Unidade");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        painel.add(labelUnidade, gbc);
+        
+        textUnidade = new JTextField();
+        textUnidade.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        painel.add(textUnidade, gbc);
 
         botaoCadastrarFuncionario = new JButton("Cadastrar funcionário");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botaoCadastrarFuncionario, gbc);
 
         botaoCadastrarFuncionario.addActionListener((ActionEvent event) -> {
 
-            ControladorAdministrador.cadastrar(getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
+            ControladorAdministrador.cadastrar(getTextUnidade(), getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
 
         });
         add(painel);
     }
 
+    public Integer getTextUnidade() {
+        return Integer.valueOf(textUnidade.getText());
+    }
+    
     public String getTextNome() {
         return textNomeFuncionario.getText();
     }

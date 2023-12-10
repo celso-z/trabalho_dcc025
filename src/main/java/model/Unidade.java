@@ -35,6 +35,10 @@ public class Unidade {
         return idUnidade;
     }
 
+    public static void setNumUnidades(Integer numUnidades) {
+        Unidade.numUnidades = numUnidades;
+    }
+
     public Float getCapacidadeArmazenamento() {
         return capacidadeArmazenamento;
     }

@@ -58,6 +58,10 @@ public class Item {
         return numItens;
     }
 
+    public static void setNumItens(Integer numItens) {
+        Item.numItens = numItens;
+    }
+    
     public Integer getIdItem() {
         return idItem;
     }

@@ -138,7 +138,7 @@ public class DataManager {
         escreveRegistros(unidade);
         escreveRegistros(carga);
         escreveRegistros(pedido);
-        //escreveRegistros(item);
-        //escreveRegistros(veiculo);
+        escreveRegistros(item);
+        escreveRegistros(veiculo);
     }    
 }
