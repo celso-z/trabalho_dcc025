@@ -5,7 +5,6 @@
 package controller;
 
 import com.mycompany.logsystem.LogSystem;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JOptionPane;
