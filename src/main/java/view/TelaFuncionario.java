@@ -101,8 +101,9 @@ public class TelaFuncionario extends Janela {
         
         
        
-        add(painel);
-        setVisible(true);
+        this.add(painel);
+        this.setVisible(true);
+
         tabelaPedidosEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -113,6 +114,7 @@ public class TelaFuncionario extends Janela {
                 }
             }
         });
+
         tabelaCargasEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,10 +125,12 @@ public class TelaFuncionario extends Janela {
                 }
             }
         });
+
         botaoRetiraPedido.addActionListener((ActionEvent event) -> {
             FuncionarioController.retiraPedido(idSelecionado);
             atualizaTabelaPedidosEntrada();
         });
+        
         botaoDesassociar.addActionListener((ActionEvent event) -> {
             FuncionarioController.desassociarCarga(idSelecionado);
             atualizaTabelaCargasEntrada();

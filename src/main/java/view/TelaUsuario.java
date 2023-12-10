@@ -145,7 +145,9 @@ public class TelaUsuario extends Janela {
         botaoRealizarPedido.addActionListener((ActionEvent e) -> {
             ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(),getTextUnidadeDestino(),getTextNomeDestinatario(), getTextCpfDestinatario());
         });
-        add(painel);
+       
+       this.add(painel);
+    this.setVisible(true);
         
         atualizaTabela();
     }

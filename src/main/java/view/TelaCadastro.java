@@ -97,7 +97,8 @@ public class TelaCadastro extends Janela {
 
         });
 
-        add(painel);
+        this.add(painel);
+        this.setVisible(true);
     }
 
     public String getTextNome() {

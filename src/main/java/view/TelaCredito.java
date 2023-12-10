@@ -103,8 +103,8 @@ public class TelaCredito extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botao_finalizar, gbc);
 
-        add(painel);
-        setVisible(true);
+        this.add(painel);
+        this.setVisible(true);
         
         botao_finalizar.addActionListener((ActionEvent event) -> {
             CreditoController.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());

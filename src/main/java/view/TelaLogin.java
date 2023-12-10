@@ -63,12 +63,12 @@ public class TelaLogin extends Janela {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         painel.add(botaoEntrar, gbc);
 
+        this.add(painel);
+        this.setVisible(true);
+
         botaoEntrar.addActionListener((ActionEvent e) -> {
             ControladorLogin.entrar(TelaLogin.this, getTextUsuario(), getTextSenha());
         });
-        
-        add(painel);
-        setVisible(true);
     }
 
     public String getTextUsuario() {

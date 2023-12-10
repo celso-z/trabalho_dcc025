@@ -110,7 +110,9 @@ public class TelaAdministrador extends Janela {
             ControladorAdministrador.cadastrar(getTextUnidade(), getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
 
         });
-        add(painel);
+        
+        this.add(painel);
+        this.setVisible(true);
     }
 
     public Integer getTextUnidade() {
