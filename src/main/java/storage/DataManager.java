@@ -51,10 +51,15 @@ public class DataManager {
     }
     
     private static <T> List<T> leRegistros(Type token,String objectName ) throws DataException{
+        List<T> registros = new ArrayList<>();
         String filepathRegistro = classFilename(objectName);
         Gson gson = new Gson();
-        String json = jsonFileToString(filepathRegistro);
-        return stringToRegistro(json, gson, token);
+        File f = new File(filepathRegistro);
+        if(f.exists() && f.isFile()){
+            String json = jsonFileToString(filepathRegistro);
+            registros = stringToRegistro(json, gson, token);
+        }
+        return registros;
     }
     
     private static String jsonFileToString(String filepath) throws DataException{
