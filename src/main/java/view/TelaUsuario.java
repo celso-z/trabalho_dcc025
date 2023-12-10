@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -22,10 +27,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
 
-/**
- *
- * @author dhayana
- */
 public class TelaUsuario extends Janela {
 
     private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS","SITUAÇÂO"};

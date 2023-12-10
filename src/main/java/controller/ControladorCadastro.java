@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,10 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.TelaLogin;
 
-/**
- *
- * @author dhayana
- */
 public class ControladorCadastro {
 
     public static void cadastrar(JFrame frame, ActionEvent event, String nome, String usuario, String senha, String telefone) {

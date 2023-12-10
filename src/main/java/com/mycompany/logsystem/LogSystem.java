@@ -1,3 +1,8 @@
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
+ */
+
 /*
  * Sistema de gestão logística
  */
@@ -18,11 +23,6 @@ import model.Usuario;
 import storage.DataManager;
 import view.TelaLogin;
 
-
-/**
- *
- * @author Celso Zacarias da Silva Junior 202076003
- */
 public class LogSystem {
     private static Cliente clienteAtual = null; 
     private static Funcionario funcionarioAtual = null; 
