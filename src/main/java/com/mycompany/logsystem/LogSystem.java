@@ -16,7 +16,6 @@ import model.Veiculo;
 import model.Item;
 import model.Usuario;
 import storage.DataManager;
-import view.TelaAdministrador;
 import view.TelaLogin;
 
 
@@ -38,15 +37,7 @@ public class LogSystem {
     private static List<Veiculo> veiculos = new ArrayList<>();
 
     public static void main(String[] args) throws DataException {
-        startSession();
-    
-//           Veiculo a = new Veiculo(1500, 0);            
-//           Veiculo b = new Veiculo(1000, 1);       
-//      
-//           veiculos.add(a);           
-//           veiculos.add(b);
-
-           
+        startSession();      
         new TelaLogin();
     }
     

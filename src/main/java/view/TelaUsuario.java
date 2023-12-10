@@ -4,17 +4,23 @@
  */
 package view;
 
+import com.mycompany.logsystem.LogSystem;
 import controller.ControladorUsuario;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import model.Pedido;
 
 /**
  *
@@ -22,10 +28,13 @@ import javax.swing.SwingConstants;
  */
 public class TelaUsuario extends Janela {
 
-    String[] opt = {"opt1", "opt2", "opt3", "opt4", "opt5"};
+    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS","SITUAÇÂO"};
+    private final int numCols = 0;
+    private Object data[][] = new Object[50][3];
+    private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
     JLabel labelMeusPedidos;
-    JList textMeusPedidos;
+    JTable textMeusPedidos;
 
     JLabel labelUnidadeOrigem;
     JTextField textUnidadeOrigem;
@@ -114,13 +123,16 @@ public class TelaUsuario extends Janela {
         gbc.gridy = 1;
         painel1.add(labelMeusPedidos, gbc);
 
-        textMeusPedidos = new JList(opt);
+        textMeusPedidos = new JTable(modeloTabela);
         textMeusPedidos.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel1.add(textMeusPedidos, gbc);
+        
+        JScrollPane container_meus_itens = new JScrollPane(textMeusPedidos);
+        container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        painel1.add(container_meus_itens, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
         painel.setEnabled(false); //remove a opção de "resize" do painel
@@ -134,11 +146,31 @@ public class TelaUsuario extends Janela {
             ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(),getTextUnidadeDestino(),getTextNomeDestinatario(), getTextCpfDestinatario());
         });
         add(painel);
+        
+        atualizaTabela();
     }
 
-//    public String getTextMeusPedidos() {
-//        return textMeusPedidos.getText();
-//    }
+    public void atualizaTabela() {
+        List<Pedido> pedidos  = LogSystem.getPedidos();        
+        List<Pedido> pedidosUsuario = new ArrayList<>();
+
+
+        for (Pedido pedido : pedidos) {
+            if(pedido.getIdSoliciante() == LogSystem.getClienteAtual().getMatricula()){
+                pedidosUsuario.add(pedido);
+            }
+        }
+  
+        for (int i = 0; i < pedidosUsuario.size(); i++) {
+            Pedido pedido = pedidosUsuario.get(i);
+            data[i][0] = pedido.getIdPedido();            
+            data[i][1] = pedido.getItensPedido().size();
+            data[i][2] = pedido.isEntregue();
+        }
+        modeloTabela.setDataVector(data, colunas);
+        modeloTabela.setNumRows(pedidosUsuario.size());
+        modeloTabela.fireTableDataChanged();
+    }
 
     public Integer getTextUnidadeOrigem() {
         return Integer.valueOf(textUnidadeOrigem.getText());
