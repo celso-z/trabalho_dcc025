@@ -31,7 +31,6 @@ public class ControladorLogin {
         for (Administrador administrador : administradores) {
             if (administrador != null && administrador.getUsername().equals(usuario) && administrador.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(administrador.getNome(), administrador.getMatricula());
                 LogSystem.setAdministradorAtual(administrador);
                 new TelaAdministrador();
                 return; 
@@ -45,7 +44,6 @@ public class ControladorLogin {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario != null && funcionario.getUsername().equals(usuario) && funcionario.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(funcionario.getNome(), funcionario.getMatricula());
                 LogSystem.setFuncionarioAtual(funcionario);
                 new TelaFuncionario();
                 return;
@@ -58,7 +56,6 @@ public class ControladorLogin {
         for (Cliente cliente : clientes) {
             if (cliente != null && cliente.getUsername().equals(usuario) && cliente.getSenha().equals(senha)) {
                 frame.dispose(); //fecha a tela atual
-                //salvaDadosTemporarios(cliente.getNome(), cliente.getMatricula());
                 LogSystem.setClienteAtual(cliente);
                 new TelaUsuario();
                 return;

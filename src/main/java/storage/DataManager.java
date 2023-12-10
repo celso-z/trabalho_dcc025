@@ -124,10 +124,6 @@ public class DataManager {
                 tipoLista = new TypeToken<List<Veiculo>>() {
                 }.getType();
             }
-            case "ArmazenamentoTemporario" -> {
-                tipoLista = new TypeToken<List<ArmazenamentoTemporario>>() {
-                }.getType();
-            }
             
             default -> {
                 throw new DataException("GetFromDisk não pode encontrar o tipo de arquivo especificado como parâmetro", "DataManager", Thread.currentThread().getStackTrace()[1].getLineNumber());
