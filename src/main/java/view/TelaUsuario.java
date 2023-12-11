@@ -131,9 +131,9 @@ public class TelaUsuario extends Janela {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JScrollPane container_meus_itens = new JScrollPane(textMeusPedidos);
-        container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
-        painel1.add(container_meus_itens, gbc);
+        JScrollPane containerMeusItens = new JScrollPane(textMeusPedidos);
+        containerMeusItens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        painel1.add(containerMeusItens, gbc);
 
         JSplitPane painel = new JSplitPane(SwingConstants.VERTICAL, painel1, painel2);
         painel.setEnabled(false); //remove a opção de "resize" do painel
