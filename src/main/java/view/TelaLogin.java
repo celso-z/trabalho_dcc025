@@ -21,13 +21,13 @@ import javax.swing.JTextField;
 
 public class TelaLogin extends Janela {
 
-    JLabel labelUsuario;
-    JTextField textUsuario;
+    private final JLabel labelUsuario;
+    private final JTextField textUsuario;
 
-    JLabel labelSenha;
-    JPasswordField textSenha;
+    private final JLabel labelSenha;
+    private final JPasswordField textSenha;
 
-    JButton botaoEntrar;
+    private final JButton botaoEntrar;
 
     public TelaLogin() {
         super("Login");

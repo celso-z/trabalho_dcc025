@@ -2,7 +2,6 @@
  * @author Celso Zacarias da Silva Junior 202076003
  * @author Dhayana Nascimento Silva 201976040
  */
-
 package view;
 
 import controller.ControladorCadastro;
@@ -22,19 +21,19 @@ import javax.swing.JTextField;
 
 public class TelaCadastro extends Janela {
 
-    JLabel labelNome;
-    JTextField textNome;
+    private final JLabel labelNome;
+    private final JTextField textNome;
 
-    JLabel labelUsuario;
-    JTextField textUsuario;
+    private final JLabel labelUsuario;
+    private final JTextField textUsuario;
 
-    JLabel labelTelefone;
-    JTextField textTelefone;
+    private final JLabel labelTelefone;
+    private final JTextField textTelefone;
 
-    JLabel labelSenha;
-    JPasswordField textSenha;
+    private final JLabel labelSenha;
+    private final JPasswordField textSenha;
 
-    JButton botaoCadastrar;
+    private final JButton botaoCadastrar;
 
     public TelaCadastro() {
         super("Cadastro");
@@ -94,9 +93,7 @@ public class TelaCadastro extends Janela {
         painel.add(botaoCadastrar, gbc);
 
         botaoCadastrar.addActionListener((ActionEvent event) -> {
-
-            ControladorCadastro.cadastrar(this, event, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
-
+            ControladorCadastro.cadastrar(this, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
         });
 
         this.add(painel);

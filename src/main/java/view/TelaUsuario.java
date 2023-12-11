@@ -29,28 +29,28 @@ import model.Pedido;
 
 public class TelaUsuario extends Janela {
 
-    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS","SITUAÇÂO"};
+    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS", "SITUAÇÂO"};
     private final int numCols = 0;
-    private Object data[][] = new Object[50][3];
-    private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
+    private final Object data[][] = new Object[50][3];
+    private final DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols);
 
-    JLabel labelMeusPedidos;
-    JTable textMeusPedidos;
+    private final JLabel labelMeusPedidos;
+    private final JTable textMeusPedidos;
 
-    JLabel labelUnidadeOrigem;
-    JTextField textUnidadeOrigem;
+    private final JLabel labelUnidadeOrigem;
+    private final JTextField textUnidadeOrigem;
 
-    JLabel labelUnidadeDestino;
-    JTextField textUnidadeDestino;
+    private final JLabel labelUnidadeDestino;
+    private final JTextField textUnidadeDestino;
 
-    JLabel labelNomeDestinatario;
-    JTextField textNomeDestinatario;
+    private final JLabel labelNomeDestinatario;
+    private final JTextField textNomeDestinatario;
 
-    JLabel labelCpfDestinatario;
-    JTextField textCpfDestinatario;
+    private final JLabel labelCpfDestinatario;
+    private final JTextField textCpfDestinatario;
 
-    JButton botaoRealizarPedido;
-    JButton botaoAdicionarCredito;
+    private final JButton botaoRealizarPedido;
+    private final JButton botaoAdicionarCredito;
 
     public TelaUsuario() {
         super("Home");
@@ -130,7 +130,7 @@ public class TelaUsuario extends Janela {
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        
+
         JScrollPane container_meus_itens = new JScrollPane(textMeusPedidos);
         container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         painel1.add(container_meus_itens, gbc);
@@ -144,29 +144,28 @@ public class TelaUsuario extends Janela {
         });
 
         botaoRealizarPedido.addActionListener((ActionEvent e) -> {
-            ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(),getTextUnidadeDestino(),getTextNomeDestinatario(), getTextCpfDestinatario());
+            ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(), getTextUnidadeDestino(), getTextNomeDestinatario(), getTextCpfDestinatario());
         });
-       
-       this.add(painel);
-    this.setVisible(true);
-        
+
+        this.add(painel);
+        this.setVisible(true);
+
         atualizaTabela();
     }
 
     public void atualizaTabela() {
-        List<Pedido> pedidos  = LogSystem.getPedidos();        
+        List<Pedido> pedidos = LogSystem.getPedidos();
         List<Pedido> pedidosUsuario = new ArrayList<>();
 
-
         for (Pedido pedido : pedidos) {
-            if(pedido.getIdSoliciante() == LogSystem.getClienteAtual().getMatricula()){
+            if (pedido.getIdSoliciante() == LogSystem.getClienteAtual().getMatricula()) {
                 pedidosUsuario.add(pedido);
             }
         }
-  
+
         for (int i = 0; i < pedidosUsuario.size(); i++) {
             Pedido pedido = pedidosUsuario.get(i);
-            data[i][0] = pedido.getIdPedido();            
+            data[i][0] = pedido.getIdPedido();
             data[i][1] = pedido.getItensPedido().size();
             data[i][2] = pedido.isEntregue();
         }
@@ -190,6 +189,5 @@ public class TelaUsuario extends Janela {
     public String getTextCpfDestinatario() {
         return textCpfDestinatario.getText();
     }
-    
-    
+
 }

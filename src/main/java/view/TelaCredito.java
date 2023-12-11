@@ -19,26 +19,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class TelaCredito extends Janela {
-    JLabel label_nome_cartao;
-    JTextField text_nome_cartao;
 
-    JLabel label_cvv;
-    JTextField text_cvv;
+    private final JLabel label_nome_cartao;
+    private final JTextField text_nome_cartao;
 
-    JLabel label_numero_cartao;
-    JTextField text_numero_cartao;
+    private final JLabel label_cvv;
+    private final JTextField text_cvv;
 
-    JLabel label_data;
-    JTextField text_data;
+    private final JLabel label_numero_cartao;
+    private final JTextField text_numero_cartao;
 
-    JLabel label_valor;
-    JTextField text_valor;
+    private final JLabel label_data;
+    private final JTextField text_data;
 
-    JButton botao_finalizar;
+    private final JLabel label_valor;
+    private final JTextField text_valor;
+
+    private final JButton botao_finalizar;
 
     public TelaCredito() {
         super("Credito");
-        
+
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
@@ -106,26 +107,31 @@ public class TelaCredito extends Janela {
 
         this.add(painel);
         this.setVisible(true);
-        
+
         botao_finalizar.addActionListener((ActionEvent event) -> {
             CreditoController.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());
         });
     }
+
     public Float getValorRecarga() {
         return Float.valueOf(text_valor.getText());
     }
+
     public boolean isPreenchidoNumeroCartao() {
         boolean ret = (!text_numero_cartao.getText().equals(""));
         return ret;
     }
+
     public boolean isPreenchidoNomeCartao() {
         boolean ret = (!text_nome_cartao.getText().equals(""));
         return ret;
     }
+
     public boolean isPreenchidoData() {
         boolean ret = (!text_data.getText().equals(""));
         return ret;
     }
+
     public boolean isPreenchidoCVV() {
         boolean ret = (!text_cvv.getText().equals(""));
         return ret;
