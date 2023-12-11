@@ -13,16 +13,17 @@ public class Veiculo {
     private static Integer numVeiculos=0;
     final private Integer idVeiculo;
     private Integer capacidadeVeiculo;
-    private boolean disponivel;
-    private Integer unidadeOrig, unidadeDestino;
-    private Carga cargaAtual;
+    private boolean disponivel = true;
+    private Integer unidadeOrig, unidadeDest;
+    private Integer cargaAtual = -1;
 
     public Veiculo(Integer capacidadeVeiculo, Integer unidadeOrig) {
         idVeiculo = numVeiculos;
         numVeiculos++;
+        this.capacidadeVeiculo = capacidadeVeiculo;
         disponivel = true;    
         this.unidadeOrig = unidadeOrig;
-        unidadeDestino = unidadeOrig;
+        unidadeDest = -1;
     }
 
     public Integer getIdVeiculo() {
@@ -61,22 +62,26 @@ public class Veiculo {
         this.unidadeOrig = unidadeOrig;
     }
 
-    public Integer getUnidadeDestino() {
-        return unidadeDestino;
+    public Integer getUnidadeDest() {
+        return unidadeDest;
     }
 
-    public void setUnidadeDestino(Integer unidadeDestino) {
-        this.unidadeDestino = unidadeDestino;
-    }
-
-    public Carga getCargaAtual() {
+    public Integer getCargaAtual() {
         return cargaAtual;
     }
 
-    public void setCargaAtual(Carga cargaAtual) {
-        this.cargaAtual = cargaAtual;
+    public boolean carregar(Carga c) {
+        boolean carregamentoRealizado = false;
+        if(c.getPeso() < capacidadeVeiculo){
+            this.cargaAtual = c.getIdCarga();
+            this.unidadeDest = c.getUnidadeDest();
+            carregamentoRealizado = true;
+        }
+        return carregamentoRealizado;
     }
     
-    
+    public void descarregar(){
+        cargaAtual = -1;
+    }
     
 }

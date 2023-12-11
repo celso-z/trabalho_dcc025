@@ -19,7 +19,7 @@ public class Carga {
     private static Integer numCargas = 0;
     private ArrayList<Integer> pedidosInclusos = new ArrayList<>();
     private final Integer unidadeDest;
-    private final Integer unidadeAtual;
+    private Integer unidadeAtual;
     private boolean disponivel = true;
 
     public Carga(Integer unidadeAtual, Integer unidadeDest) {
@@ -63,6 +63,10 @@ public class Carga {
     public ArrayList<Integer> getPedidosInclusos() {
         return pedidosInclusos;
     }
+    
+    public void setPedidosInclusos(ArrayList<Integer> pedidosInclusos){
+        this.pedidosInclusos = pedidosInclusos;
+    }
 
     public Integer getUnidadeDest() {
         return unidadeDest;
@@ -78,5 +82,9 @@ public class Carga {
 
     public Integer getUnidadeAtual() {
         return unidadeAtual;
+    }
+    
+    public void setUnidadeAtual(Integer unidadeAtual){
+        this.unidadeAtual = unidadeAtual;
     }
 }
