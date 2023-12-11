@@ -3,10 +3,6 @@
  * @author Dhayana Nascimento Silva 201976040
  */
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view;
 
 import com.mycompany.logsystem.LogSystem;
@@ -42,11 +38,11 @@ public class Janela extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null); //abre a janela centralizado na tela
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); 
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
-        addWindowListener(new WindowAdapter(){
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent event){
+            public void windowClosing(WindowEvent event) {
                 LogSystem.endSession();
             }
         });

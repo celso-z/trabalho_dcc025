@@ -12,7 +12,7 @@ package view;
 
 
 import com.mycompany.logsystem.LogSystem;
-import controller.PedidoController;
+import controller.ControladorPedido;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -36,20 +36,20 @@ public class TelaPedido extends Janela {
     private final int numCols = 0;
     private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
-    JLabel labelMeusItens;
-    JTable textMeusItens;
+    private JLabel labelMeusItens;
+    private JTable textMeusItens;
 
-    JLabel labelNomeItem;
-    JTextField textNomeItem;
+    private JLabel labelNomeItem;
+    private JTextField textNomeItem;
 
-    JLabel labelValorItem;
-    JTextField textValorItem;
+    private JLabel labelValorItem;
+    private JTextField textValorItem;
 
-    JLabel labelPesoItem;
-    JTextField textPesoItem;
+    private JLabel labelPesoItem;
+    private JTextField textPesoItem;
 
-    JButton botaoAdicionarItem;
-    JButton botaoFinalizar;
+    private JButton botaoAdicionarItem;
+    private JButton botaoFinalizar;
 
     public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
@@ -131,32 +131,32 @@ public class TelaPedido extends Janela {
         this.setVisible(true);
         
         botaoAdicionarItem.addActionListener((ActionEvent event) -> {
-            PedidoController.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
+            ControladorPedido.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
             atualizaTabela(possivelPedido.getItensPedido());
 
         });
               
         botaoFinalizar.addActionListener((ActionEvent event) -> {
             if(possivelPedido.getItensPedido().size() > 0){
-                PedidoController.registraPedido(this, possivelPedido);
+                ControladorPedido.registraPedido(this, possivelPedido);
             }
 
         });
         
     }
-     public String getNomeItem() {
+    private String getNomeItem() {
         return textNomeItem.getText();
     }
      
-    public Float getValorItem() {
+    private Float getValorItem() {
         return Float.valueOf(textValorItem.getText());
     }
     
-    public Float getPesoItem() {
+    private Float getPesoItem() {
         return Float.valueOf(textPesoItem.getText());
     }
     
-    public void atualizaTabela(ArrayList<Item> itens){
+    private void atualizaTabela(ArrayList<Item> itens){
 
         for(int i = 0; i < itens.size(); i++){
             Item item = itens.get(i);

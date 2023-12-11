@@ -9,7 +9,7 @@
  */
 package view;
 
-import controller.FuncionarioController;
+import controller.ControladorFuncionario;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -21,87 +21,132 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class TelaFuncionario extends Janela {
+
     private final String[] colunasPedidos = {"ID", "NOME RET.", "PESO", "VALOR", "FRETE"};
     private final String[] colunasCargas = {"ID", "PESO", "VALOR MERC.", "FRETE"};
-    private Object[][] dataPedidosEntrada = new Object[100][5];
-    private Object[][] dataCargasEntrada = new Object[100][5];
+    private final String[] colunasVeiculos = {"ID", "CAPACIDADE", "CARREGADO"};
+    private final Object[][] dataPedidosEntrada = new Object[100][5];
+    private final Object[][] dataCargasEntrada = new Object[100][4];
+    private final Object[][] dataCargasSaida = new Object[100][4];
+    private final Object[][] dataVeiculosEntrada = new Object[100][3];
     private final int numColsPedidos = 5;
     private final int numColsCargas = 4;
-    private DefaultTableModel modeloTabelaPedidosEntrada = new DefaultTableModel(colunasPedidos, numColsPedidos);
-    private DefaultTableModel modeloTabelaCargasEntrada = new DefaultTableModel(colunasCargas, numColsCargas);
+    private final int numColsVeiculos = 3;
+    private final DefaultTableModel modeloTabelaPedidosEntrada = new DefaultTableModel(colunasPedidos, numColsPedidos);
+    private final DefaultTableModel modeloTabelaCargasEntrada = new DefaultTableModel(colunasCargas, numColsCargas);
+    private final DefaultTableModel modeloTabelaCargasSaida = new DefaultTableModel(colunasCargas, numColsCargas);
+    private final DefaultTableModel modeloTabelaVeiculosEntrada = new DefaultTableModel(colunasVeiculos, numColsVeiculos);
     private Integer idSelecionado = -1;
 
+    private final JPanel tabVeiculosEntrada = gridBagLayoutConfig();
+    private final JPanel tabCargasEntrada = gridBagLayoutConfig();
+    private final JPanel tabPedidosEntrada = gridBagLayoutConfig();
 
-    JPanel tabVeiculosEntrada = gridBagLayoutConfig();
-    JPanel tabCargasEntrada = gridBagLayoutConfig();
-    JPanel tabPedidosEntrada = gridBagLayoutConfig();
+    private final JPanel tabCargasSaida = gridBagLayoutConfig();
 
-    
-    JPanel tabVeiculosSaida = gridBagLayoutConfig();
-    JPanel tabCargasSaida = gridBagLayoutConfig();
-    
-    JButton botaoRetiraPedido;
-    JButton botaoDesassociar;
-    
-    JTable tabelaPedidosEntrada;
-    JTable tabelaCargasEntrada;
+    private final JButton botaoRetiraPedido;
+    private final JButton botaoDesassociar;
+    private final JButton botaoDescarregar;
+    private final JButton botaoNovaCarga;
+    private final JButton botaoCarregar;
+
+    private JTable tabelaPedidosEntrada;
+    private JTable tabelaCargasEntrada;
+    private JTable tabelaCargasSaida;
+    private JTable tabelaVeiculosEntrada;
 
     public TelaFuncionario() {
         super("Funcionario");
-         
-        JTabbedPane painel = new JTabbedPane();
-        
-        GridBagConstraints gbc = gridBagConstraintsConfig();
 
+        JTabbedPane painel = new JTabbedPane();
+
+        GridBagConstraints gbc = gridBagConstraintsConfig();
 
         JTabbedPane tabEntrada = new JTabbedPane();
         JTabbedPane tabSaida = new JTabbedPane();
-        
-        
-        
+
         painel.addTab("Chegada", tabEntrada);
         painel.addTab("Saída", tabSaida);
 
         tabEntrada.addTab("Pedidos", tabPedidosEntrada);
         tabelaPedidosEntrada = new JTable(modeloTabelaPedidosEntrada);
         tabelaPedidosEntrada.setRowSelectionAllowed(true);
+
         atualizaTabelaPedidosEntrada();
+
         JScrollPane containerTabelaItensEntrada = new JScrollPane(tabelaPedidosEntrada, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         containerTabelaItensEntrada.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 0;
         tabPedidosEntrada.add(containerTabelaItensEntrada, gbc);
+
         botaoRetiraPedido = new JButton("Retirar Pedido");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabPedidosEntrada.add(botaoRetiraPedido, gbc);
-        
-        
-        
+        gbc.fill = GridBagConstraints.NONE;
+
         tabEntrada.addTab("Cargas", tabCargasEntrada);
         tabelaCargasEntrada = new JTable(modeloTabelaCargasEntrada);
         tabelaCargasEntrada.setRowSelectionAllowed(true);
+
         atualizaTabelaCargasEntrada();
+
         JScrollPane containerTabelaCargasEntrada = new JScrollPane(tabelaCargasEntrada, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         containerTabelaCargasEntrada.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 0;
         tabCargasEntrada.add(containerTabelaCargasEntrada, gbc);
+
         botaoDesassociar = new JButton("Desassociar");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabCargasEntrada.add(botaoDesassociar, gbc);
-       
+        gbc.fill = GridBagConstraints.NONE;
+
         tabEntrada.addTab("Veículos", tabVeiculosEntrada);
 
-        
-        tabSaida.addTab("Veículos", tabVeiculosSaida);
+        tabelaVeiculosEntrada = new JTable(modeloTabelaVeiculosEntrada);
+        tabelaVeiculosEntrada.setRowSelectionAllowed(true);
+        atualizaTabelaVeiculosEntrada();
+        JScrollPane containerTabelaVeiculosEntrada = new JScrollPane(tabelaVeiculosEntrada, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        containerTabelaVeiculosEntrada.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        tabVeiculosEntrada.add(containerTabelaVeiculosEntrada, gbc);
+        botaoDescarregar = new JButton("Descarregar");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        tabVeiculosEntrada.add(botaoDescarregar, gbc);
+        gbc.fill = GridBagConstraints.NONE;
+
         tabSaida.addTab("Cargas", tabCargasSaida);
+        tabelaCargasSaida = new JTable(modeloTabelaCargasSaida);
+        tabelaCargasSaida.setRowSelectionAllowed(true);
+        atualizaTabelaCargasSaida();
+        JScrollPane containerTabelaCargasSaida = new JScrollPane(tabelaCargasSaida, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        containerTabelaCargasSaida.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        tabCargasSaida.add(containerTabelaCargasSaida, gbc);
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
         
-        
-       
+        botaoNovaCarga = new JButton("Nova Carga");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        tabCargasSaida.add(botaoNovaCarga, gbc);
+
+        botaoCarregar = new JButton("Carregar");
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        tabCargasSaida.add(botaoCarregar, gbc);
+
         this.add(painel);
         this.setVisible(true);
 
@@ -127,33 +172,91 @@ public class TelaFuncionario extends Janela {
             }
         });
 
+        tabelaVeiculosEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = tabelaVeiculosEntrada.rowAtPoint(evt.getPoint());
+                int col = tabelaVeiculosEntrada.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    selecionaId(Integer.valueOf(tabelaVeiculosEntrada.getValueAt(row, 0).toString()));
+                }
+            }
+        });
+
+        tabelaCargasSaida.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = tabelaCargasSaida.rowAtPoint(evt.getPoint());
+                int col = tabelaCargasSaida.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    selecionaId(Integer.valueOf(tabelaCargasSaida.getValueAt(row, 0).toString()));
+                }
+            }
+        });
+
         botaoRetiraPedido.addActionListener((ActionEvent event) -> {
-            FuncionarioController.retiraPedido(idSelecionado);
+            ControladorFuncionario.retiraPedido(idSelecionado);
             atualizaTabelaPedidosEntrada();
         });
-        
+
         botaoDesassociar.addActionListener((ActionEvent event) -> {
-            FuncionarioController.desassociarCarga(idSelecionado);
+            ControladorFuncionario.desassociarCarga(idSelecionado);
             atualizaTabelaCargasEntrada();
             atualizaTabelaPedidosEntrada();
         });
+
+        botaoDescarregar.addActionListener((ActionEvent event) -> {
+            ControladorFuncionario.descarregarVeiculo(idSelecionado);
+            atualizaTabelaVeiculosEntrada();
+            atualizaTabelaCargasEntrada();
+        });
+
+        botaoNovaCarga.addActionListener((ActionEvent event) -> {
+            new TelaNovaCarga();
+            this.dispose();
+            //atualizaTabelaCargasSaida();
+        });
+
+        botaoCarregar.addActionListener((ActionEvent event) -> {
+            new TelaCarregar(idSelecionado);
+            this.dispose();
+            //atualizaTabelaCargasSaida();
+        });
     }
     
-    public void selecionaId(Integer id){
+    private void selecionaId(Integer id){
         idSelecionado = id;
-        System.out.println(id);
     }
-    public void atualizaTabelaPedidosEntrada(){
-        int numPedidosDisponiveis = FuncionarioController.getPedidosDisponiveisEntrada(dataPedidosEntrada);
-        
+
+    private void atualizaTabelaPedidosEntrada() {
+        int numPedidosDisponiveis = ControladorFuncionario.getPedidosDisponiveisEntrada(dataPedidosEntrada);
+
         modeloTabelaPedidosEntrada.setDataVector(dataPedidosEntrada, colunasPedidos);
         modeloTabelaPedidosEntrada.setNumRows(numPedidosDisponiveis);
         modeloTabelaPedidosEntrada.fireTableDataChanged();
     }
-    public void atualizaTabelaCargasEntrada(){
-        int numCargasDisponiveis = FuncionarioController.getCargasDisponiveisEntrada(dataCargasEntrada);
+
+    private void atualizaTabelaCargasEntrada() {
+        int numCargasDisponiveis = ControladorFuncionario.getCargasDisponiveisEntrada(dataCargasEntrada);
+
         modeloTabelaCargasEntrada.setDataVector(dataCargasEntrada, colunasCargas);
         modeloTabelaCargasEntrada.setNumRows(numCargasDisponiveis);
         modeloTabelaCargasEntrada.fireTableDataChanged();
+    }
+
+    private void atualizaTabelaVeiculosEntrada() {
+        int numVeiculosDisponiveis = ControladorFuncionario.getVeiculosDisponiveisEntrada(dataVeiculosEntrada);
+
+        modeloTabelaVeiculosEntrada.setDataVector(dataVeiculosEntrada, colunasVeiculos);
+        modeloTabelaVeiculosEntrada.setNumRows(numVeiculosDisponiveis);
+        modeloTabelaVeiculosEntrada.fireTableDataChanged();
+    }
+
+    private void atualizaTabelaCargasSaida() {
+        int numCargasDisponiveis = ControladorFuncionario.getCargasDisponiveisSaida(dataCargasSaida);
+
+        modeloTabelaCargasSaida.setDataVector(dataCargasSaida, colunasCargas);
+        modeloTabelaCargasSaida.setNumRows(numCargasDisponiveis);
+        modeloTabelaCargasSaida.fireTableDataChanged();
     }
 }

@@ -37,7 +37,7 @@ public class LogSystem {
     private static List<Veiculo> veiculos = new ArrayList<>();
 
     public static void main(String[] args) throws DataException {
-        startSession();      
+        startSession();
         new TelaLogin();
     }
     

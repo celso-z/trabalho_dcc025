@@ -20,4 +20,7 @@ Email para contato:
 ```
 $ git clone git@github.com:celso-z/trabalho_dcc025.git
 $ cd trabalho_dcc025
+$ mvn install
+$ cd target
+$ java -jar LogSystem-1.0-SNAPSHOT-jar-with-dependencies.jar 
 ```

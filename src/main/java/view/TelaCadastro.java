@@ -2,7 +2,6 @@
  * @author Celso Zacarias da Silva Junior 202076003
  * @author Dhayana Nascimento Silva 201976040
  */
-
 package view;
 
 import controller.ControladorCadastro;
@@ -15,26 +14,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 public class TelaCadastro extends Janela {
 
-    JLabel labelNome;
-    JTextField textNome;
+    private final JLabel labelNome;
+    private final JTextField textNome;
 
-    JLabel labelUsuario;
-    JTextField textUsuario;
+    private final JLabel labelUsuario;
+    private final JTextField textUsuario;
 
-    JLabel labelTelefone;
-    JTextField textTelefone;
+    private final JLabel labelTelefone;
+    private final JTextField textTelefone;
 
-    JLabel labelSenha;
-    JPasswordField textSenha;
+    private final JLabel labelSenha;
+    private final JPasswordField textSenha;
 
-    JButton botaoCadastrar;
+    private final JButton botaoCadastrar;
 
     public TelaCadastro() {
         super("Cadastro");
@@ -94,28 +88,26 @@ public class TelaCadastro extends Janela {
         painel.add(botaoCadastrar, gbc);
 
         botaoCadastrar.addActionListener((ActionEvent event) -> {
-
-            ControladorCadastro.cadastrar(this, event, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
-
+            ControladorCadastro.cadastrar(this, getTextNome(), getTextUsuario(), getTextSenha(), getTextTelefone());
         });
 
         this.add(painel);
         this.setVisible(true);
     }
 
-    public String getTextNome() {
+    private String getTextNome() {
         return textNome.getText();
     }
 
-    public String getTextUsuario() {
+    private String getTextUsuario() {
         return textUsuario.getText();
     }
 
-    public String getTextTelefone() {
+    private String getTextTelefone() {
         return textTelefone.getText();
     }
 
-    public String getTextSenha() {
+    private String getTextSenha() {
         return new String(textSenha.getPassword());
     }
 

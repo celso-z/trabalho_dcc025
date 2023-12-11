@@ -9,13 +9,14 @@
  */
 package model;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Unidade {
     private static Integer numUnidades = 0;
     private final Integer idUnidade;
     private Float capacidadeArmazenamento = 0F;
     private Float capacidadeAtual = 0F;
-    private ArrayList<Carga> cargas = new ArrayList();
+    private ArrayList<Integer> cargas = new ArrayList();
 
     public Unidade(Float capacidadeArmazenamento) {
         idUnidade = numUnidades;
@@ -48,28 +49,25 @@ public class Unidade {
         return capacidadeAtual;
     }
 
-    public ArrayList<Carga> getCargas() {
+    public ArrayList<Integer> getCargas() {
         return cargas;
     }
     
     public boolean adicionarCarga(Carga x){
         if(x.getPeso() < this.capacidadeAtual){
-            cargas.add(x);
+            cargas.add(x.getIdCarga());
             capacidadeAtual -= x.getPeso();
             return true;
         }
         return false;
     }
     
-    public Carga retirarCarga(int idCarga){
-        Carga cargaRemovida;
-        try{
-            cargaRemovida = cargas.get(idCarga);
-        }catch(IndexOutOfBoundsException e){
-            return null;
+    public void retirarCarga(Carga x){
+        for(Integer id : cargas){
+            if(Objects.equals(id, x.getIdCarga())){
+                cargas.remove(id);
+                return;
+            }
         }
-        cargas.remove(idCarga);
-        capacidadeAtual += cargaRemovida.getPeso();
-        return cargaRemovida;
     }
 }
