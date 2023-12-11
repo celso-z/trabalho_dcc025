@@ -17,7 +17,7 @@ import model.Item;
 import model.Pedido;
 import view.TelaUsuario;
 
-public class PedidoController {
+public class ControladorPedido {
     public static boolean addItem(Pedido pedido, String nomeItem, Float valorItem, Float pesoItem){
         Item possivelItem;
         if((!"".equals(nomeItem)) && (valorItem > 0.0) && (pesoItem > 0.0)){

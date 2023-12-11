@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.FuncionarioController;
+import controller.ControladorFuncionario;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -57,11 +57,21 @@ public class TelaCarregar extends Janela {
         painel.add(botaoConfirmaVeiculo, gbc);
         this.add(painel);
         this.setVisible(true);
+        tabelaVeiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = tabelaVeiculos.rowAtPoint(evt.getPoint());
+                int col = tabelaVeiculos.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    ControladorFuncionario.carregar(Integer.valueOf(tabelaVeiculos.getValueAt(row, 0).toString()), idCarga);
+                }
+            }
+        });
         
     }
     
     private void atualizaTabelaVeiculos(){
-        int numVeiculosDisponiveis = FuncionarioController.getVeiculosDisponiveisSaida(dataVeiculos);
+        int numVeiculosDisponiveis = ControladorFuncionario.getVeiculosDisponiveisSaida(dataVeiculos);
         
         modeloTabelaVeiculos.setDataVector(dataVeiculos, colunasVeiculos);
         modeloTabelaVeiculos.setNumRows(numVeiculosDisponiveis);

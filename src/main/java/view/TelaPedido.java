@@ -12,7 +12,7 @@ package view;
 
 
 import com.mycompany.logsystem.LogSystem;
-import controller.PedidoController;
+import controller.ControladorPedido;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -131,14 +131,14 @@ public class TelaPedido extends Janela {
         this.setVisible(true);
         
         botaoAdicionarItem.addActionListener((ActionEvent event) -> {
-            PedidoController.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
+            ControladorPedido.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
             atualizaTabela(possivelPedido.getItensPedido());
 
         });
               
         botaoFinalizar.addActionListener((ActionEvent event) -> {
             if(possivelPedido.getItensPedido().size() > 0){
-                PedidoController.registraPedido(this, possivelPedido);
+                ControladorPedido.registraPedido(this, possivelPedido);
             }
 
         });

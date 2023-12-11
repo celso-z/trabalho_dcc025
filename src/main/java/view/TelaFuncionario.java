@@ -9,7 +9,7 @@
  */
 package view;
 
-import controller.FuncionarioController;
+import controller.ControladorFuncionario;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -188,18 +188,18 @@ public class TelaFuncionario extends Janela {
         
 
         botaoRetiraPedido.addActionListener((ActionEvent event) -> {
-            FuncionarioController.retiraPedido(idSelecionado);
+            ControladorFuncionario.retiraPedido(idSelecionado);
             atualizaTabelaPedidosEntrada();
         });
         
         botaoDesassociar.addActionListener((ActionEvent event) -> {
-            FuncionarioController.desassociarCarga(idSelecionado);
+            ControladorFuncionario.desassociarCarga(idSelecionado);
             atualizaTabelaCargasEntrada();
             atualizaTabelaPedidosEntrada();
         });
         
         botaoDescarregar.addActionListener((ActionEvent event) -> {
-            FuncionarioController.descarregarVeiculo(idSelecionado);
+            ControladorFuncionario.descarregarVeiculo(idSelecionado);
             atualizaTabelaVeiculosEntrada();
             atualizaTabelaCargasEntrada();
         });
@@ -219,26 +219,26 @@ public class TelaFuncionario extends Janela {
         idSelecionado = id;
     }
     private void atualizaTabelaPedidosEntrada(){
-        int numPedidosDisponiveis = FuncionarioController.getPedidosDisponiveisEntrada(dataPedidosEntrada);
+        int numPedidosDisponiveis = ControladorFuncionario.getPedidosDisponiveisEntrada(dataPedidosEntrada);
         
         modeloTabelaPedidosEntrada.setDataVector(dataPedidosEntrada, colunasPedidos);
         modeloTabelaPedidosEntrada.setNumRows(numPedidosDisponiveis);
         modeloTabelaPedidosEntrada.fireTableDataChanged();
     }
     private void atualizaTabelaCargasEntrada(){
-        int numCargasDisponiveis = FuncionarioController.getCargasDisponiveisEntrada(dataCargasEntrada);
+        int numCargasDisponiveis = ControladorFuncionario.getCargasDisponiveisEntrada(dataCargasEntrada);
         modeloTabelaCargasEntrada.setDataVector(dataCargasEntrada, colunasCargas);
         modeloTabelaCargasEntrada.setNumRows(numCargasDisponiveis);
         modeloTabelaCargasEntrada.fireTableDataChanged();
     }
     private void atualizaTabelaVeiculosEntrada(){
-        int numVeiculosDisponiveis = FuncionarioController.getVeiculosDisponiveisEntrada(dataVeiculosEntrada);
+        int numVeiculosDisponiveis = ControladorFuncionario.getVeiculosDisponiveisEntrada(dataVeiculosEntrada);
         modeloTabelaVeiculosEntrada.setDataVector(dataVeiculosEntrada, colunasVeiculos);
         modeloTabelaVeiculosEntrada.setNumRows(numVeiculosDisponiveis);
         modeloTabelaVeiculosEntrada.fireTableDataChanged();
     }
     private void atualizaTabelaCargasSaida(){
-        int numCargasDisponiveis = FuncionarioController.getCargasDisponiveisSaida(dataCargasSaida);
+        int numCargasDisponiveis = ControladorFuncionario.getCargasDisponiveisSaida(dataCargasSaida);
         modeloTabelaCargasSaida.setDataVector(dataCargasSaida, colunasCargas);
         modeloTabelaCargasSaida.setNumRows(numCargasDisponiveis);
         modeloTabelaCargasSaida.fireTableDataChanged();

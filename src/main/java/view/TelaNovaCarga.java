@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.FuncionarioController;
+import controller.ControladorFuncionario;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -100,11 +100,11 @@ public class TelaNovaCarga extends Janela{
         });
         
         botaoConfirmaCarga.addActionListener((ActionEvent event) -> {
-            FuncionarioController.novaCarga(this, destinoCarga, pedidosSelecionados);
+            ControladorFuncionario.novaCarga(this, destinoCarga, pedidosSelecionados);
         });
     }
     private void atualizaTabelaPedidos(){
-        int numPedidosDisponiveis = FuncionarioController.getPedidosDisponiveisSaida(dataPedidos);
+        int numPedidosDisponiveis = ControladorFuncionario.getPedidosDisponiveisSaida(dataPedidos);
         
         modeloTabelaPedidos.setDataVector(dataPedidos, colunasPedidos);
         modeloTabelaPedidos.setNumRows(numPedidosDisponiveis);
