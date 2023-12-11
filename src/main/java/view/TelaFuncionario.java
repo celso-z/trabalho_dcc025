@@ -42,7 +42,6 @@ public class TelaFuncionario extends Janela {
     private final JPanel tabCargasEntrada = gridBagLayoutConfig();
     private final JPanel tabPedidosEntrada = gridBagLayoutConfig();
 
-    private final JPanel tabVeiculosSaida = gridBagLayoutConfig();
     private final JPanel tabCargasSaida = gridBagLayoutConfig();
 
     private final JButton botaoRetiraPedido;
@@ -142,8 +141,6 @@ public class TelaFuncionario extends Janela {
         gbc.gridx = 0;
         gbc.gridy = 1;
         tabCargasSaida.add(botaoNovaCarga, gbc);
-
-        tabSaida.addTab("Veículos", tabVeiculosSaida);
 
         botaoCarregar = new JButton("Carregar");
         gbc.gridx = 1;
