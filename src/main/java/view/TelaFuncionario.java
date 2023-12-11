@@ -209,7 +209,7 @@ public class TelaFuncionario extends Janela {
             atualizaTabelaCargasSaida();
         });
         
-        botaoNovaCarga.addActionListener((ActionEvent event) -> {
+        botaoCarregar.addActionListener((ActionEvent event) -> {
             new TelaCarregar(idSelecionado);
             atualizaTabelaCargasSaida();
         });

@@ -193,7 +193,7 @@ public class ControladorFuncionario {
         return numVeiculosDisponiveis;
     }
 
-    public static void carregar(Integer idVeiculo, Integer idCarga) {
+    public static void carregar(JFrame frame, Integer idVeiculo, Integer idCarga) {
         List<Veiculo> veiculos = LogSystem.getVeiculos();
         List<Carga> cargas = LogSystem.getCargas();
         for (Veiculo v : veiculos) {
@@ -203,6 +203,7 @@ public class ControladorFuncionario {
                         v.carregar(c);
                         v.setDisponivel(false);
                         c.setDisponivel(false);
+                        frame.dispose();
                     }
                 }
             }

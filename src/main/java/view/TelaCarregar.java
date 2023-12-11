@@ -29,6 +29,7 @@ public class TelaCarregar extends Janela {
     private final int numColsVeiculos = 2;
     private DefaultTableModel modeloTabelaVeiculos = new DefaultTableModel(colunasVeiculos, numColsVeiculos);
 
+    private static Integer idVeiculoSelec = -1;
     private JLabel labelVeiculos;
     private JButton botaoConfirmaVeiculo;
     
@@ -63,13 +64,17 @@ public class TelaCarregar extends Janela {
                 int row = tabelaVeiculos.rowAtPoint(evt.getPoint());
                 int col = tabelaVeiculos.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    ControladorFuncionario.carregar(Integer.valueOf(tabelaVeiculos.getValueAt(row, 0).toString()), idCarga);
+                    selecionaVeiculo(Integer.valueOf(tabelaVeiculos.getValueAt(row, 0).toString()));
                 }
             }
         });
-        
+        botaoConfirmaVeiculo.addActionListener((ActionEvent event) -> {
+            ControladorFuncionario.carregar(this, idVeiculoSelec, idCarga);
+        });
     }
-    
+    private static void selecionaVeiculo(Integer id){
+        idVeiculoSelec = id;
+    }
     private void atualizaTabelaVeiculos(){
         int numVeiculosDisponiveis = ControladorFuncionario.getVeiculosDisponiveisSaida(dataVeiculos);
         

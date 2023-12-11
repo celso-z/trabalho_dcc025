@@ -21,10 +21,7 @@ import model.Veiculo;
 import model.Item;
 import model.Usuario;
 import storage.DataManager;
-import view.TelaCarregar;
 import view.TelaLogin;
-import view.TelaFuncionario;
-import view.TelaNovaCarga;
 
 public class LogSystem {
     private static Cliente clienteAtual = null; 
@@ -41,8 +38,7 @@ public class LogSystem {
 
     public static void main(String[] args) throws DataException {
         startSession();
-        setFuncionarioAtual(funcionarios.get(0));
-        new TelaCarregar(3);
+        new TelaLogin();
     }
     
     public static void startSession() throws DataException{
