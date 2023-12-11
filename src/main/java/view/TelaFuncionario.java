@@ -177,10 +177,10 @@ public class TelaFuncionario extends Janela {
         tabelaCargasSaida.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = tabelaCargasEntrada.rowAtPoint(evt.getPoint());
-                int col = tabelaCargasEntrada.columnAtPoint(evt.getPoint());
+                int row = tabelaCargasSaida.rowAtPoint(evt.getPoint());
+                int col = tabelaCargasSaida.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    selecionaId(Integer.valueOf(tabelaVeiculosEntrada.getValueAt(row, 0).toString()));
+                    selecionaId(Integer.valueOf(tabelaCargasSaida.getValueAt(row, 0).toString()));
                 }
             }
         });
@@ -216,6 +216,7 @@ public class TelaFuncionario extends Janela {
     }
     
     private void selecionaId(Integer id){
+        System.out.println(id);
         idSelecionado = id;
     }
     private void atualizaTabelaPedidosEntrada(){
