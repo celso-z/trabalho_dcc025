@@ -35,18 +35,20 @@ public class TelaNovaCarga extends Janela{
             }
         }
     };
+    
 
     private Integer destinoCarga = -1;
     private JLabel labelPedidos;
     private JButton botaoConfirmaCarga;
     
     private JTable tabelaPedidos;
+    
 
     public TelaNovaCarga() {
         super("Nova Carga");
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
-        labelPedidos = new JLabel("Pedidos");
+        labelPedidos = new JLabel("Selecione um ou mais entre os pedidos disponíveis:");
         gbc.gridx = 0;
         gbc.gridy = 0;
         painel.add(labelPedidos, gbc);
@@ -97,6 +99,9 @@ public class TelaNovaCarga extends Janela{
             }
         });
         
+        botaoConfirmaCarga.addActionListener((ActionEvent event) -> {
+            FuncionarioController.novaCarga(this, destinoCarga, pedidosSelecionados);
+        });
     }
     private void atualizaTabelaPedidos(){
         int numPedidosDisponiveis = FuncionarioController.getPedidosDisponiveisSaida(dataPedidos);
@@ -104,8 +109,5 @@ public class TelaNovaCarga extends Janela{
         modeloTabelaPedidos.setDataVector(dataPedidos, colunasPedidos);
         modeloTabelaPedidos.setNumRows(numPedidosDisponiveis);
         modeloTabelaPedidos.fireTableDataChanged();
-    }
-    private static void selecionaPedido(int col){
-        
     }
 }
