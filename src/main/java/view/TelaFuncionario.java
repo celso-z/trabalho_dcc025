@@ -210,17 +210,18 @@ public class TelaFuncionario extends Janela {
 
         botaoNovaCarga.addActionListener((ActionEvent event) -> {
             new TelaNovaCarga();
-            atualizaTabelaCargasSaida();
+            this.dispose();
+            //atualizaTabelaCargasSaida();
         });
 
         botaoCarregar.addActionListener((ActionEvent event) -> {
             new TelaCarregar(idSelecionado);
-            atualizaTabelaCargasSaida();
+            this.dispose();
+            //atualizaTabelaCargasSaida();
         });
     }
     
     private void selecionaId(Integer id){
-        System.out.println(id);
         idSelecionado = id;
     }
 

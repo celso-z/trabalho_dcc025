@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import model.Carga;
 import model.Pedido;
 import model.Veiculo;
+import view.TelaFuncionario;
 
 public class ControladorFuncionario {
     public static void retiraPedido(Integer Id){
@@ -178,6 +179,7 @@ public class ControladorFuncionario {
         }
         (LogSystem.getCargas()).add(c);
         frame.dispose();
+        new TelaFuncionario();
     }
 
     public static int getVeiculosDisponiveisSaida(Object[][] dadosTabela) {
@@ -204,6 +206,7 @@ public class ControladorFuncionario {
                         v.setDisponivel(false);
                         c.setDisponivel(false);
                         frame.dispose();
+                        new TelaFuncionario();
                     }
                 }
             }
