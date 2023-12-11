@@ -9,7 +9,7 @@
  */
 package view;
 
-import controller.CreditoController;
+import controller.ControladorCredito;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -109,7 +109,7 @@ public class TelaCredito extends Janela {
         this.setVisible(true);
 
         botao_finalizar.addActionListener((ActionEvent event) -> {
-            CreditoController.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());
+            ControladorCredito.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());
         });
     }
 

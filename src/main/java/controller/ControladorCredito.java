@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import model.Cliente;
 import view.TelaUsuario;
 
-public class CreditoController {
+public class ControladorCredito {
     public static void addCredito(JFrame frame, Float valorCredito, boolean numeroPreenchido, boolean nomePreenchido, boolean cvvPreenchido, boolean dataPreenchida){
         Cliente clienteAtual = LogSystem.getClienteAtual();
         if(numeroPreenchido && nomePreenchido && cvvPreenchido && dataPreenchida) clienteAtual.adicionaCreditos(valorCredito);

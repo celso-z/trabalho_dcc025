@@ -13,12 +13,13 @@ import com.mycompany.logsystem.LogSystem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Carga;
 import model.Pedido;
 import model.Veiculo;
 
-public class FuncionarioController {
+public class ControladorFuncionario {
     public static void retiraPedido(Integer Id){
         if(Id == -1){
             JOptionPane.showMessageDialog(null, "Nenhum pedido Selecionado, selecione um pedido para entregar.");
@@ -73,7 +74,6 @@ public class FuncionarioController {
         for(int i = 0; i < pedidos.size(); i++){
             Pedido p = pedidos.get(i);
             if(p.isDisponivel() && (Objects.equals(p.getUnidadeOrig(), (LogSystem.getFuncionarioAtual()).getUnidade())) && !(p.isEntregue() && p.isDisponivel() && Objects.equals(p.getUnidadeAtual(), (LogSystem.getFuncionarioAtual()).getUnidade()))){
-                //dadosTabela[numPedidosDisponiveis][0] = false;
                 dadosTabela[numPedidosDisponiveis][1] = p.getIdPedido();
                 dadosTabela[numPedidosDisponiveis][2] = p.getUnidadeOrig();
                 dadosTabela[numPedidosDisponiveis][3] = p.getUnidadeDest();
@@ -101,7 +101,7 @@ public class FuncionarioController {
         Integer numVeiculosDisponiveis = 0;
         List<Veiculo> veiculos = LogSystem.getVeiculos();
         for (Veiculo v : veiculos) {
-            if (Objects.equals(v.getUnidadeDest(), LogSystem.getFuncionarioAtual().getUnidade()) && v.isDisponivel() && v.getCargaAtual() != -1) {
+            if (Objects.equals(v.getUnidadeDest(), LogSystem.getFuncionarioAtual().getUnidade()) && !v.isDisponivel() && v.getCargaAtual() != -1) {
                 dadosTabela[numVeiculosDisponiveis][0] = v.getIdVeiculo();
                 dadosTabela[numVeiculosDisponiveis][1] = v.getCapacidadeVeiculo();
                 dadosTabela[numVeiculosDisponiveis][2] = (v.getCargaAtual() != -1) ? "SIM" : "NÃO";
@@ -160,5 +160,53 @@ public class FuncionarioController {
             }
         }
         return numCargasDisponiveis;
+    }
+
+    public static void novaCarga(JFrame frame, Integer unidadeDest, List<Integer> pedidosSelecionados) {
+        if(pedidosSelecionados.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum pedido Selecionado, selecione pelo menos um pedidos para criar uma nova Carga");
+            return;
+        }
+        Carga c = new Carga(LogSystem.getFuncionarioAtual().getUnidade(), unidadeDest);
+        for(Integer idPedido : pedidosSelecionados){
+            for(Pedido p : LogSystem.getPedidos()){
+                if(Objects.equals(p.getIdPedido(), idPedido)){
+                    c.addPedido(p);
+                    p.setDisponivel(false);
+                }
+            }
+        }
+        (LogSystem.getCargas()).add(c);
+        frame.dispose();
+    }
+
+    public static int getVeiculosDisponiveisSaida(Object[][] dadosTabela) {
+        Integer numVeiculosDisponiveis = 0;
+        List<Veiculo> veiculos = LogSystem.getVeiculos();
+        for (Veiculo v : veiculos) {
+            if (Objects.equals(v.getUnidadeDest(), LogSystem.getFuncionarioAtual().getUnidade()) && v.isDisponivel() && v.getCargaAtual() == -1 && v.isDisponivel()) {
+                dadosTabela[numVeiculosDisponiveis][0] = v.getIdVeiculo();
+                dadosTabela[numVeiculosDisponiveis][1] = v.getCapacidadeVeiculo();
+                numVeiculosDisponiveis++;
+            }
+        }
+        return numVeiculosDisponiveis;
+    }
+
+    public static void carregar(JFrame frame, Integer idVeiculo, Integer idCarga) {
+        List<Veiculo> veiculos = LogSystem.getVeiculos();
+        List<Carga> cargas = LogSystem.getCargas();
+        for (Veiculo v : veiculos) {
+            if (Objects.equals(v.getIdVeiculo(), idVeiculo) && v.getCargaAtual() == -1 && v.isDisponivel()) {
+                for(Carga c : cargas){
+                    if(Objects.equals(c.getIdCarga(), idCarga) && c.isDisponivel()){
+                        v.carregar(c);
+                        v.setDisponivel(false);
+                        c.setDisponivel(false);
+                        frame.dispose();
+                    }
+                }
+            }
+        }
     }
 }
