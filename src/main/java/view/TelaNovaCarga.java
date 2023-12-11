@@ -73,20 +73,15 @@ public class TelaNovaCarga extends Janela{
                 int col = tabelaPedidos.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
                     Boolean valorAtual = Boolean.valueOf(tabelaPedidos.getValueAt(row, 0).toString());
-                    if(valorAtual){
-                        System.out.println(valorAtual);
+                    if(!valorAtual){
                         for(Integer id : pedidosSelecionados){
-                            
                             if(Objects.equals(id, Integer.valueOf(tabelaPedidos.getValueAt(row, 1).toString()))){
                                 pedidosSelecionados.remove(id);
                                 if(pedidosSelecionados.isEmpty()) destinoCarga = -1;
-                                //tabelaPedidos.setValueAt(false,row, 0);
-                                System.out.println(pedidosSelecionados);
                                 break;
                             }
                         }
                     }else{
-                        System.out.println(valorAtual);
                         if(destinoCarga == -1){
                             destinoCarga = Integer.valueOf(tabelaPedidos.getValueAt(row, 3).toString());
                         }else{
@@ -96,8 +91,6 @@ public class TelaNovaCarga extends Janela{
                             }
                         }
                         pedidosSelecionados.add(Integer.valueOf(tabelaPedidos.getValueAt(row, 1).toString()));
-                        //tabelaPedidos.setValueAt(true,row, 0);
-                        System.out.println(pedidosSelecionados);
                     }
                 }
                 modeloTabelaPedidos.fireTableDataChanged();
