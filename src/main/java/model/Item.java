@@ -15,7 +15,7 @@ public class Item {
     private String nome;
     private Float valor;
     private Float peso;
-    private Float frete;
+    private final Float frete;
     
     
 

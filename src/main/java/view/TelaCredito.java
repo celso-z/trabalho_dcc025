@@ -2,11 +2,6 @@
  * @author Celso Zacarias da Silva Junior 202076003
  * @author Dhayana Nascimento Silva 201976040
  */
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view;
 
 import controller.ControladorCredito;
@@ -20,22 +15,22 @@ import javax.swing.JTextField;
 
 public class TelaCredito extends Janela {
 
-    private final JLabel label_nome_cartao;
-    private final JTextField text_nome_cartao;
+    private JLabel labelNomeCartao;
+    private JTextField textNomeCartao;
 
-    private final JLabel label_cvv;
-    private final JTextField text_cvv;
+    private JLabel labelCvv;
+    private JTextField textCvv;
 
-    private final JLabel label_numero_cartao;
-    private final JTextField text_numero_cartao;
+    private JLabel labelNumeroCartao;
+    private JTextField textNumeroCartao;
 
-    private final JLabel label_data;
-    private final JTextField text_data;
+    private JLabel labelData;
+    private JTextField textData;
 
-    private final JLabel label_valor;
-    private final JTextField text_valor;
+    private JLabel labelValor;
+    private JTextField textValor;
 
-    private final JButton botao_finalizar;
+    private JButton botaoFinalizar;
 
     public TelaCredito() {
         super("Credito");
@@ -43,97 +38,98 @@ public class TelaCredito extends Janela {
         JPanel painel = gridBagLayoutConfig();
         GridBagConstraints gbc = gridBagConstraintsConfig();
 
-        label_nome_cartao = new JLabel("Nome do cartão");
+        labelNomeCartao = new JLabel("Nome do cartão");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        painel.add(label_nome_cartao, gbc);
+        painel.add(labelNomeCartao, gbc);
 
-        text_nome_cartao = new JTextField();
-        text_nome_cartao.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textNomeCartao = new JTextField();
+        textNomeCartao.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 0;
-        painel.add(text_nome_cartao, gbc);
+        painel.add(textNomeCartao, gbc);
 
-        label_cvv = new JLabel("CVV");
+        labelCvv = new JLabel("CVV");
         gbc.gridx = 2;
         gbc.gridy = 0;
-        painel.add(label_cvv, gbc);
+        painel.add(labelCvv, gbc);
 
-        text_cvv = new JTextField();
-        text_cvv.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textCvv = new JTextField();
+        textCvv.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 3;
         gbc.gridy = 0;
-        painel.add(text_cvv, gbc);
+        painel.add(textCvv, gbc);
 
-        label_numero_cartao = new JLabel("Numero do cartão");
+        labelNumeroCartao = new JLabel("Numero do cartão");
         gbc.gridx = 0;
         gbc.gridy = 1;
-        painel.add(label_numero_cartao, gbc);
+        painel.add(labelNumeroCartao, gbc);
 
-        text_numero_cartao = new JTextField();
-        text_numero_cartao.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textNumeroCartao = new JTextField();
+        textNumeroCartao.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        painel.add(text_numero_cartao, gbc);
+        painel.add(textNumeroCartao, gbc);
 
-        label_data = new JLabel("Data");
+        labelData = new JLabel("Data");
         gbc.gridx = 2;
         gbc.gridy = 1;
-        painel.add(label_data, gbc);
+        painel.add(labelData, gbc);
 
-        text_data = new JTextField();
-        text_data.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
+        textData = new JTextField();
+        textData.setPreferredSize(new Dimension(INPUT_SMALL_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 3;
         gbc.gridy = 1;
-        painel.add(text_data, gbc);
+        painel.add(textData, gbc);
 
-        label_valor = new JLabel("Valor da recarga");
+        labelValor = new JLabel("Valor da recarga");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        painel.add(label_valor, gbc);
+        painel.add(labelValor, gbc);
 
-        text_valor = new JTextField();
-        text_valor.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
+        textValor = new JTextField();
+        textValor.setPreferredSize(new Dimension(INPUT_WIDTH, INPUT_HEIGHT));
         gbc.gridx = 1;
         gbc.gridy = 2;
-        painel.add(text_valor, gbc);
+        painel.add(textValor, gbc);
 
-        botao_finalizar = new JButton("Finalizar");
+        botaoFinalizar = new JButton("Finalizar");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        painel.add(botao_finalizar, gbc);
+        painel.add(botaoFinalizar, gbc);
 
         this.add(painel);
         this.setVisible(true);
 
-        botao_finalizar.addActionListener((ActionEvent event) -> {
+        botaoFinalizar.addActionListener((ActionEvent event) -> {
             ControladorCredito.addCredito(this, getValorRecarga(), isPreenchidoNumeroCartao(), isPreenchidoNomeCartao(), isPreenchidoCVV(), isPreenchidoData());
         });
     }
 
-    public Float getValorRecarga() {
-        return Float.valueOf(text_valor.getText());
+    private Float getValorRecarga() {
+        return Float.valueOf(textValor.getText());
     }
 
-    public boolean isPreenchidoNumeroCartao() {
-        boolean ret = (!text_numero_cartao.getText().equals(""));
+    private boolean isPreenchidoNumeroCartao() {
+        boolean ret = (!textNumeroCartao.getText().equals(""));
         return ret;
     }
 
-    public boolean isPreenchidoNomeCartao() {
-        boolean ret = (!text_nome_cartao.getText().equals(""));
+    private boolean isPreenchidoNomeCartao() {
+        boolean ret = (!textNomeCartao.getText().equals(""));
         return ret;
     }
 
-    public boolean isPreenchidoData() {
-        boolean ret = (!text_data.getText().equals(""));
+    private boolean isPreenchidoData() {
+        boolean ret = (!textData.getText().equals(""));
         return ret;
     }
 
-    public boolean isPreenchidoCVV() {
-        boolean ret = (!text_cvv.getText().equals(""));
+    private boolean isPreenchidoCVV() {
+        boolean ret = (!textCvv.getText().equals(""));
+
         return ret;
     }
 }

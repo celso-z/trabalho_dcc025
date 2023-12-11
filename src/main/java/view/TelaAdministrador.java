@@ -114,23 +114,23 @@ public class TelaAdministrador extends Janela {
         this.setVisible(true);
     }
 
-    public Integer getTextUnidade() {
+    private Integer getTextUnidade() {
         return Integer.valueOf(textUnidade.getText());
     }
-
-    public String getTextNome() {
+    
+    private String getTextNome() {
         return textNomeFuncionario.getText();
     }
 
-    public String getTextUsuario() {
+    private String getTextUsuario() {
         return textUsuarioFuncionario.getText();
     }
 
-    public String getTextTelefone() {
+    private String getTextTelefone() {
         return textTelefoneFuncionario.getText();
     }
 
-    public String getTextSenha() {
+    private String getTextSenha() {
         return new String(textSenhaFuncionario.getPassword());
     }
 }

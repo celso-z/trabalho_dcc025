@@ -153,7 +153,7 @@ public class TelaUsuario extends Janela {
         atualizaTabela();
     }
 
-    public void atualizaTabela() {
+    private void atualizaTabela() {
         List<Pedido> pedidos = LogSystem.getPedidos();
         List<Pedido> pedidosUsuario = new ArrayList<>();
 
@@ -174,19 +174,19 @@ public class TelaUsuario extends Janela {
         modeloTabela.fireTableDataChanged();
     }
 
-    public Integer getTextUnidadeOrigem() {
+    private Integer getTextUnidadeOrigem() {
         return Integer.valueOf(textUnidadeOrigem.getText());
     }
 
-    public Integer getTextUnidadeDestino() {
+    private Integer getTextUnidadeDestino() {
         return Integer.valueOf(textUnidadeDestino.getText());
     }
 
-    public String getTextNomeDestinatario() {
+    private String getTextNomeDestinatario() {
         return textNomeDestinatario.getText();
     }
 
-    public String getTextCpfDestinatario() {
+    private String getTextCpfDestinatario() {
         return textCpfDestinatario.getText();
     }
 

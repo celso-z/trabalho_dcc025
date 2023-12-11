@@ -14,11 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 public class TelaCadastro extends Janela {
 
     private final JLabel labelNome;
@@ -100,19 +95,19 @@ public class TelaCadastro extends Janela {
         this.setVisible(true);
     }
 
-    public String getTextNome() {
+    private String getTextNome() {
         return textNome.getText();
     }
 
-    public String getTextUsuario() {
+    private String getTextUsuario() {
         return textUsuario.getText();
     }
 
-    public String getTextTelefone() {
+    private String getTextTelefone() {
         return textTelefone.getText();
     }
 
-    public String getTextSenha() {
+    private String getTextSenha() {
         return new String(textSenha.getPassword());
     }
 

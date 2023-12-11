@@ -7,7 +7,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package view;
+
 
 import com.mycompany.logsystem.LogSystem;
 import controller.ControladorPedido;
@@ -30,28 +32,29 @@ import model.Pedido;
 public class TelaPedido extends Janela {
 
     private final String[] colunas = {"ID", "NOME", "PESO", "VALOR", "FRETE"};
-    private final Object data[][] = new Object[100][5];
+    private Object data[][] = new Object[100][5];
     private final int numCols = 0;
-    private final DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols);
+    private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
-    private final JLabel labelMeusItens;
-    private final JTable textMeusItens;
+    private JLabel labelMeusItens;
+    private JTable textMeusItens;
 
-    private final JLabel labelNomeItem;
-    private final JTextField textNomeItem;
+    private JLabel labelNomeItem;
+    private JTextField textNomeItem;
 
-    private final JLabel labelValorItem;
-    private final JTextField textValorItem;
+    private JLabel labelValorItem;
+    private JTextField textValorItem;
 
-    private final JLabel labelPesoItem;
-    private final JTextField textPesoItem;
+    private JLabel labelPesoItem;
+    private JTextField textPesoItem;
 
-    private final JButton botaoAdicionarItem;
-    private final JButton botaoFinalizar;
+    private JButton botaoAdicionarItem;
+    private JButton botaoFinalizar;
 
-    public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {
+    public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
-        Pedido possivelPedido = new Pedido((LogSystem.getClienteAtual()).getMatricula(), unidadeOrigem, unidadeDestino, cpfDestinatario, nomeDestinatario);
+        Pedido possivelPedido = new Pedido((LogSystem.getClienteAtual()).getMatricula() ,unidadeOrigem, unidadeDestino, cpfDestinatario, nomeDestinatario);
+        
 
         JPanel painel1 = gridBagLayoutConfig();
         JPanel painel2 = gridBagLayoutConfig();
@@ -113,7 +116,7 @@ public class TelaPedido extends Janela {
         JScrollPane container_meus_itens = new JScrollPane(textMeusItens);
         container_meus_itens.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         painel1.add(container_meus_itens, gbc);
-
+        
         botaoFinalizar = new JButton("Finalizar");
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -126,38 +129,36 @@ public class TelaPedido extends Janela {
 
         this.add(painel);
         this.setVisible(true);
-
+        
         botaoAdicionarItem.addActionListener((ActionEvent event) -> {
             ControladorPedido.addItem(possivelPedido, getNomeItem(), getValorItem(), getPesoItem());
             atualizaTabela(possivelPedido.getItensPedido());
 
         });
-
+              
         botaoFinalizar.addActionListener((ActionEvent event) -> {
-
-            if (possivelPedido.getItensPedido().size() > 0) {
+            if(possivelPedido.getItensPedido().size() > 0){
                 ControladorPedido.registraPedido(this, possivelPedido);
             }
 
         });
-
+        
     }
-
-    public String getNomeItem() {
+    private String getNomeItem() {
         return textNomeItem.getText();
     }
-
-    public Float getValorItem() {
+     
+    private Float getValorItem() {
         return Float.valueOf(textValorItem.getText());
     }
-
-    public Float getPesoItem() {
+    
+    private Float getPesoItem() {
         return Float.valueOf(textPesoItem.getText());
     }
+    
+    private void atualizaTabela(ArrayList<Item> itens){
 
-    public void atualizaTabela(ArrayList<Item> itens) {
-
-        for (int i = 0; i < itens.size(); i++) {
+        for(int i = 0; i < itens.size(); i++){
             Item item = itens.get(i);
             data[i][0] = item.getIdItem();
             data[i][1] = item.getNome();
@@ -169,5 +170,6 @@ public class TelaPedido extends Janela {
         modeloTabela.setNumRows(itens.size());
         modeloTabela.fireTableDataChanged();
     }
-
+    
+    
 }
