@@ -49,7 +49,7 @@ public class TelaFuncionario extends Janela {
     private final JButton botaoDesassociar;
     private final JButton botaoDescarregar;
     private final JButton botaoNovaCarga;
-    private JButton botaoCarregar;
+    private final JButton botaoCarregar;
 
     private JTable tabelaPedidosEntrada;
     private JTable tabelaCargasEntrada;
@@ -83,9 +83,10 @@ public class TelaFuncionario extends Janela {
 
         botaoRetiraPedido = new JButton("Retirar Pedido");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabPedidosEntrada.add(botaoRetiraPedido, gbc);
+        gbc.fill = GridBagConstraints.NONE;
 
         tabEntrada.addTab("Cargas", tabCargasEntrada);
         tabelaCargasEntrada = new JTable(modeloTabelaCargasEntrada);
@@ -101,9 +102,10 @@ public class TelaFuncionario extends Janela {
 
         botaoDesassociar = new JButton("Desassociar");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabCargasEntrada.add(botaoDesassociar, gbc);
+        gbc.fill = GridBagConstraints.NONE;
 
         tabEntrada.addTab("Veículos", tabVeiculosEntrada);
 
@@ -117,9 +119,10 @@ public class TelaFuncionario extends Janela {
         tabVeiculosEntrada.add(containerTabelaVeiculosEntrada, gbc);
         botaoDescarregar = new JButton("Descarregar");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         tabVeiculosEntrada.add(botaoDescarregar, gbc);
+        gbc.fill = GridBagConstraints.NONE;
 
         tabSaida.addTab("Cargas", tabCargasSaida);
         tabelaCargasSaida = new JTable(modeloTabelaCargasSaida);
@@ -129,19 +132,22 @@ public class TelaFuncionario extends Janela {
         containerTabelaCargasSaida.setPreferredSize(new Dimension(LIST_WIDTH, LIST_HEIGHT));
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         tabCargasSaida.add(containerTabelaCargasSaida, gbc);
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        
         botaoNovaCarga = new JButton("Nova Carga");
         gbc.gridx = 0;
-        gbc.gridy = 2;
-        //gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridy = 1;
         tabCargasSaida.add(botaoNovaCarga, gbc);
 
         tabSaida.addTab("Veículos", tabVeiculosSaida);
 
         botaoCarregar = new JButton("Carregar");
         gbc.gridx = 1;
-        gbc.gridy = 2;
-        //gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridy = 1;
         tabCargasSaida.add(botaoCarregar, gbc);
 
         this.add(painel);
