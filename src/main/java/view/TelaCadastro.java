@@ -15,26 +15,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 public class TelaCadastro extends Janela {
 
-    JLabel labelNome;
-    JTextField textNome;
+    private JLabel labelNome;
+    private JTextField textNome;
 
-    JLabel labelUsuario;
-    JTextField textUsuario;
+    private JLabel labelUsuario;
+    private JTextField textUsuario;
 
-    JLabel labelTelefone;
-    JTextField textTelefone;
+    private JLabel labelTelefone;
+    private JTextField textTelefone;
 
-    JLabel labelSenha;
-    JPasswordField textSenha;
+    private JLabel labelSenha;
+    private JPasswordField textSenha;
 
-    JButton botaoCadastrar;
+    private JButton botaoCadastrar;
 
     public TelaCadastro() {
         super("Cadastro");
@@ -103,19 +98,19 @@ public class TelaCadastro extends Janela {
         this.setVisible(true);
     }
 
-    public String getTextNome() {
+    private String getTextNome() {
         return textNome.getText();
     }
 
-    public String getTextUsuario() {
+    private String getTextUsuario() {
         return textUsuario.getText();
     }
 
-    public String getTextTelefone() {
+    private String getTextTelefone() {
         return textTelefone.getText();
     }
 
-    public String getTextSenha() {
+    private String getTextSenha() {
         return new String(textSenha.getPassword());
     }
 

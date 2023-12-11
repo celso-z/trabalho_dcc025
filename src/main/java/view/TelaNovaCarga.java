@@ -1,6 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * @author Celso Zacarias da Silva Junior 202076003
+ * @author Dhayana Nascimento Silva 201976040
  */
 package view;
 
@@ -18,10 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author celso-z
- */
+
 public class TelaNovaCarga extends Janela{
     private List<Integer> pedidosSelecionados = new ArrayList<>();
     private final String[] colunasPedidos = {"ADD", "ID", "ORIGEM", "DESTINO"};

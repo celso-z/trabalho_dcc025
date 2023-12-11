@@ -21,22 +21,22 @@ import javax.swing.JTextField;
 
 public class TelaAdministrador extends Janela {
 
-    JLabel labelUnidade;
-    JTextField textUnidade;
+    private JLabel labelUnidade;
+    private JTextField textUnidade;
     
-    JLabel labelNomeFuncionario;
-    JTextField textNomeFuncionario;
+    private JLabel labelNomeFuncionario;
+    private JTextField textNomeFuncionario;
 
-    JLabel labelUsuarioFuncionario;
-    JTextField textUsuarioFuncionario;
+    private JLabel labelUsuarioFuncionario;
+    private JTextField textUsuarioFuncionario;
 
-    JLabel labelTelefoneFuncionario;
-    JTextField textTelefoneFuncionario;
+    private JLabel labelTelefoneFuncionario;
+    private JTextField textTelefoneFuncionario;
 
-    JLabel labelSenhaFuncionario;
-    JPasswordField textSenhaFuncionario;
+    private JLabel labelSenhaFuncionario;
+    private JPasswordField textSenhaFuncionario;
 
-    JButton botaoCadastrarFuncionario;
+    private JButton botaoCadastrarFuncionario;
 
     public TelaAdministrador() {
         super("Administrador");
@@ -116,23 +116,23 @@ public class TelaAdministrador extends Janela {
         this.setVisible(true);
     }
 
-    public Integer getTextUnidade() {
+    private Integer getTextUnidade() {
         return Integer.valueOf(textUnidade.getText());
     }
     
-    public String getTextNome() {
+    private String getTextNome() {
         return textNomeFuncionario.getText();
     }
 
-    public String getTextUsuario() {
+    private String getTextUsuario() {
         return textUsuarioFuncionario.getText();
     }
 
-    public String getTextTelefone() {
+    private String getTextTelefone() {
         return textTelefoneFuncionario.getText();
     }
 
-    public String getTextSenha() {
+    private String getTextSenha() {
         return new String(textSenhaFuncionario.getPassword());
     }
 }

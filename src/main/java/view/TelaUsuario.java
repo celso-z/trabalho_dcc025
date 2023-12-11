@@ -34,23 +34,23 @@ public class TelaUsuario extends Janela {
     private Object data[][] = new Object[50][3];
     private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
-    JLabel labelMeusPedidos;
-    JTable textMeusPedidos;
+    private JLabel labelMeusPedidos;
+    private JTable textMeusPedidos;
 
-    JLabel labelUnidadeOrigem;
-    JTextField textUnidadeOrigem;
+    private JLabel labelUnidadeOrigem;
+    private JTextField textUnidadeOrigem;
 
-    JLabel labelUnidadeDestino;
-    JTextField textUnidadeDestino;
+    private JLabel labelUnidadeDestino;
+    private JTextField textUnidadeDestino;
 
-    JLabel labelNomeDestinatario;
-    JTextField textNomeDestinatario;
+    private JLabel labelNomeDestinatario;
+    private JTextField textNomeDestinatario;
 
-    JLabel labelCpfDestinatario;
-    JTextField textCpfDestinatario;
+    private JLabel labelCpfDestinatario;
+    private JTextField textCpfDestinatario;
 
-    JButton botaoRealizarPedido;
-    JButton botaoAdicionarCredito;
+    private JButton botaoRealizarPedido;
+    private JButton botaoAdicionarCredito;
 
     public TelaUsuario() {
         super("Home");
@@ -147,13 +147,13 @@ public class TelaUsuario extends Janela {
             ControladorUsuario.realizarPedido(TelaUsuario.this, getTextUnidadeOrigem(),getTextUnidadeDestino(),getTextNomeDestinatario(), getTextCpfDestinatario());
         });
        
-       this.add(painel);
-    this.setVisible(true);
+        this.add(painel);
+        this.setVisible(true);
         
         atualizaTabela();
     }
 
-    public void atualizaTabela() {
+    private void atualizaTabela() {
         List<Pedido> pedidos  = LogSystem.getPedidos();        
         List<Pedido> pedidosUsuario = new ArrayList<>();
 
@@ -175,19 +175,19 @@ public class TelaUsuario extends Janela {
         modeloTabela.fireTableDataChanged();
     }
 
-    public Integer getTextUnidadeOrigem() {
+    private Integer getTextUnidadeOrigem() {
         return Integer.valueOf(textUnidadeOrigem.getText());
     }
 
-    public Integer getTextUnidadeDestino() {
+    private Integer getTextUnidadeDestino() {
         return Integer.valueOf(textUnidadeDestino.getText());
     }
 
-    public String getTextNomeDestinatario() {
+    private String getTextNomeDestinatario() {
         return textNomeDestinatario.getText();
     }
 
-    public String getTextCpfDestinatario() {
+    private String getTextCpfDestinatario() {
         return textCpfDestinatario.getText();
     }
     

@@ -36,20 +36,20 @@ public class TelaPedido extends Janela {
     private final int numCols = 0;
     private DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols) ;
 
-    JLabel labelMeusItens;
-    JTable textMeusItens;
+    private JLabel labelMeusItens;
+    private JTable textMeusItens;
 
-    JLabel labelNomeItem;
-    JTextField textNomeItem;
+    private JLabel labelNomeItem;
+    private JTextField textNomeItem;
 
-    JLabel labelValorItem;
-    JTextField textValorItem;
+    private JLabel labelValorItem;
+    private JTextField textValorItem;
 
-    JLabel labelPesoItem;
-    JTextField textPesoItem;
+    private JLabel labelPesoItem;
+    private JTextField textPesoItem;
 
-    JButton botaoAdicionarItem;
-    JButton botaoFinalizar;
+    private JButton botaoAdicionarItem;
+    private JButton botaoFinalizar;
 
     public TelaPedido(Integer unidadeOrigem, Integer unidadeDestino, String cpfDestinatario, String nomeDestinatario) {  
         super("Pedido");
@@ -144,19 +144,19 @@ public class TelaPedido extends Janela {
         });
         
     }
-     public String getNomeItem() {
+    private String getNomeItem() {
         return textNomeItem.getText();
     }
      
-    public Float getValorItem() {
+    private Float getValorItem() {
         return Float.valueOf(textValorItem.getText());
     }
     
-    public Float getPesoItem() {
+    private Float getPesoItem() {
         return Float.valueOf(textPesoItem.getText());
     }
     
-    public void atualizaTabela(ArrayList<Item> itens){
+    private void atualizaTabela(ArrayList<Item> itens){
 
         for(int i = 0; i < itens.size(); i++){
             Item item = itens.get(i);
