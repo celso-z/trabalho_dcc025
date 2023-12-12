@@ -157,17 +157,9 @@ public class TelaPedido extends Janela {
     }
     
     private void atualizaTabela(ArrayList<Item> itens){
-
-        for(int i = 0; i < itens.size(); i++){
-            Item item = itens.get(i);
-            data[i][0] = item.getIdItem();
-            data[i][1] = item.getNome();
-            data[i][2] = item.getPeso();
-            data[i][3] = item.getValor();
-            data[i][4] = item.getFrete();
-        }
+        int numItens = ControladorPedido.atualizaTabela(data, itens);
         modeloTabela.setDataVector(data, colunas);
-        modeloTabela.setNumRows(itens.size());
+        modeloTabela.setNumRows(numItens);
         modeloTabela.fireTableDataChanged();
     }
     

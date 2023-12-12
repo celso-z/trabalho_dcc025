@@ -10,6 +10,7 @@
 package controller;
 
 import com.mycompany.logsystem.LogSystem;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,6 +36,18 @@ public class ControladorPedido {
         }else pedidos.add(pedido);
         frame.dispose();
         new TelaUsuario();
+    }
+
+    public static int atualizaTabela(Object data[][], ArrayList<Item> itens) {
+        for(int i = 0; i < itens.size(); i++){
+            Item item = itens.get(i);
+            data[i][0] = item.getIdItem();
+            data[i][1] = item.getNome();
+            data[i][2] = item.getPeso();
+            data[i][3] = item.getValor();
+            data[i][4] = item.getFrete();
+        }
+        return itens.size();
     }
     
 }
