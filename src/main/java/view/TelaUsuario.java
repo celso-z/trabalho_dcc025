@@ -29,7 +29,7 @@ import model.Pedido;
 
 public class TelaUsuario extends Janela {
 
-    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS", "SITUAÇÂO"};
+    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS", "ENTREGUE"};
     private final int numCols = 0;
     private final Object data[][] = new Object[50][3];
     private final DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols);
@@ -153,11 +153,10 @@ public class TelaUsuario extends Janela {
         atualizaTabela();
     }
 
-    private void atualizaTabela() {       
-        int numPedidos = ControladorUsuario.getPedidos(data);
-
+    private void atualizaTabela() {
+        int numPedidosDisponiveis = ControladorUsuario.getPedidosUsuario(data);  
         modeloTabela.setDataVector(data, colunas);
-        modeloTabela.setNumRows(numPedidos);
+        modeloTabela.setNumRows(numPedidosDisponiveis);
         modeloTabela.fireTableDataChanged();
     }
 

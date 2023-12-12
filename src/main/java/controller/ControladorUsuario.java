@@ -29,7 +29,7 @@ public class ControladorUsuario {
         new TelaPedido(textUnidadeOrigem, textUnidadeDestino, textCpfDestinatario, textNomeDestinatario);
     }
 
-    public static int getPedidos(Object[][] data) {
+    public static int getPedidosUsuario(Object[][] data) {
         List<Pedido> pedidos = LogSystem.getPedidos();
         List<Pedido> pedidosUsuario = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class ControladorUsuario {
             Pedido pedido = pedidosUsuario.get(i);
             data[i][0] = pedido.getIdPedido();
             data[i][1] = pedido.getItensPedido().size();
-            data[i][2] = pedido.isEntregue();
+            data[i][2] = pedido.isEntregue() == true ? "SIM" : "NÃO";
         }
         return pedidosUsuario.size();
     }
