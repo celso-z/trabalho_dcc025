@@ -154,8 +154,7 @@ public class TelaUsuario extends Janela {
     }
 
     private void atualizaTabela() {
-        int numPedidosDisponiveis = ControladorUsuario.getPedidosUsuario(data);
-        
+        int numPedidosDisponiveis = ControladorUsuario.getPedidosUsuario(data);  
         modeloTabela.setDataVector(data, colunas);
         modeloTabela.setNumRows(numPedidosDisponiveis);
         modeloTabela.fireTableDataChanged();
