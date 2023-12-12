@@ -35,7 +35,7 @@ import java.io.File;
 public class DataManager {
     public static String DATA_DIR = "data";
     
-    public static <T> void escreveRegistros(List<T> objectsToWrite) throws DataException{
+    private static <T> void escreveRegistros(List<T> objectsToWrite) throws DataException{
         Gson gson = new Gson();
         String json = gson.toJson(objectsToWrite);
         File diretorio = new File(DATA_DIR);

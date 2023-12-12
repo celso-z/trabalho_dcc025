@@ -29,7 +29,7 @@ import model.Pedido;
 
 public class TelaUsuario extends Janela {
 
-    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS", "SITUAÇÂO"};
+    private final String[] colunas = {"ID PEDIDO", "QUANTIDADE ITENS", "ENTREGUE"};
     private final int numCols = 0;
     private final Object data[][] = new Object[50][3];
     private final DefaultTableModel modeloTabela = new DefaultTableModel(colunas, numCols);
@@ -154,23 +154,9 @@ public class TelaUsuario extends Janela {
     }
 
     private void atualizaTabela() {
-        List<Pedido> pedidos = LogSystem.getPedidos();
-        List<Pedido> pedidosUsuario = new ArrayList<>();
-
-        for (Pedido pedido : pedidos) {
-            if (pedido.getIdSoliciante() == LogSystem.getClienteAtual().getMatricula()) {
-                pedidosUsuario.add(pedido);
-            }
-        }
-
-        for (int i = 0; i < pedidosUsuario.size(); i++) {
-            Pedido pedido = pedidosUsuario.get(i);
-            data[i][0] = pedido.getIdPedido();
-            data[i][1] = pedido.getItensPedido().size();
-            data[i][2] = pedido.isEntregue();
-        }
+        int numPedidosDisponiveis = ControladorUsuario.getPedidosUsuario(data);  
         modeloTabela.setDataVector(data, colunas);
-        modeloTabela.setNumRows(pedidosUsuario.size());
+        modeloTabela.setNumRows(numPedidosDisponiveis);
         modeloTabela.fireTableDataChanged();
     }
 
