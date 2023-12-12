@@ -153,24 +153,11 @@ public class TelaUsuario extends Janela {
         atualizaTabela();
     }
 
-    private void atualizaTabela() {
-        List<Pedido> pedidos = LogSystem.getPedidos();
-        List<Pedido> pedidosUsuario = new ArrayList<>();
+    private void atualizaTabela() {       
+        int numPedidos = ControladorUsuario.getPedidos(data);
 
-        for (Pedido pedido : pedidos) {
-            if (pedido.getIdSoliciante() == LogSystem.getClienteAtual().getMatricula()) {
-                pedidosUsuario.add(pedido);
-            }
-        }
-
-        for (int i = 0; i < pedidosUsuario.size(); i++) {
-            Pedido pedido = pedidosUsuario.get(i);
-            data[i][0] = pedido.getIdPedido();
-            data[i][1] = pedido.getItensPedido().size();
-            data[i][2] = pedido.isEntregue();
-        }
         modeloTabela.setDataVector(data, colunas);
-        modeloTabela.setNumRows(pedidosUsuario.size());
+        modeloTabela.setNumRows(numPedidos);
         modeloTabela.fireTableDataChanged();
     }
 
